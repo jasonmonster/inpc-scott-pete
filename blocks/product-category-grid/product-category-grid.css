@@ -1,0 +1,34 @@
+/*
+ * Scott Pete — Product Category Grid block CSS override
+ *
+ * The parent block CSS (ipc-base/blocks/product-category-grid/product-category-grid.css)
+ * handles all layout, flip mechanics, and sizing. Both files load — this one
+ * runs at priority 99 via the child enqueue and overrides brand-specific values.
+ *
+ * Classes match the parent exactly:
+ *   .product-category-card__label  — front face category name bar
+ *   .product-category-card__back   — back face
+ *   .product-category-grid__cta    — CTA button row
+ */
+
+/* Back face — use brand red instead of parent's hardcoded #152e86 navy */
+.product-category-card__back {
+    background-color: var(--product-flip-back-bg, #ab162b) !important;
+}
+
+/* Front label — navy text on white, matching Scott Pete brand */
+.product-category-card__label {
+    color: var(--color-primary, #152e86);
+}
+
+/* CTA button — gold on navy */
+.product-category-grid__cta .btn {
+    background: var(--color-accent, #fcc278);
+    color: var(--color-primary, #152e86);
+    border-color: var(--color-accent, #fcc278);
+}
+
+.product-category-grid__cta .btn:hover {
+    background: var(--color-accent-dark, #e8a44e);
+    border-color: var(--color-accent-dark, #e8a44e);
+}
