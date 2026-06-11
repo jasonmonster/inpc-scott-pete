@@ -11,26 +11,24 @@ Text Domain:  scott-pete
 
 /* =========================================================
    SCOTT PETE — BRAND VARIABLE OVERRIDES
-   All structural CSS lives in ipc-base/assets/css/style.css
-   Only brand tokens are redeclared here.
    ========================================================= */
 
 :root {
 
   /* --- Core Brand Colors --- */
-  --color-primary:          #152e86; /* Navy blue */
+  --color-primary:          #152e86;
   --color-primary-dark:     #0e1f5e;
   --color-primary-light:    #1e3fa8;
 
-  --color-secondary:        #ab162b; /* Red */
+  --color-secondary:        #ab162b;
   --color-secondary-dark:   #8a1122;
   --color-secondary-light:  #c91a33;
 
-  --color-accent:           #fcc278; /* Gold/peach */
+  --color-accent:           #fcc278;
   --color-accent-dark:      #e8a44e;
   --color-accent-light:     #fdd49a;
 
-  /* --- Neutrals (unchanged from base, listed for clarity) --- */
+  /* --- Neutrals --- */
   --color-white:            #ffffff;
   --color-off-white:        #f8f6f2;
   --color-light-gray:       #ebebeb;
@@ -40,34 +38,33 @@ Text Domain:  scott-pete
 
   /* --- UI Roles --- */
   --color-bg:               #ffffff;
-  --color-bg-alt:           #152e86; /* navy sections */
-  --color-bg-dark:          #0e1f5e; /* CSS fallback — also set via ACF at priority 100 */
+  --color-bg-alt:           #152e86;
+  --color-bg-dark:          #152e86;
   --color-text:             #111111;
-  --color-text-light:       #ffffff;
+  --color-text-light:       #666666;
   --color-text-muted:       #666666;
-
   --color-border:           #ddd;
   --color-border-dark:      #152e86;
 
-  --color-cta:              #fcc278; /* primary CTA buttons */
+  --color-cta:              #fcc278;
   --color-cta-hover:        #e8a44e;
-  --color-cta-text:         #152e86; /* text on gold CTA */
+  --color-cta-text:         #152e86;
 
   --color-nav-bg:           transparent;
   --color-nav-text:         #ffffff;
   --color-nav-hover:        #fcc278;
   --color-nav-border:       #fcc278;
 
-  /* --- Typography — Adobe Fonts kit: ipc5oaz ---
-     futura-pt            400/700  — body and UI
-     futura-pt-condensed  800      — headings (Cond Extra Bold)
-     futura-pt-condensed  500      — CTAs and labels (Cond Medium) */
+  /* --- Typography ---
+     Adobe Fonts kit ipc5oaz:
+       futura-pt            400/700  body and UI
+       futura-pt-condensed  800      headings (Cond Extra Bold)
+       futura-pt-condensed  500      CTAs and labels (Cond Medium) */
   --font-heading:           'futura-pt-condensed', sans-serif;
   --font-subheading:        'futura-pt-condensed', sans-serif;
   --font-body:              'futura-pt', sans-serif;
   --font-accent:            'futura-pt-condensed', sans-serif;
   --font-cta:               'futura-pt-condensed', sans-serif;
-  /* base.css uses --font-display for h1-h6 and --font-primary for body/buttons */
   --font-display:           'futura-pt-condensed', sans-serif;
   --font-primary:           'futura-pt', sans-serif;
 
@@ -78,22 +75,8 @@ Text Domain:  scott-pete
   --fw-bold:                700;
   --fw-black:               900;
 
-  /* --- Heading Sizes (condensed/display treatment) --- */
-  --fs-h1:                  clamp(3rem, 7vw, 5.5rem);
-  --fs-h2:                  clamp(2rem, 5vw, 3.5rem);
-  --fs-h3:                  clamp(1.5rem, 3vw, 2.25rem);
-  --fs-h4:                  clamp(1.25rem, 2vw, 1.75rem);
-  --fs-body:                1rem;
-  --fs-small:               0.875rem;
-
-  /* --- Letter Spacing (wide tracking for brand headings) --- */
-  --ls-heading:             0.04em;
-  --ls-label:               0.12em;
-  --ls-nav:                 0.08em;
-
   /* --- Spacing & Layout --- */
   --section-padding-y:      clamp(3rem, 6vw, 6rem);
-  --section-padding-x:      clamp(1.5rem, 5vw, 4rem);
   --container-max:          1200px;
   --border-radius:          4px;
   --border-radius-lg:       8px;
@@ -109,9 +92,8 @@ Text Domain:  scott-pete
   --transition-slow:        400ms ease;
 
   /* --- Header --- */
-  --header-bg:              transparent; /* overlays hero */
+  --header-bg:              transparent;
   --header-height:          80px;
-  --header-height-scrolled: 60px;
 
   /* --- Footer --- */
   --footer-bg:              #fcc278;
@@ -120,13 +102,7 @@ Text Domain:  scott-pete
   --footer-link-hover:      #c8102e;
   --footer-border:          rgba(21, 46, 134, 0.2);
 
-  /* --- Cards --- */
-  --card-bg:                #ffffff;
-  --card-border:            #ebebeb;
-  --card-shadow:            var(--shadow-sm);
-  --card-hover-shadow:      var(--shadow-md);
-
-  /* --- Forms (Pete's Perks signup) --- */
+  /* --- Forms --- */
   --input-bg:               #ffffff;
   --input-border:           rgba(255, 255, 255, 0.4);
   --input-border-focus:     #fcc278;
@@ -134,32 +110,58 @@ Text Domain:  scott-pete
   --input-placeholder:      #999999;
   --input-radius:           3px;
 
-  /* --- Product Grid --- */
-  --product-label-bg:       #152e86;
-  --product-label-text:     #ffffff;
-  --product-hover-accent:   #fcc278;
+  /* --- Product tokens ---
+     NOTE: do NOT override --product-flip-width / --product-flip-height here.
+     The parent block CSS sets 215x330 which matches the comp. */
+  --product-flip-bg:            #ab162b;
+  --product-flip-back-bg:       #ab162b;
+  --product-flip-back-text:     #ffffff;
+  --product-nutrition-bg:       #152e86;
+  --product-nutrition-text:     #ffffff;
+  --product-nutrition-label:    rgba(255, 255, 255, 0.7);
+  --product-tab-active-color:   #ab162b;
+  --product-tab-border:         #cccccc;
+  --product-scroll-arrow-bg:    #ab162b;
+  --product-scroll-arrow-color: #ffffff;
+  --product-detail-bg:          #152e86;
 
-  /* --- Product flip card back — CSS fallback; also set via ACF at priority 100 --- */
-  --product-flip-back-bg:   #ab162b;
-
-  /* --- Recipe Decision Tree --- */
-  --recipe-tree-bg:         #ffffff;
-  --recipe-tree-accent:     #c8102e;
-  --recipe-tree-connector:  #c8102e;
-
-  /* --- Section-specific backgrounds --- */
-  --section-hero-bg:        #0e1f5e;
-  --section-flavor-bg:      #152e86;
-  --section-products-bg:    #c8102e;
-  --section-recipes-bg:     #ffffff;
-  --section-perks-bg:       #152e86;
+  /* --- Section-specific --- */
+  --section-perks-bg:           #152e86;
   --section-perks-city-overlay: rgba(21, 46, 134, 0.75);
 
 }
 
 
 /* =========================================================
-   HEADER — TRANSPARENT OVERLAY → STICKY SOLID
+   GLOBAL FONT ENFORCEMENT
+   ========================================================= */
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'futura-pt-condensed', sans-serif !important;
+  font-weight: 800 !important;
+}
+
+.btn {
+  font-family: 'futura-pt-condensed', sans-serif !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.08em;
+  border-radius: 6px;
+  text-transform: uppercase;
+  font-size: 1.5em;
+  padding: .2em .5em;
+}
+
+/* Default button: gold bg / navy text */
+:root {
+  --btn-bg:           #fcc278;
+  --btn-color:        #152e86;
+  --btn-border-color: #fcc278;
+  --btn-bg-hover:     #e8a44e;
+}
+
+
+/* =========================================================
+   HEADER — TRANSPARENT ON HOME, GOLD FIXED ON INTERNAL PAGES
    ========================================================= */
 
 .brand-scott-pete {
@@ -174,13 +176,10 @@ Text Domain:  scott-pete
   width: 100%;
   z-index: 200;
   background: transparent;
-  transition: background var(--transition-base),
-              box-shadow var(--transition-base);
+  transition: background var(--transition-base), box-shadow var(--transition-base);
 }
 
-.site-header .header-brand {
-  display: none;
-}
+.site-header .header-brand { display: none; }
 
 .site-header .header-top .site-wrapper {
   justify-content: flex-end;
@@ -189,12 +188,10 @@ Text Domain:  scott-pete
   padding-bottom: 1.5rem;
 }
 
-.site-header .primary-nav {
-  flex: 0 0 auto;
-}
+.site-header .primary-nav { flex: 0 0 auto; }
 
 .site-header .primary-nav .nav-menu li a {
-  color: var(--color-white);
+  color: #ffffff;
   text-transform: none;
   font-size: 0.95rem;
   letter-spacing: 0.03em;
@@ -203,7 +200,7 @@ Text Domain:  scott-pete
 
 .site-header .primary-nav .nav-menu li a:hover,
 .site-header .primary-nav .nav-menu li.current-menu-item > a {
-  color: var(--color-accent);
+  color: #fcc278;
 }
 
 .site-header .primary-nav .nav-menu li + li > a::before {
@@ -214,25 +211,17 @@ Text Domain:  scott-pete
   pointer-events: none;
 }
 
-.brand-scott-pete.header-is-sticky .site-main,
-.brand-scott-pete .site-main {
-  padding-top: 0 !important;
-}
+.brand-scott-pete .site-main { padding-top: 0 !important; }
 
-/* ---- Sticky state ---- */
-
+/* Sticky (home, scrolled past threshold) */
 .site-header.is-sticky {
   position: fixed !important;
-  top: 0;
-  left: 0;
-  right: 0;
-  background: var(--color-accent);
+  top: 0; left: 0; right: 0;
+  background: #fcc278;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
 }
 
-.site-header.is-sticky .header-top {
-  height: 75px;
-}
+.site-header.is-sticky .header-top { height: 75px; }
 
 .site-header.is-sticky .header-top .site-wrapper {
   height: 75px;
@@ -264,802 +253,24 @@ Text Domain:  scott-pete
   width: auto;
 }
 
-.site-header.is-sticky .primary-nav .nav-menu li a {
-  color: var(--color-primary);
-}
-
+.site-header.is-sticky .primary-nav .nav-menu li a { color: #152e86; }
 .site-header.is-sticky .primary-nav .nav-menu li a:hover,
-.site-header.is-sticky .primary-nav .nav-menu li.current-menu-item > a {
-  color: var(--color-secondary);
-}
+.site-header.is-sticky .primary-nav .nav-menu li.current-menu-item > a { color: #ab162b; }
+.site-header.is-sticky .primary-nav .nav-menu li + li > a::before { color: rgba(21, 46, 134, 0.35); }
 
-.site-header.is-sticky .primary-nav .nav-menu li + li > a::before {
-  color: rgba(21, 46, 134, 0.35);
-}
-
-.admin-bar .site-header.is-sticky {
-  top: 32px;
-}
-
+.admin-bar .site-header.is-sticky { top: 32px; }
 @media screen and (max-width: 782px) {
-  .admin-bar .site-header.is-sticky {
-    top: 46px;
-  }
+  .admin-bar .site-header.is-sticky { top: 46px; }
 }
 
-/* ---- Mobile ---- */
-@media (max-width: 768px) {
-  .site-header {
-    position: fixed !important;
-    background: rgba(21, 46, 134, 0.92) !important;
-    backdrop-filter: blur(6px);
-  }
-
-  .site-header .header-brand {
-    display: block;
-  }
-
-  .site-header .header-top .site-wrapper {
-    justify-content: space-between;
-    padding: 0.6rem var(--wrapper-padding);
-  }
-}
-
-/* ---- Btn + font variable overrides ---- */
-:root {
-  --btn-bg:           #152e86;
-  --btn-color:        #ffffff;
-  --btn-border-color: #152e86;
-  --btn-bg-hover:     #0e1f5e;
-}
-
-.btn {
-  font-family: 'futura-pt-condensed', sans-serif !important;
-  font-weight: 700 !important;
-  letter-spacing: 0.08em;
-  border-radius: 6px;
-  text-transform: uppercase;
-  font-size: 1.5em;
-  padding: .2em .5em;
-}
-
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'futura-pt-condensed', sans-serif !important;
-  font-weight: 800 !important;
-}
-
-/* =========================================================
-   HERO / HOME BANNER
-   ========================================================= */
-
-.home-banner {
-  position: relative;
-  width: 100%;
-}
-
-.home-banner-track {
-  width: 100%;
-}
-
-.home-banner-slide {
-  min-height: 90vh !important;
-  background-position: top center !important;
-  background-size: cover;
-  background-repeat: no-repeat;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.home-banner-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 2rem 1rem;
-  width: 100%;
-}
-
-.home-banner-heading-image {
-  width: 340px;
-  max-width: 60vw;
-  height: auto !important;
-  max-height: none !important;
-  display: block;
-  margin: 0 auto 1.5rem;
-}
-
-.home-banner-content .btn {
-  background: var(--color-primary);
-  color: var(--color-accent);
-  border-color: var(--color-primary);
-  font-family: var(--font-cta);
-  font-size: 1.2rem;
-  letter-spacing: 0em;
-  padding: 0.45em 1em;
-}
-
-.home-banner-content .btn:hover {
-  background: var(--color-primary-dark);
-  border-color: var(--color-primary-dark);
-  color: var(--color-white);
-}
-
-/* =========================================================
-   DOWNSTREAM BLOCK STYLES
-   ========================================================= */
-
-/* --- Two-Col Banner --- */
-
-.two-col-banner {
-  background-color: var(--color-primary) !important;
-  padding: 0 !important;
-  overflow: hidden;
-  border-bottom: 6px solid var(--color-accent);
-}
-
-.two-col-banner .site-wrapper {
-  max-width: 100%;
-  padding: 0;
-}
-
-.two-col-banner-inner {
-  grid-template-columns: 1fr 1fr;
-  gap: 0 !important;
-  align-items: stretch !important;
-}
-
-.two-col-banner-image {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  padding: var(--space-3xl) var(--space-2xl);
-  gap: var(--space-xl);
-}
-
-.two-col-banner-image img {
-  width: 100%;
-  max-width: 520px;
-  height: auto;
-  border-radius: 0 !important;
-  object-fit: contain !important;
-}
-
-.two-col-banner-content {
-  background-color: var(--color-secondary);
-  background-image: var(--two-col-banner-bg-image, none);
-  background-size: cover;
-  background-position: center bottom;
-  background-repeat: no-repeat;
-  padding: var(--space-3xl) var(--space-3xl) var(--space-3xl) var(--space-2xl);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: var(--space-md);
-}
-
-.brand-scott-pete .two-col-banner-content {
-  --two-col-banner-bg-image: url('/wp-content/themes/scott-pete/img/cityscape.png');
-}
-
-.two-col-banner-text,
-.two-col-banner-text p {
-  color: rgba(255, 255, 255, 0.92);
-  font-size: 1rem;
-  line-height: 1.7;
-}
-
-.two-col-banner .btn {
-  display: inline-block;
-  width: auto;
-  background: var(--color-accent);
-  color: var(--color-primary);
-  border-color: var(--color-accent);
-  font-family: var(--font-cta);
-  font-weight: 700;
-  font-size: 1.2rem;
-  letter-spacing: 0em;
-  text-transform: uppercase;
-  padding: 0.15em 1em;
-  margin: 0 auto;
-}
-
-.two-col-banner .btn:hover {
-  background: var(--color-accent-dark);
-  border-color: var(--color-accent-dark);
-  color: var(--color-primary);
-}
-
-@media (max-width: 768px) {
-  .two-col-banner .site-wrapper { padding: 0; }
-  .two-col-banner-image { padding: var(--space-xl) var(--space-lg); }
-  .two-col-banner-content { padding: var(--space-xl) var(--space-lg); }
-}
-
-/* --- Flavor Fan --- */
-
-.flavor-fan {
-  position: relative;
-  background-color: var(--color-primary);
-  padding: var(--section-padding) 0;
-  text-align: center;
-  border-top: 4px solid var(--color-accent);
-  overflow: hidden;
-}
-
-.flavor-fan::before {
-  content: '';
-  position: absolute;
-  width: 200%;
-  height: 200%;
-  top: -50%;
-  left: -50%;
-  z-index: 0;
-  background-image: url('/wp-content/themes/scott-pete/img/scatterprint.png');
-  background-size: 300px;
-  background-repeat: repeat;
-  transform: rotate(-30deg);
-  opacity: 1;
-}
-
-.flavor-fan .site-wrapper {
-  position: relative;
-  z-index: 1;
-  max-width: var(--wrapper-width);
-}
-
-.flavor-fan-title {
-  color: var(--color-white);
-  font-family: var(--font-heading);
-  font-size: clamp(2rem, 5vw, 3.5rem);
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  margin-bottom: 0.2em;
-}
-
-.flavor-fan-subtitle {
-  color: rgba(255, 255, 255, 0.85);
-  font-size: 1rem;
-  margin-bottom: var(--space-xl);
-}
-
-.flavor-fan-main {
-  width: 100%;
-  max-width: 700px;
-  margin: 0 auto var(--space-xl);
-}
-
-.flavor-fan-main-image {
-  width: 100%;
-  height: auto;
-  display: block;
-  transition: opacity 150ms ease;
-  object-fit: contain;
-}
-
-.flavor-fan-thumbs {
-  display: flex;
-  justify-content: center;
-  gap: var(--space-lg);
-  flex-wrap: wrap;
-  padding: 0 var(--wrapper-padding);
-}
-
-.flavor-fan-thumb {
-  flex: 0 0 160px;
-  cursor: pointer;
-  transition: transform 200ms ease;
-}
-
-.flavor-fan-thumb img {
-  width: 100%;
-  height: auto;
-  display: block;
-  transition: transform 200ms ease;
-}
-
-.flavor-fan-thumb:hover img,
-.flavor-fan-thumb.is-active img {
-  transform: scale(1.12);
-}
-
-.flavor-fan-label {
-  display: block;
-  color: var(--color-white);
-  font-family: var(--font-cta);
-  font-size: 0.8rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  margin-top: var(--space-sm);
-}
-
-@media (max-width: 768px) {
-  .flavor-fan-thumb { flex: 0 0 120px; }
-}
-
-/* --- Recipes CTA --- */
-.recipes-cta .btn {
-  background: var(--color-secondary);
-  color: var(--color-white);
-  border-color: var(--color-secondary);
-}
-
-.recipes-cta .btn:hover {
-  background: var(--color-secondary-dark);
-  border-color: var(--color-secondary-dark);
-}
-
-/* --- Join Form (Pete's Perks) --- */
-.join-form-section {
-  background-color: var(--color-primary) !important;
-}
-
-.join-form-header h2 {
-  color: var(--color-accent);
-}
-
-.join-form-section .btn {
-  background: var(--color-accent);
-  color: var(--color-primary);
-  border-color: var(--color-accent);
-}
-
-.join-form-section .btn:hover {
-  background: var(--color-accent-dark);
-  border-color: var(--color-accent-dark);
-  color: var(--color-primary);
-}
-
-/* =========================================================
-   FOOTER
-   ========================================================= */
-
-.site-footer {
-  --footer-link-color: #152e86;
-  border-top: 6px solid var(--color-primary);
-}
-
-.footer-main {
-  padding: var(--space-xl) 0 var(--space-lg);
-}
-
-.site-footer .footer-nav .footer-menu li a {
-  color: var(--color-primary);
-  font-family: var(--font-cta);
-  font-size: 1.25rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-}
-
-.site-footer .footer-nav .footer-menu li a:hover {
-  color: var(--color-secondary);
-}
-
-.site-footer .footer-nav .footer-menu li + li::before {
-  content: 'I';
-  color: var(--color-primary);
-  font-weight: 300;
-  margin-right: var(--space-md);
-  pointer-events: none;
-  speak: none;
-}
-
-.footer-copyright {
-  color: var(--color-primary);
-  font-size: 0.78rem;
-}
-
-/* =========================================================
-   PRODUCTS — Category Grid, Category Archive, Product Detail
-   ========================================================= */
-
-:root {
-  --product-flip-width:         160px;
-  --product-flip-height:        240px;
-  --product-flip-bg:            var(--color-secondary);
-  --product-nutrition-bg:       var(--color-primary);
-  --product-nutrition-text:     var(--color-white);
-  --product-nutrition-label:    rgba(255,255,255,0.7);
-  --product-tab-active-color:   var(--color-secondary);
-  --product-tab-border:         #cccccc;
-  --product-scroll-arrow-bg:    var(--color-secondary);
-  --product-detail-bg:          var(--color-white);
-}
-
-.product-category-section h2 {
-  color: var(--color-accent);
-  font-family: var(--font-display);
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-}
-
-.product-category-section .eyebrow {
-  color: rgba(255, 255, 255, 0.75);
-}
-
-.product-flip-card {
-  flex: 0 0 var(--product-flip-width);
-  height: var(--product-flip-height);
-}
-
-.product-flip-front-label {
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-size: 0.85rem;
-  letter-spacing: 0.08em;
-}
-
-/* Flip card back — parent theme uses .product-flip-back (scroll-track)
-   and .product-category-card__back (block). Target both. */
-.product-flip-back,
-.product-category-card__back {
-  background-color: var(--product-flip-back-bg) !important;
-}
-
-.product-flip-card--active .product-flip-inner,
-.product-category-card--active .product-category-card__flip {
-  transform: rotateY(180deg);
-  box-shadow: none;
-}
-
-.product-flip-card--active .product-flip-back,
-.product-category-card--active .product-category-card__back {
-  background-color: var(--product-flip-back-bg) !important;
-}
-
-.product-flip-card--active .product-flip-back h3,
-.product-category-card--active .product-category-card__back h3 {
-  color: var(--color-white);
-  font-family: var(--font-display);
-  font-weight: 800;
-  font-size: 1.1rem;
-  text-transform: uppercase;
-}
-
-.product-flip-card--active .product-flip-back p,
-.product-category-card--active .product-category-card__back p {
-  color: rgba(255, 255, 255, 0.9);
-  font-size: 0.8rem;
-}
-
-.product-flip-card--active:hover .product-flip-inner {
-  transform: rotateY(180deg);
-}
-
-/* Product list grid — circles row on the category archive */
-.product-list-section {
-  background-color: var(--color-secondary);
-  padding: var(--section-padding) 0;
-}
-
-.product-list-section h2 {
-  color: var(--color-white);
-  font-family: var(--font-display);
-  font-weight: 800;
-  text-transform: uppercase;
-}
-
-.back-to-grid a {
-  color: rgba(255, 255, 255, 0.8);
-  border-bottom-color: rgba(255, 255, 255, 0.2);
-}
-
-.back-to-grid a:hover {
-  color: var(--color-white);
-}
-
-.product-list-grid {
-  display: flex;
-  justify-content: center;
-  gap: var(--space-3xl);
-  flex-wrap: wrap;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.product-list-section .product-list-grid {
-  background-color: rgba(255, 255, 255, 0.12);
-  border: 3px solid rgba(255, 255, 255, 0.6);
-  border-radius: 16px;
-  padding: var(--space-2xl) var(--space-3xl);
-  max-width: 900px;
-  margin: 0 auto;
-}
-
-.product-list-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--space-sm);
-  color: var(--color-white);
-  text-decoration: none;
-}
-
-.product-list-item:hover {
-  transform: translateY(-4px);
-  color: var(--color-white);
-}
-
-.product-list-item-images {
-  width: 180px;
-  height: 180px;
-  border-radius: 50%;
-  border: 4px solid var(--color-white);
-  background-color: var(--color-secondary-dark);
-  aspect-ratio: unset;
-  overflow: hidden;
-}
-
-.product-list-item-images .img-default,
-.product-list-item-images .img-hover {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  padding: 0;
-}
-
-.product-list-item h3 {
-  color: var(--color-white);
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-size: 0.85rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  text-align: center;
-  margin: 0;
-}
-
-/* Product detail section */
-.product-detail-section {
-  background-color: var(--color-white);
-}
-
-/* Layout columns match single-product.php:
-   .product-detail-content = left (title, CTAs, variation nav)
-   .product-detail-visual  = right (hero image, variation panels) */
-.product-detail-layout {
-  grid-template-columns: 1fr 1fr;
-}
-
-.product-detail-hero-image {
-  border-radius: 50%;
-  width: 340px;
-  height: 340px;
-  margin: 0 auto var(--space-lg);
-  overflow: hidden;
-}
-
-.product-detail-hero-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.product-detail-title {
-  color: var(--color-primary);
-  font-family: var(--font-display);
-  font-weight: 800;
-  text-transform: uppercase;
-}
-
-.product-detail-description {
-  color: var(--color-text-muted);
-}
-
-.product-detail-ctas .btn {
-  background-color: var(--color-accent);
-  color: var(--color-primary);
-  border-color: var(--color-accent);
-  font-family: var(--font-cta);
-  font-weight: 700;
-}
-
-.product-detail-ctas .btn:hover {
-  background-color: var(--color-accent-dark);
-  border-color: var(--color-accent-dark);
-}
-
-.product-detail-ctas .btn--outline {
-  background-color: transparent;
-  color: var(--color-secondary);
-  border-color: var(--color-secondary);
-}
-
-.product-detail-ctas .btn--outline:hover {
-  background-color: var(--color-secondary);
-  color: var(--color-white);
-}
-
-/* Variation nav — pill buttons */
-.product-variation-nav-list li button {
-  font-family: var(--font-cta);
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  font-size: 0.75rem;
-}
-
-.product-variation-name {
-  color: var(--color-primary);
-  font-family: var(--font-display);
-  font-weight: 800;
-  text-transform: uppercase;
-}
-
-.product-variation-image img {
-  width: 260px;
-  height: 260px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 4px solid var(--color-light-gray);
-}
-
-/* Nutrition circles */
-.product-nutrition {
-  background-color: transparent;
-  padding: 0;
-}
-
-.product-nutrition-grid {
-  display: flex;
-  gap: var(--space-sm);
-  justify-content: flex-start;
-  flex-wrap: wrap;
-}
-
-.product-nutrition-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 72px;
-  height: 72px;
-  border-radius: 50%;
-  background-color: var(--color-primary);
-  gap: 1px;
-  flex-shrink: 0;
-}
-
-.product-nutrition-value {
-  font-size: 1.1rem;
-  font-weight: 800;
-  font-family: var(--font-display);
-  color: var(--color-white);
-  line-height: 1;
-}
-
-.product-nutrition-label {
-  font-size: 0.5rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.75);
-  line-height: 1;
-  text-align: center;
-}
-
-.product-ingredients {
-  border-top-color: var(--color-light-gray);
-}
-
-.product-ingredients-label {
-  color: var(--color-primary);
-}
-
-@media (max-width: 900px) {
-  .product-detail-hero-image { width: 260px; height: 260px; }
-  .product-variation-image img { width: 200px; height: 200px; }
-}
-
-@media (max-width: 640px) {
-  .product-list-section .product-list-grid { padding: var(--space-xl) var(--space-lg); gap: var(--space-xl); }
-  .product-list-item-images { width: 130px; height: 130px; }
-  .product-detail-hero-image { width: 200px; height: 200px; }
-  .product-variation-image img { width: 160px; height: 160px; }
-  .product-nutrition-item { width: 64px; height: 64px; }
-  .product-nutrition-value { font-size: 0.95rem; }
-}
-
-
-/* =========================================================
-   PRODUCTS PAGE BANNER
-   ========================================================= */
-
-.products-banner {
-  position: relative;
-  width: 100%;
-  min-height: 480px;
-  background-color: var(--color-bg-dark);
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding-bottom: 200px;
-}
-
-.products-banner-overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.35);
-}
-
-.products-banner-content {
-  position: relative;
-  z-index: 1;
-  text-align: center;
-  padding: var(--space-xl) var(--wrapper-padding);
-  max-width: 900px;
-}
-
-.products-banner-subtitle {
-  display: block;
-  color: var(--color-accent);
-  font-family: var(--font-cta);
-  font-size: 0.85rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  margin-bottom: var(--space-sm);
-}
-
-.products-banner-title {
-  color: var(--color-white);
-  font-family: var(--font-display);
-  font-weight: 800;
-  font-size: clamp(2.5rem, 6vw, 5rem);
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  margin: 0 0 var(--space-md);
-  line-height: 1;
-}
-
-.products-banner-body {
-  color: rgba(255, 255, 255, 0.85);
-  font-size: 1.1rem;
-  margin: 0;
-}
-
-.products-banner-product {
-  position: absolute;
-  bottom: -140px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 2;
-  width: 680px;
-  pointer-events: none;
-}
-
-.products-banner-product img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-@media (max-width: 640px) {
-  .products-banner { min-height: 320px; padding-bottom: 120px; }
-  .products-banner-product { width: 380px; bottom: -70px; }
-}
-
-
-/* =========================================================
-   HEADER — INTERNAL PAGES
-   ========================================================= */
-
+/* Internal pages: always gold, always fixed */
 body:not(.home) .site-header {
   position: fixed !important;
-  background: var(--color-accent);
+  background: #fcc278;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
 }
 
-body:not(.home) .site-header .header-top {
-  height: 75px;
-}
+body:not(.home) .site-header .header-top { height: 75px; }
 
 body:not(.home) .site-header .header-top .site-wrapper {
   height: 75px;
@@ -1092,58 +303,672 @@ body:not(.home) .site-header .site-logo {
   transition: max-height 250ms ease, top 250ms ease;
 }
 
-body:not(.home) .site-header.logo-scrolled .site-logo {
-  top: -55px;
-  max-height: 110px;
-}
+body:not(.home) .site-header.logo-scrolled .site-logo { top: -55px; max-height: 110px; }
 
 body:not(.home) .site-header .site-logo img {
   content: url('/wp-content/themes/scott-pete/img/logo-100.png');
 }
 
-body:not(.home) .site-header .primary-nav .nav-menu li a {
-  color: var(--color-primary);
-}
-
+body:not(.home) .site-header .primary-nav .nav-menu li a { color: #152e86; }
 body:not(.home) .site-header .primary-nav .nav-menu li a:hover,
-body:not(.home) .site-header .primary-nav .nav-menu li.current-menu-item > a {
-  color: var(--color-secondary);
-}
+body:not(.home) .site-header .primary-nav .nav-menu li.current-menu-item > a { color: #ab162b; }
+body:not(.home) .site-header .primary-nav .nav-menu li + li > a::before { color: rgba(21, 46, 134, 0.35); }
 
-body:not(.home) .site-header .primary-nav .nav-menu li + li > a::before {
-  color: rgba(21, 46, 134, 0.35);
-}
+body:not(.home) .site-main { padding-top: 75px !important; }
 
-body:not(.home) .site-main {
-  padding-top: 75px !important;
+/* Mobile */
+@media (max-width: 768px) {
+  .site-header {
+    position: fixed !important;
+    background: rgba(21, 46, 134, 0.92) !important;
+    backdrop-filter: blur(6px);
+  }
+  .site-header .header-brand { display: block; }
+  .site-header .header-top .site-wrapper {
+    justify-content: space-between;
+    padding: 0.6rem var(--wrapper-padding);
+  }
 }
 
 
 /* =========================================================
-   PRODUCTS PAGE — Category grid section background
+   HOME BANNER / HERO
    ========================================================= */
 
-.products-page-content .product-category-grid {
-  background-color: var(--color-bg-dark);
-  padding: var(--section-padding) 0;
+.home-banner { position: relative; width: 100%; }
+.home-banner-track { width: 100%; }
+
+.home-banner-slide {
+  min-height: 90vh !important;
+  background-position: top center !important;
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.products-page-content .product-category-grid h2,
-.products-page-content .product-category-grid p {
-  color: var(--color-white);
+.home-banner-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem 1rem;
+  width: 100%;
 }
+
+.home-banner-heading-image {
+  width: 340px;
+  max-width: 60vw;
+  height: auto !important;
+  max-height: none !important;
+  display: block;
+  margin: 0 auto 1.5rem;
+}
+
+.home-banner-content .btn {
+  background: #152e86;
+  color: #fcc278;
+  border-color: #152e86;
+  font-size: 1.2rem;
+  letter-spacing: 0;
+  padding: 0.45em 1em;
+}
+.home-banner-content .btn:hover {
+  background: #0e1f5e;
+  border-color: #0e1f5e;
+  color: #ffffff;
+}
+
+
+/* =========================================================
+   PRODUCTS PAGE BANNER
+   Full-bleed hero on page-products.php
+   ========================================================= */
+
+.products-banner {
+  position: relative;
+  width: 100%;
+  min-height: 55vh;
+  background-color: #152e86;
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 180px;
+  overflow: visible;
+}
+
+.products-banner-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.1) 0%,
+    rgba(0, 0, 0, 0.4) 60%,
+    rgba(21, 46, 134, 0.85) 100%
+  );
+}
+
+.products-banner-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: var(--space-4xl) var(--wrapper-padding) var(--space-xl);
+  max-width: 900px;
+}
+
+.products-banner-subtitle {
+  display: block;
+  color: #fcc278;
+  font-family: 'futura-pt-condensed', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: var(--space-sm);
+}
+
+.products-banner-title {
+  color: #ffffff;
+  font-family: 'futura-pt-condensed', sans-serif;
+  font-weight: 800;
+  font-size: clamp(3rem, 8vw, 6rem);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin: 0 0 var(--space-md);
+  line-height: 0.95;
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.4);
+}
+
+.products-banner-body {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 1rem;
+  margin: 0;
+}
+
+/* Floating product PNG — overlaps into the section below */
+.products-banner-product {
+  position: absolute;
+  bottom: -120px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  width: 600px;
+  max-width: 90vw;
+  pointer-events: none;
+}
+.products-banner-product img {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.35));
+}
+
+@media (max-width: 768px) {
+  .products-banner { padding-bottom: 120px; }
+  .products-banner-product { width: 360px; bottom: -70px; }
+}
+@media (max-width: 480px) {
+  .products-banner-product { width: 260px; bottom: -50px; }
+}
+
+
+/* =========================================================
+   PRODUCTS PAGE CONTENT WRAPPER
+   ========================================================= */
 
 .products-page-content {
   position: relative;
   z-index: 1;
 }
 
-.products-page-content .product-category-grid {
-  padding-top: calc(var(--section-padding) + 140px);
+/* Extra top padding on first block to clear the floating product PNG */
+.products-page-content > .product-category-section:first-child,
+.products-page-content > .product-category-grid:first-child {
+  padding-top: calc(var(--section-padding) + 130px) !important;
+}
+
+@media (max-width: 768px) {
+  .products-page-content > .product-category-section:first-child,
+  .products-page-content > .product-category-grid:first-child {
+    padding-top: calc(var(--section-padding) + 80px) !important;
+  }
+}
+
+
+/* =========================================================
+   PRODUCT CATEGORY SECTION
+   Navy background, flip-card grid
+   ========================================================= */
+
+/* Override base --color-bg-dark (#111 near-black) with brand navy */
+.product-category-section {
+  background-color: #152e86 !important;
+}
+
+/* "PREMIUM PRODUCTS" heading — white, centered */
+.product-category-section .section-heading {
+  text-align: center;
+  margin-bottom: var(--space-xl);
+}
+
+.product-category-section .section-heading h2,
+.product-category-section h2 {
+  color: #ffffff !important;
+  font-family: 'futura-pt-condensed', sans-serif !important;
+  font-weight: 800 !important;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: clamp(2rem, 4vw, 3rem);
+  margin: 0 0 var(--space-sm);
+}
+
+.product-category-section .section-heading p,
+.product-category-section .eyebrow {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.95rem;
+}
+
+/* Front label */
+.product-flip-front-label,
+.product-category-card__label {
+  font-family: 'futura-pt-condensed', sans-serif;
+  font-weight: 500;
+  font-size: 0.9rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* Back face — brand red */
+.product-flip-back,
+.product-category-card__back {
+  background-color: #ab162b !important;
+}
+
+.product-flip-back h3,
+.product-flip-back p,
+.product-category-card__back p {
+  color: #ffffff;
+}
+
+/* Active card ring */
+.product-flip-card--active .product-flip-inner {
+  box-shadow: 0 0 0 4px #fcc278, var(--shadow-md);
+}
+
+/* Scroll arrows */
+.product-scroll-arrow { background-color: #ab162b; }
+.product-scroll-arrow:hover { background-color: #8a1122; }
+
+/* CTA below grid */
+.product-grid-cta .btn,
+.product-category-grid__cta .btn {
+  background: #fcc278;
+  color: #152e86;
+  border-color: #fcc278;
+}
+.product-grid-cta .btn:hover,
+.product-category-grid__cta .btn:hover {
+  background: #e8a44e;
+  border-color: #e8a44e;
+}
+
+
+/* =========================================================
+   PRODUCT LIST SECTION
+   Red background, white rounded container with circles
+   ========================================================= */
+
+.product-list-section {
+  background-color: #ab162b;
+  padding: var(--section-padding) 0;
+}
+
+.product-list-section h2 {
+  color: #ffffff;
+  text-align: center;
+  margin-bottom: var(--space-xl);
+}
+
+/* White rounded box */
+.product-list-section .product-list-grid {
+  display: flex !important;
+  justify-content: center;
+  gap: var(--space-3xl);
+  flex-wrap: wrap;
+  list-style: none;
+  margin: 0 auto;
+  padding: var(--space-2xl) var(--space-3xl);
+  max-width: 860px;
+  background-color: rgba(255, 255, 255, 0.12);
+  border: 3px solid rgba(255, 255, 255, 0.7);
+  border-radius: 20px;
+}
+
+.product-list-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+  text-decoration: none;
+  color: #ffffff;
+  transition: transform var(--transition-base);
+}
+.product-list-item:hover { transform: translateY(-4px); color: #ffffff; }
+
+.product-list-item-images {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  border: 4px solid #ffffff;
+  overflow: hidden;
+  background-color: #8a1122;
+  aspect-ratio: unset !important;
+}
+
+.product-list-item-images .img-default,
+.product-list-item-images .img-hover {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  padding: 0;
+}
+
+.product-list-item:hover .img-default { opacity: 0; }
+.product-list-item:hover .img-hover   { opacity: 1; }
+
+.product-list-item h3 {
+  color: #ffffff;
+  font-family: 'futura-pt-condensed', sans-serif;
+  font-weight: 500;
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-align: center;
+  margin: 0;
+}
+
+.product-list-section .back-to-grid { border-bottom-color: rgba(255, 255, 255, 0.2); margin-bottom: var(--space-xl); }
+.product-list-section .back-to-grid a { color: rgba(255, 255, 255, 0.8); }
+.product-list-section .back-to-grid a:hover { color: #ffffff; }
+
+@media (max-width: 640px) {
+  .product-list-section .product-list-grid { padding: var(--space-xl) var(--space-lg); gap: var(--space-xl); }
+  .product-list-item-images { width: 120px; height: 120px; }
+}
+
+
+/* =========================================================
+   PRODUCT DETAIL SECTION
+   Navy background, white card inner panel
+   ========================================================= */
+
+.product-detail-section {
+  background-color: #152e86;
+  padding: var(--space-2xl) 0 var(--space-3xl);
+}
+
+/* White card treatment on the inner wrapper */
+.product-detail-section .site-wrapper {
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: var(--space-2xl);
+  box-shadow: 0 4px 32px rgba(0, 0, 0, 0.2);
+}
+
+/* Two-column layout */
+.product-detail-layout {
+  grid-template-columns: 1fr 1fr !important;
+  gap: var(--space-2xl) !important;
+  align-items: start;
+}
+
+.product-detail-title {
+  color: #152e86;
+  font-family: 'futura-pt-condensed', sans-serif;
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  margin-bottom: var(--space-sm);
+}
+
+.product-detail-description {
+  color: #333333;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  margin-bottom: var(--space-lg);
+}
+
+.product-detail-ctas {
+  display: flex;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-xl);
+}
+
+/* "Where to Buy" — gold */
+.product-detail-ctas .btn {
+  background-color: #fcc278;
+  color: #152e86;
+  border-color: #fcc278;
+  font-family: 'futura-pt-condensed', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 0.3em 1.2em;
+}
+.product-detail-ctas .btn:hover { background-color: #e8a44e; border-color: #e8a44e; }
+
+/* "Meal Ideas" — red */
+.product-detail-ctas .btn--outline,
+.product-meal-ideas-link {
+  background-color: #ab162b !important;
+  color: #ffffff !important;
+  border-color: #ab162b !important;
+}
+.product-detail-ctas .btn--outline:hover,
+.product-meal-ideas-link:hover {
+  background-color: #8a1122 !important;
+  border-color: #8a1122 !important;
+}
+
+/* Variation nav */
+.product-variation-nav-list li button {
+  font-family: 'futura-pt-condensed', sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  border-color: #cccccc;
+  color: #666666;
+}
+.product-variation-nav-list li button:hover { border-color: #ab162b; color: #ab162b; }
+.product-variation-nav-list li button.is-active { border-color: #ab162b; background-color: #ab162b; color: #ffffff; }
+
+.product-variation-name {
+  color: #152e86;
+  font-family: 'futura-pt-condensed', sans-serif;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.product-variation-image img {
+  width: 240px;
+  height: 240px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #ebebeb;
+}
+
+.product-detail-hero-image {
+  border-radius: 50%;
+  width: 300px;
+  height: 300px;
+  margin: 0 auto var(--space-lg);
+  overflow: hidden;
+  border: 4px solid #ebebeb;
+}
+.product-detail-hero-image img { width: 100%; height: 100%; object-fit: cover; }
+
+/* Nutrition circles */
+.product-nutrition { background-color: transparent; padding: 0; margin-bottom: var(--space-lg); }
+.product-nutrition-grid { display: flex; gap: var(--space-sm); flex-wrap: wrap; }
+
+.product-nutrition-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  background-color: #152e86;
+  gap: 1px;
+  flex-shrink: 0;
+}
+
+.product-nutrition-value {
+  font-size: 1rem;
+  font-weight: 800;
+  font-family: 'futura-pt-condensed', sans-serif;
+  color: #ffffff;
+  line-height: 1;
+}
+
+.product-nutrition-label {
+  font-size: 0.48rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.75);
+  line-height: 1;
+  text-align: center;
+}
+
+.product-ingredients { border-top: 1px solid #ebebeb; margin-top: var(--space-lg); padding-top: var(--space-lg); }
+.product-ingredients-label { color: #152e86; }
+
+.product-detail-section .back-to-grid a { color: #666666; }
+.product-detail-section .back-to-grid a:hover { color: #152e86; }
+
+@media (max-width: 900px) {
+  .product-detail-section .site-wrapper { padding: var(--space-xl); }
+  .product-detail-layout { grid-template-columns: 1fr !important; }
+  .product-detail-visual { order: -1; }
+  .product-detail-hero-image { width: 220px; height: 220px; }
+  .product-variation-image img { width: 180px; height: 180px; }
 }
 
 @media (max-width: 640px) {
-  .products-page-content .product-category-grid {
-    padding-top: calc(var(--section-padding) + 70px);
-  }
+  .product-detail-section .site-wrapper { padding: var(--space-lg); border-radius: 12px; }
+  .product-detail-ctas { flex-direction: column; }
+  .product-detail-ctas .btn { width: 100%; text-align: center; }
+  .product-detail-hero-image { width: 180px; height: 180px; }
+  .product-nutrition-item { width: 60px; height: 60px; }
+  .product-nutrition-value { font-size: 0.9rem; }
 }
+
+
+/* =========================================================
+   TWO-COL BANNER
+   ========================================================= */
+
+.two-col-banner {
+  background-color: #152e86 !important;
+  padding: 0 !important;
+  overflow: hidden;
+  border-bottom: 6px solid #fcc278;
+}
+.two-col-banner .site-wrapper { max-width: 100%; padding: 0; }
+.two-col-banner-inner { grid-template-columns: 1fr 1fr; gap: 0 !important; align-items: stretch !important; }
+.two-col-banner-image {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: var(--space-3xl) var(--space-2xl);
+  gap: var(--space-xl);
+}
+.two-col-banner-image img { width: 100%; max-width: 520px; height: auto; border-radius: 0 !important; object-fit: contain !important; }
+.two-col-banner-content {
+  background-color: #ab162b;
+  background-image: var(--two-col-banner-bg-image, none);
+  background-size: cover;
+  background-position: center bottom;
+  background-repeat: no-repeat;
+  padding: var(--space-3xl) var(--space-3xl) var(--space-3xl) var(--space-2xl);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--space-md);
+}
+.brand-scott-pete .two-col-banner-content {
+  --two-col-banner-bg-image: url('/wp-content/themes/scott-pete/img/cityscape.png');
+}
+.two-col-banner-text, .two-col-banner-text p { color: rgba(255, 255, 255, 0.92); font-size: 1rem; line-height: 1.7; }
+.two-col-banner .btn {
+  display: inline-block;
+  width: auto;
+  background: #fcc278;
+  color: #152e86;
+  border-color: #fcc278;
+  font-size: 1.2rem;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  padding: 0.15em 1em;
+  margin: 0;
+}
+.two-col-banner .btn:hover { background: #e8a44e; border-color: #e8a44e; }
+
+@media (max-width: 768px) {
+  .two-col-banner .site-wrapper { padding: 0; }
+  .two-col-banner-image { padding: var(--space-xl) var(--space-lg); }
+  .two-col-banner-content { padding: var(--space-xl) var(--space-lg); }
+}
+
+
+/* =========================================================
+   FLAVOR FAN (article-bg override)
+   ========================================================= */
+
+.flavor-fan {
+  position: relative;
+  background-color: #152e86;
+  padding: var(--section-padding) 0;
+  text-align: center;
+  border-top: 4px solid #fcc278;
+  overflow: hidden;
+}
+.flavor-fan::before {
+  content: '';
+  position: absolute;
+  width: 200%; height: 200%;
+  top: -50%; left: -50%;
+  z-index: 0;
+  background-image: url('/wp-content/themes/scott-pete/img/scatterprint.png');
+  background-size: 300px;
+  background-repeat: repeat;
+  transform: rotate(-30deg);
+  opacity: 1;
+}
+.flavor-fan .site-wrapper { position: relative; z-index: 1; max-width: var(--wrapper-width); }
+.flavor-fan-title { color: #ffffff; font-family: 'futura-pt-condensed', sans-serif; font-size: clamp(2rem, 5vw, 3.5rem); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 0.2em; }
+.flavor-fan-subtitle { color: rgba(255, 255, 255, 0.85); font-size: 1rem; margin-bottom: var(--space-xl); }
+.flavor-fan-main { width: 100%; max-width: 700px; margin: 0 auto var(--space-xl); }
+.flavor-fan-main-image { width: 100%; height: auto; display: block; transition: opacity 150ms ease; }
+.flavor-fan-thumbs { display: flex; justify-content: center; gap: var(--space-lg); flex-wrap: wrap; padding: 0 var(--wrapper-padding); }
+.flavor-fan-thumb { flex: 0 0 160px; cursor: pointer; }
+.flavor-fan-thumb img { width: 100%; height: auto; display: block; transition: transform 200ms ease; }
+.flavor-fan-thumb:hover img, .flavor-fan-thumb.is-active img { transform: scale(1.12); }
+.flavor-fan-label { display: block; color: #ffffff; font-family: 'futura-pt-condensed', sans-serif; font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; margin-top: var(--space-sm); }
+
+@media (max-width: 768px) { .flavor-fan-thumb { flex: 0 0 120px; } }
+
+
+/* =========================================================
+   RECIPES CTA
+   ========================================================= */
+
+.recipes-cta .btn { background: #ab162b; color: #ffffff; border-color: #ab162b; }
+.recipes-cta .btn:hover { background: #8a1122; border-color: #8a1122; }
+
+
+/* =========================================================
+   PETE'S PERKS (join-now-form)
+   ========================================================= */
+
+.join-form-section { background-color: #152e86 !important; }
+.join-form-header h2 { color: #fcc278; }
+.join-form-section .btn { background: #fcc278; color: #152e86; border-color: #fcc278; }
+.join-form-section .btn:hover { background: #e8a44e; border-color: #e8a44e; color: #152e86; }
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.site-footer { border-top: 6px solid #152e86; }
+.footer-main { padding: var(--space-xl) 0 var(--space-lg); }
+
+.site-footer .footer-nav .footer-menu li a {
+  color: #152e86;
+  font-family: 'futura-pt-condensed', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+.site-footer .footer-nav .footer-menu li a:hover { color: #ab162b; }
+
+.site-footer .footer-nav .footer-menu li + li::before {
+  content: 'I';
+  color: #152e86;
+  font-weight: 300;
+  margin-right: var(--space-md);
+  pointer-events: none;
+  speak: none;
+}
+
+.footer-copyright { color: #152e86; font-size: 0.78rem; }
