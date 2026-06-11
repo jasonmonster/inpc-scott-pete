@@ -246,8 +246,6 @@ Text Domain:  scott-pete
 
 /* ---- Sticky state ---- */
 
-/* ---- Sticky state ---- */
-
 .site-header.is-sticky {
   position: fixed !important;
   top: 0;
@@ -306,17 +304,6 @@ Text Domain:  scott-pete
 
 .site-header.is-sticky .primary-nav .nav-menu li + li > a::before {
   color: rgba(21, 46, 134, 0.35);
-}
-
-/* WP admin bar offsets */
-.admin-bar .site-header.is-sticky {
-  top: 32px;
-}
-
-@media screen and (max-width: 782px) {
-  .admin-bar .site-header.is-sticky {
-    top: 46px;
-  }
 }
 
 /* WP admin bar offsets */
@@ -540,7 +527,7 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.7;
 }
 
-/* Button: gold, Barlow Condensed, correctly sized, left column */
+/* Button: gold, Futura PT Condensed, correctly sized, left column */
 .two-col-banner .btn {
   display: inline-block;
   width: auto;
@@ -696,10 +683,6 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-
-  background-color: var(--color-secondary) !important;
-}
-
 /* --- Recipes CTA --- */
 .recipes-cta .btn {
   background: var(--color-secondary);
@@ -795,7 +778,9 @@ h1, h2, h3, h4, h5, h6 {
   --product-flip-width:         160px;
   --product-flip-height:        240px;
   --product-flip-bg:            var(--color-secondary);     /* red card front */
-  --product-flip-back-bg:       var(--color-primary);       /* navy card back */
+  --product-flip-back-bg:       var(--color-secondary);     /* red card back — set here as fallback;
+                                                                overridden at priority 100 by scott_pete_derived_brand_css()
+                                                                from ACF brand_color_secondary field */
   --product-nutrition-bg:       var(--color-primary);       /* navy nutrition band */
   --product-nutrition-text:     var(--color-white);
   --product-nutrition-label:    rgba(255,255,255,0.7);
@@ -805,7 +790,7 @@ h1, h2, h3, h4, h5, h6 {
   --product-detail-bg:          var(--color-white);
 }
 
-/* --- Category section: navy BG already comes from --color-bg-dark,
+/* --- Category section: navy BG comes from --color-bg-dark (set via ACF),
        heading gold on dark --- */
 .product-category-section h2 {
   color: var(--color-accent);
@@ -833,16 +818,20 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: 0.08em;
 }
 
-/* --- Active card: show as red-filled face immediately (no hover needed) ---
-       The active category is already identified so we flip it visually
-       by default to show its "back" (the description face) in brand red. --- */
+/* Flip card back — uses --product-flip-back-bg, which is output by
+   scott_pete_derived_brand_css() from ACF brand_color_secondary at priority 100 */
+.product-flip-back {
+  background-color: var(--product-flip-back-bg);
+}
+
+/* --- Active card: show as red-filled face immediately (no hover needed) --- */
 .product-flip-card--active .product-flip-inner {
   transform: rotateY(180deg);
   box-shadow: none;
 }
 
 .product-flip-card--active .product-flip-back {
-  background-color: var(--color-secondary);
+  background-color: var(--product-flip-back-bg);
 }
 
 .product-flip-card--active .product-flip-back h3 {
@@ -973,7 +962,7 @@ h1, h2, h3, h4, h5, h6 {
   object-fit: cover;
 }
 
-/* Product title — gold accent, condensed */
+/* Product title — navy, condensed */
 .product-detail-title {
   color: var(--color-primary);
   font-family: var(--font-display);
@@ -1158,6 +1147,7 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   align-items: center;
   justify-content: center;
+  padding-bottom: 200px; /* make room for the oversized product image bleed */
 }
 
 .products-banner-overlay {
@@ -1202,22 +1192,44 @@ h1, h2, h3, h4, h5, h6 {
   margin: 0;
 }
 
+/* Products banner — foreground overlay image (hot dog / product PNG).
+   Doubled size from original 340px. Bleeds down into the grid section. */
+.products-banner-product {
+  position: absolute;
+  bottom: -140px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  width: 680px;
+  pointer-events: none;
+}
+
+.products-banner-product img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
 @media (max-width: 640px) {
   .products-banner {
     min-height: 320px;
+    padding-bottom: 120px;
+  }
+
+  .products-banner-product {
+    width: 380px;
+    bottom: -70px;
   }
 }
 
 
 /* =========================================================
    HEADER — INTERNAL PAGES
-   Transparent header stays transparent only on the homepage.
-   All other pages start with the solid navy color immediately,
-   regardless of scroll position.
+   Gold bar visible immediately (no scroll needed).
+   Logo starts large, shrinks on scroll via .logo-scrolled class
+   toggled by JS in functions.php.
    ========================================================= */
 
-/* Internal pages: gold bar + navy text, matching the sticky state.
-   Logo shown and positioned the same way as on scroll. */
 body:not(.home) .site-header {
   position: fixed !important;
   background: var(--color-accent);
@@ -1250,12 +1262,25 @@ body:not(.home) .site-header .header-brand .site-wrapper {
   position: relative;
 }
 
+/* Large logo state — hangs below the gold bar */
 body:not(.home) .site-header .site-logo {
   position: absolute;
-  top: -60px;
   left: var(--wrapper-padding);
-  max-height: 140px;
+  top: -90px;        /* hangs well below the nav bar */
+  max-height: 180px; /* large starting size */
   width: auto;
+  transition: max-height 250ms ease, top 250ms ease;
+}
+
+/* Scrolled: logo shrinks to match homepage sticky size */
+body:not(.home) .site-header.logo-scrolled .site-logo {
+  top: -60px;
+  max-height: 120px;
+}
+
+/* 100-year logo swap on internal pages */
+body:not(.home) .site-header .site-logo img {
+  content: url('/wp-content/themes/scott-pete/img/logo-100.png');
 }
 
 body:not(.home) .site-header .primary-nav .nav-menu li a {
@@ -1271,8 +1296,14 @@ body:not(.home) .site-header .primary-nav .nav-menu li + li > a::before {
   color: rgba(21, 46, 134, 0.35);
 }
 
-/* Offset page content so fixed header doesn't overlap */
+/* Offset page content so fixed header doesn't overlap.
+   Extra space accounts for the large hanging logo. */
 body:not(.home) .site-main {
+  padding-top: 110px !important;
+}
+
+body:not(.home) .site-header.logo-scrolled ~ * .site-main,
+body:not(.home).logo-scrolled .site-main {
   padding-top: 75px !important;
 }
 
@@ -1282,6 +1313,8 @@ body:not(.home) .site-main {
    On the static Products page the block isn't wrapped in
    .product-category-section (that only exists in the taxonomy
    template), so we target it directly inside .products-page-content.
+   --color-bg-dark is output by scott_pete_derived_brand_css() from
+   ACF brand_color_primary_dark at priority 100.
    ========================================================= */
 
 .products-page-content .product-category-grid {
@@ -1294,31 +1327,6 @@ body:not(.home) .site-main {
   color: var(--color-white);
 }
 
-
-/* Products banner — foreground overlay image (hot dog / product PNG).
-   Positioned to sit centered at the bottom of the banner, bleeding
-   slightly below into the section beneath — matching the mockup. */
-
-.products-banner {
-  padding-bottom: 120px; /* make room for the product image bleed */
-}
-
-.products-banner-product {
-  position: absolute;
-  bottom: -80px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 2;
-  width: 340px;
-  pointer-events: none;
-}
-
-.products-banner-product img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
 /* Nudge the grid section down so it clears the bleeding overlay image */
 .products-page-content {
   position: relative;
@@ -1326,16 +1334,11 @@ body:not(.home) .site-main {
 }
 
 .products-page-content .product-category-grid {
-  padding-top: calc(var(--section-padding) + 80px);
+  padding-top: calc(var(--section-padding) + 140px);
 }
 
 @media (max-width: 640px) {
-  .products-banner-product {
-    width: 220px;
-    bottom: -50px;
-  }
-
   .products-page-content .product-category-grid {
-    padding-top: calc(var(--section-padding) + 50px);
+    padding-top: calc(var(--section-padding) + 70px);
   }
 }
