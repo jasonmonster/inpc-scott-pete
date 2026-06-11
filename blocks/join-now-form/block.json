@@ -1,0 +1,11 @@
+{
+    "name": "acf/join-now-form",
+    "title": "Pete's Perks Signup",
+    "description": "Scott Pete loyalty club signup — skyline hero with overlapping product image and Mailchimp embed.",
+    "category": "ipc-blocks",
+    "icon": "email",
+    "keywords": ["form", "email", "signup", "perks", "mailchimp"],
+    "style": [ "file:./join-now-form.css" ],
+    "acf": { "mode": "preview", "renderTemplate": "join-now-form.php" },
+    "supports": { "anchor": true }
+}

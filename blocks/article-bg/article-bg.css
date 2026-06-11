@@ -1,0 +1,105 @@
+/* Promo Slider Block */
+.promo-slider {
+    position: relative;
+    overflow: hidden;
+    background-color: var(--color-bg-dark);
+}
+
+.promo-slide {
+    display: none;
+    background-size: cover;
+    background-position: center;
+    padding: var(--section-padding) 0;
+}
+
+.promo-slide.is-active { display: block; }
+
+.promo-slide-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-3xl);
+    align-items: center;
+}
+
+.promo-slide-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
+.promo-slide-subtitle {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: var(--letter-spacing-wider);
+    color: var(--color-accent);
+}
+
+.promo-slide-heading-image {
+    max-width: 100%;
+    max-height: 120px;
+    width: auto;
+    object-fit: contain;
+}
+
+.promo-slide-heading {
+    color: var(--color-white);
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    text-transform: uppercase;
+    letter-spacing: var(--letter-spacing-wide);
+}
+
+.promo-slide-image img {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+.promo-slider-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--space-md);
+    padding: var(--space-lg) 0;
+    background-color: inherit;
+}
+
+.promo-prev, .promo-next {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background: transparent;
+    border: 2px solid rgba(255,255,255,0.4);
+    border-radius: 50%;
+    color: var(--color-white);
+    cursor: pointer;
+    transition: border-color var(--transition-fast);
+}
+
+.promo-prev:hover, .promo-next:hover { border-color: var(--color-white); }
+.promo-prev svg, .promo-next svg {
+    width: 14px; height: 14px;
+    stroke: currentColor; fill: none;
+    stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round;
+}
+
+.promo-dots { display: flex; gap: var(--space-sm); }
+.promo-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.4);
+    border: none; cursor: pointer; padding: 0;
+    transition: background var(--transition-fast), transform var(--transition-fast);
+}
+.promo-dot.is-active { background: var(--color-white); transform: scale(1.25); }
+
+@media (max-width: 768px) {
+    .promo-slide-inner {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    .promo-slide-image { order: -1; }
+    .promo-slide-image img { max-height: 200px; margin: 0 auto; }
+}

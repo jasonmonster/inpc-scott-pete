@@ -1,0 +1,11 @@
+{
+    "name": "acf/two-col-banner",
+    "title": "Two Column Banner",
+    "description": "A two-column layout with an image on one side and text content on the other.",
+    "category": "ipc-blocks",
+    "icon": "columns",
+    "keywords": ["banner", "two column", "hero"],
+    "style": [ "file:./two-col-banner.css" ],
+    "acf": { "mode": "preview", "renderTemplate": "two-col-banner.php" },
+    "supports": { "anchor": true }
+}

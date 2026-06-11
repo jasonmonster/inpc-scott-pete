@@ -1,0 +1,14 @@
+{
+    "name": "acf/article-bg",
+    "title": "Promo Slider",
+    "description": "A full-width promo/featured content slider with background color or image, heading, product image, and CTA. Used for seasonal promotions and featured product callouts.",
+    "category": "ipc-blocks",
+    "icon": "format-gallery",
+    "keywords": ["promo", "slider", "featured", "article", "background"],
+    "style": [ "file:./article-bg.css" ],
+    "acf": {
+        "mode": "preview",
+        "renderTemplate": "article-bg.php"
+    },
+    "supports": { "anchor": true, "align": ["full"] }
+}

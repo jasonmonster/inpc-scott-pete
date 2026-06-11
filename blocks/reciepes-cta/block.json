@@ -1,0 +1,11 @@
+{
+    "name": "acf/reciepes-cta",
+    "title": "Recipe Decision Tree",
+    "description": "Scott Pete Recipe Decision Tree — two Polaroid-style photo panels with bracket lines, center logo, and CTA.",
+    "category": "ipc-blocks",
+    "icon": "food",
+    "keywords": ["recipes", "decision tree", "polaroid"],
+    "style": [ "file:./reciepes-cta.css" ],
+    "acf": { "mode": "preview", "renderTemplate": "reciepes-cta.php" },
+    "supports": { "anchor": true }
+}

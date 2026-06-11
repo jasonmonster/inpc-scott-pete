@@ -1,0 +1,1341 @@
+/*
+Theme Name:   Scott Pete
+Theme URI:    https://scottpete.com
+Description:  Scott Pete child theme for IPC Base
+Author:       Overtime Agency
+Author URI:   https://overtimeagency.com
+Template:     ipc-base
+Version:      1.0.0
+Text Domain:  scott-pete
+*/
+
+/* =========================================================
+   SCOTT PETE — BRAND VARIABLE OVERRIDES
+   All structural CSS lives in ipc-base/assets/css/style.css
+   Only brand tokens are redeclared here.
+   ========================================================= */
+
+:root {
+
+  /* --- Core Brand Colors --- */
+  --color-primary:          #152e86; /* Navy blue */
+  --color-primary-dark:     #0e1f5e;
+  --color-primary-light:    #1e3fa8;
+
+  --color-secondary:        #ab162b; /* Red */
+  --color-secondary-dark:   #8a1122;
+  --color-secondary-light:  #c91a33;
+
+  --color-accent:           #fcc278; /* Gold/peach */
+  --color-accent-dark:      #e8a44e;
+  --color-accent-light:     #fdd49a;
+
+  /* --- Neutrals (unchanged from base, listed for clarity) --- */
+  --color-white:            #ffffff;
+  --color-off-white:        #f8f6f2;
+  --color-light-gray:       #ebebeb;
+  --color-mid-gray:         #999999;
+  --color-dark-gray:        #333333;
+  --color-black:            #111111;
+
+  /* --- UI Roles --- */
+  --color-bg:               #ffffff;
+  --color-bg-alt:           #152e86; /* navy sections */
+  --color-bg-dark:          #0e1f5e;
+  --color-text:             #111111;
+  --color-text-light:       #ffffff;
+  --color-text-muted:       #666666;
+
+  --color-border:           #ddd;
+  --color-border-dark:      #152e86;
+
+  --color-cta:              #fcc278; /* primary CTA buttons */
+  --color-cta-hover:        #e8a44e;
+  --color-cta-text:         #152e86; /* text on gold CTA */
+
+  --color-nav-bg:           transparent;
+  --color-nav-text:         #ffffff;
+  --color-nav-hover:        #fcc278;
+  --color-nav-border:       #fcc278;
+
+  /* --- Typography — Adobe Fonts kit: ipc5oaz ---
+     futura-pt            400/700  — body and UI
+     futura-pt-condensed  800      — headings (Cond Extra Bold)
+     futura-pt-condensed  500      — CTAs and labels (Cond Medium) */
+  --font-heading:           'futura-pt-condensed', sans-serif;
+  --font-subheading:        'futura-pt-condensed', sans-serif;
+  --font-body:              'futura-pt', sans-serif;
+  --font-accent:            'futura-pt-condensed', sans-serif;
+  --font-cta:               'futura-pt-condensed', sans-serif;
+  /* base.css uses --font-display for h1-h6 and --font-primary for body/buttons */
+  --font-display:           'futura-pt-condensed', sans-serif;
+  --font-primary:           'futura-pt', sans-serif;
+
+  /* --- Font Weights --- */
+  --fw-regular:             400;
+  --fw-medium:              500;
+  --fw-semibold:            600;
+  --fw-bold:                700;
+  --fw-black:               900;
+
+  /* --- Heading Sizes (condensed/display treatment) --- */
+  --fs-h1:                  clamp(3rem, 7vw, 5.5rem);
+  --fs-h2:                  clamp(2rem, 5vw, 3.5rem);
+  --fs-h3:                  clamp(1.5rem, 3vw, 2.25rem);
+  --fs-h4:                  clamp(1.25rem, 2vw, 1.75rem);
+  --fs-body:                1rem;
+  --fs-small:               0.875rem;
+
+  /* --- Letter Spacing (wide tracking for brand headings) --- */
+  --ls-heading:             0.04em;
+  --ls-label:               0.12em;
+  --ls-nav:                 0.08em;
+
+  /* --- Spacing & Layout --- */
+  --section-padding-y:      clamp(3rem, 6vw, 6rem);
+  --section-padding-x:      clamp(1.5rem, 5vw, 4rem);
+  --container-max:          1200px;
+  --border-radius:          4px;
+  --border-radius-lg:       8px;
+
+  /* --- Shadows --- */
+  --shadow-sm:              0 2px 6px rgba(21, 46, 134, 0.15);
+  --shadow-md:              0 4px 16px rgba(21, 46, 134, 0.2);
+  --shadow-lg:              0 8px 32px rgba(21, 46, 134, 0.25);
+
+  /* --- Transitions --- */
+  --transition-fast:        150ms ease;
+  --transition-base:        250ms ease;
+  --transition-slow:        400ms ease;
+
+  /* --- Header --- */
+  --header-bg:              transparent; /* overlays hero */
+  --header-height:          80px;
+  --header-height-scrolled: 60px;
+
+  /* --- Footer --- */
+  --footer-bg:              #fcc278;
+  --footer-text:            #152e86;
+  --footer-link:            #152e86;
+  --footer-link-hover:      #c8102e;
+  --footer-border:          rgba(21, 46, 134, 0.2);
+
+  /* --- Buttons ---
+     Actual overrides are done below in a dedicated :root block
+     so they target the exact variable names base.css reads.    */
+
+  /* --- Cards --- */
+  --card-bg:                #ffffff;
+  --card-border:            #ebebeb;
+  --card-shadow:            var(--shadow-sm);
+  --card-hover-shadow:      var(--shadow-md);
+
+  /* --- Forms (Pete's Perks signup) --- */
+  --input-bg:               #ffffff;
+  --input-border:           rgba(255, 255, 255, 0.4);
+  --input-border-focus:     #fcc278;
+  --input-text:             #111111;
+  --input-placeholder:      #999999;
+  --input-radius:           3px;
+
+  /* --- Product Grid --- */
+  --product-label-bg:       #152e86;
+  --product-label-text:     #ffffff;
+  --product-hover-accent:   #fcc278;
+
+  /* --- Recipe Decision Tree --- */
+  --recipe-tree-bg:         #ffffff;
+  --recipe-tree-accent:     #c8102e;
+  --recipe-tree-connector:  #c8102e; /* arrow/line color */
+
+  /* --- Section-specific backgrounds --- */
+  --section-hero-bg:        #0e1f5e;       /* dark navy for hero overlay */
+  --section-flavor-bg:      #152e86;       /* "A Flavor For Every Fan" */
+  --section-products-bg:    #c8102e;       /* "More Products To Explore" red */
+  --section-recipes-bg:     #ffffff;       /* Recipe Decision Tree */
+  --section-perks-bg:       #152e86;       /* Pete's Perks navy */
+  --section-perks-city-overlay: rgba(21, 46, 134, 0.75);
+
+}
+
+
+/* =========================================================
+   SCOTT PETE — BRAND-SPECIFIC COMPONENT OVERRIDES
+   Scoped additions that differ from ipc-base defaults.
+   ========================================================= */
+
+/* Global heading treatment handled by h1-h6 rule in btn/font overrides section */
+
+/* =========================================================
+   HEADER — TRANSPARENT OVERLAY → STICKY SOLID
+   Scott Pete only. Overrides base.css §6.
+
+   What base.css does that we fight:
+     .site-header              { position: relative }        ← we need absolute
+     .header-top               { background: --header-top-bg } ← colored bar
+     .header-brand             { background: --header-brand-bg } ← colored bar
+     .header-top .site-wrapper { justify-content: space-between } ← nav left
+     body.header-is-sticky .site-main { padding-top: 130px } ← hero gap
+   ========================================================= */
+
+/* Kill header background colors at the variable level —
+   .brand-scott-pete is set on <body> via functions.php       */
+.brand-scott-pete {
+  --header-top-bg:   transparent;
+  --header-brand-bg: transparent;
+}
+
+/* Float the entire header over the hero */
+.site-header {
+  position: absolute !important;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 200;
+  background: transparent;
+  transition: background var(--transition-base),
+              box-shadow var(--transition-base);
+}
+
+/* Collapse logo bar — no height, no background */
+.site-header .header-brand {
+  display: none;
+}
+
+/* Push nav to the right, override parent's space-between */
+.site-header .header-top .site-wrapper {
+  justify-content: flex-end;
+  min-height: auto;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
+/* Nav links: white, title case —
+   Also override flex:1 from base.css line 484 which pushes nav left */
+.site-header .primary-nav {
+  flex: 0 0 auto;
+}
+
+.site-header .primary-nav .nav-menu li a {
+  color: var(--color-white);
+  text-transform: none;
+  font-size: 0.95rem;
+  letter-spacing: 0.03em;
+  padding: 0.4rem 0.75rem;
+}
+
+.site-header .primary-nav .nav-menu li a:hover,
+.site-header .primary-nav .nav-menu li.current-menu-item > a {
+  color: var(--color-accent);
+}
+
+/* Pipe separators — on the a::before so they sit inline with the link text */
+.site-header .primary-nav .nav-menu li + li > a::before {
+  content: '|';
+  color: rgba(255, 255, 255, 0.45);
+  font-weight: 300;
+  margin-right: 0.75rem;
+  pointer-events: none;
+}
+
+/* Hero bleeds to top — suppress the sticky padding-top body class */
+.brand-scott-pete.header-is-sticky .site-main,
+.brand-scott-pete .site-main {
+  padding-top: 0 !important;
+}
+
+/* ---- Sticky state ---- */
+
+/* ---- Sticky state ---- */
+
+.site-header.is-sticky {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: var(--color-accent);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Nav bar: fixed 75px height, nav stays right */
+.site-header.is-sticky .header-top {
+  height: 75px;
+}
+
+.site-header.is-sticky .header-top .site-wrapper {
+  height: 75px;
+  padding-top: 0;
+  padding-bottom: 0;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+/* Logo bar: zero height — logo hangs below the nav bar */
+.site-header.is-sticky .header-brand {
+  display: block;
+  position: relative;
+  height: 0;           /* bar takes no space */
+  overflow: visible;   /* logo bleeds out */
+}
+
+.site-header.is-sticky .header-brand .site-wrapper {
+  min-height: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  position: relative;
+}
+
+/* Logo hangs into the nav bar from below */
+.site-header.is-sticky .site-logo {
+  position: absolute;
+  top: -60px;
+  left: var(--wrapper-padding);
+  max-height: 140px;
+  width: auto;
+}
+
+/* Nav text: navy on gold */
+.site-header.is-sticky .primary-nav .nav-menu li a {
+  color: var(--color-primary);
+}
+
+.site-header.is-sticky .primary-nav .nav-menu li a:hover,
+.site-header.is-sticky .primary-nav .nav-menu li.current-menu-item > a {
+  color: var(--color-secondary);
+}
+
+.site-header.is-sticky .primary-nav .nav-menu li + li > a::before {
+  color: rgba(21, 46, 134, 0.35);
+}
+
+/* WP admin bar offsets */
+.admin-bar .site-header.is-sticky {
+  top: 32px;
+}
+
+@media screen and (max-width: 782px) {
+  .admin-bar .site-header.is-sticky {
+    top: 46px;
+  }
+}
+
+/* WP admin bar offsets */
+.admin-bar .site-header.is-sticky {
+  top: 32px;
+}
+
+@media screen and (max-width: 782px) {
+  .admin-bar .site-header.is-sticky {
+    top: 46px;
+  }
+}
+
+/* ---- Mobile ---- */
+@media (max-width: 768px) {
+  .site-header {
+    position: fixed !important;
+    background: rgba(21, 46, 134, 0.92) !important;
+    backdrop-filter: blur(6px);
+  }
+
+  .site-header .header-brand {
+    display: block;
+  }
+
+  .site-header .header-top .site-wrapper {
+    justify-content: space-between;
+    padding: 0.6rem var(--wrapper-padding);
+  }
+}
+
+/* ---- Btn + font variable overrides ----
+   base.css .btn reads: --btn-bg, --btn-color, --btn-border-color, --font-primary
+   --font-display and --font-primary are now set in the main :root block above. */
+:root {
+  --btn-bg:           #152e86;
+  --btn-color:        #ffffff;
+  --btn-border-color: #152e86;
+  --btn-bg-hover:     #0e1f5e;
+}
+
+/* Global .btn — Futura PT Condensed Bold, matching History button style.
+   Explicit font-family needed because base.css loads after child theme
+   and its .btn rule wins on font-family even when --font-primary is overridden. */
+.btn {
+  font-family: 'futura-pt-condensed', sans-serif !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.08em;
+  border-radius: 6px;
+  text-transform: uppercase;
+  /*padding: 0.5em 1.5em;*/
+  /*checking to see if my font styles can win here*/
+  font-size: 1.5em;
+  padding: .2em .5em;
+}
+
+/* Headings — Futura PT Cond Extra Bold.
+   Also set explicitly because Gutenberg can inject inline font-family styles. */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'futura-pt-condensed', sans-serif !important;
+  font-weight: 800 !important;
+}
+
+/* --- Hero / Home Banner ---
+   Actual markup (from DevTools):
+     section.home-banner
+       div.home-banner-track
+         div.home-banner-slide   ← inline background-image
+           div.home-banner-content
+             img.home-banner-heading-image  ← the logo
+             a.btn                          ← CTA
+   ---------------------------------------- */
+
+.home-banner {
+  position: relative;
+  width: 100%;
+}
+
+.home-banner-track {
+  width: 100%;
+}
+
+.home-banner-slide {
+  min-height: 90vh !important;       /* block CSS sets 480px — override */
+  background-position: top center !important;  /* block CSS sets center */
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.home-banner-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem 1rem;
+  width: 100%;
+}
+
+/* The 100-year badge logo —
+   home-banner.css sets max-height: 200px which squashes the logo.
+   Override both dimensions explicitly. */
+.home-banner-heading-image {
+  width: 340px;
+  max-width: 60vw;
+  height: auto !important;
+  max-height: none !important;
+  display: block;
+  margin: 0 auto 1.5rem;
+}
+
+/* CTA button — font-family set explicitly because base.css loads after
+   child and wins on --font-primary even when we override the variable   */
+.home-banner-content .btn {
+  background: var(--color-primary);
+  color: var(--color-accent);
+  border-color: var(--color-primary);
+  font-family: var(--font-cta);
+  font-size: 1.2rem;
+  letter-spacing: 0em;
+  padding: 0.45em 1em;
+}
+
+.home-banner-content .btn:hover {
+  background: var(--color-primary-dark);
+  border-color: var(--color-primary-dark);
+  color: var(--color-white);
+}
+
+/* =========================================================
+   DOWNSTREAM BLOCK CLASS CORRECTIONS
+   Actual classes from DevTools (not what we assumed):
+     section.two-col-banner      (not .block-two-col-banner)
+     section.promo-slider        (not .block-flavor-slider)
+     div.brand-container         (not .block-products-explore)
+     section.recipes-cta         (not .block-recipe-tree)
+     section.join-form-section   (not .block-perks)
+   ========================================================= */
+
+/* =========================================================
+   DOWNSTREAM BLOCK STYLES
+   Class names confirmed from block template PHP + CSS files:
+     .two-col-banner       two-col-banner.php
+     .promo-slider         article-bg/promo-slider.php
+     .brand-container      red-container block
+     .recipes-cta          reciepes-cta block
+     .join-form-section    join-now-form block
+   ========================================================= */
+
+/* --- Two-Col Banner (100 Years of Breaking Buns) ---
+   Markup (child override):
+     section.two-col-banner [bg inline style = navy]
+       div.site-wrapper
+         div.two-col-banner-inner [grid: 1fr 1fr]
+           div.two-col-banner-image   ← left: heading image + btn
+           div.two-col-banner-content ← right: text (red bg)
+   --------------------------------------------------------- */
+
+.two-col-banner {
+  background-color: var(--color-primary) !important;
+  padding: 0 !important;
+  overflow: hidden;
+  border-bottom: 6px solid var(--color-accent); /* gold accent divider */
+}
+
+.two-col-banner .site-wrapper {
+  max-width: 100%;
+  padding: 0;
+}
+
+.two-col-banner-inner {
+  grid-template-columns: 1fr 1fr;
+  gap: 0 !important;
+  align-items: stretch !important;
+}
+
+/* Left: image + button stacked */
+.two-col-banner-image {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: var(--space-3xl) var(--space-2xl);
+  gap: var(--space-xl);
+}
+
+.two-col-banner-image img {
+  width: 100%;
+  max-width: 520px;
+  height: auto;
+  border-radius: 0 !important;
+  object-fit: contain !important;
+}
+
+/* Right: red background + Chicago skyline via CSS bg image */
+.two-col-banner-content {
+  background-color: var(--color-secondary);
+  background-image: var(--two-col-banner-bg-image, none);
+  background-size: cover;
+  background-position: center bottom;
+  background-repeat: no-repeat;
+  padding: var(--space-3xl) var(--space-3xl) var(--space-3xl) var(--space-2xl);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--space-md);
+}
+
+/* Set the skyline image URL here — swap path once asset is uploaded */
+.brand-scott-pete .two-col-banner-content {
+  --two-col-banner-bg-image: url('/wp-content/themes/scott-pete/img/cityscape.png');
+}
+
+.two-col-banner-text,
+.two-col-banner-text p {
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+/* Button: gold, Barlow Condensed, correctly sized, left column */
+.two-col-banner .btn {
+  display: inline-block;
+  width: auto;
+  background: var(--color-accent);
+  color: var(--color-primary);
+  border-color: var(--color-accent);
+  font-family: var(--font-cta);
+  font-weight: 700;
+  font-size: 1.2rem;
+  letter-spacing: 0em;
+  text-transform: uppercase;
+  padding: 0.15em 1em;
+  margin: 0 auto;
+}
+
+.two-col-banner .btn:hover {
+  background: var(--color-accent-dark);
+  border-color: var(--color-accent-dark);
+  color: var(--color-primary);
+}
+
+@media (max-width: 768px) {
+  .two-col-banner .site-wrapper { padding: 0; }
+  .two-col-banner-image { padding: var(--space-xl) var(--space-lg); }
+  .two-col-banner-content { padding: var(--space-xl) var(--space-lg); }
+}
+
+/* TODO: Social icons in two-col-banner right panel
+   The design shows Facebook/Mastodon/Email/Share icons below the body copy.
+   These are NOT in the block template. Options:
+     A) Add a 'social_links' repeater ACF field to the two-col-banner block
+     B) Use the existing header_social_links ACF option and render via PHP
+     C) Add ShareThis or AddToAny script — easiest, matches what's in the design
+   Holding for client decision on approach. */
+
+/* =========================================================
+   FLAVOR FAN — "A Flavor For Every Fan"
+   Child theme override of article-bg block.
+   Markup:
+     section.flavor-fan  [bg color + optional scatter image]
+       div.site-wrapper
+         h2.flavor-fan-title
+         p.flavor-fan-subtitle
+         div.flavor-fan-main
+           img.flavor-fan-main-image   ← swaps on thumbnail hover
+         div.flavor-fan-thumbs
+           div.flavor-fan-thumb[.is-active][data-full="..."]
+             img
+             span.flavor-fan-label
+   ========================================================= */
+
+.flavor-fan {
+  position: relative;
+  background-color: var(--color-primary); /* fallback, real color set inline */
+  padding: var(--section-padding) 0;
+  text-align: center;
+  border-top: 4px solid var(--color-accent);
+  overflow: hidden;
+}
+
+/* Logo scatter via ::before — oversized, tiled, rotated */
+.flavor-fan::before {
+  content: '';
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  top: -50%;
+  left: -50%;
+  z-index: 0;
+  background-image: url('/wp-content/themes/scott-pete/img/scatterprint.png');
+  background-size: 300px;
+  background-repeat: repeat;
+  transform: rotate(-30deg);
+  opacity: 1;
+}
+
+.flavor-fan .site-wrapper {
+  position: relative;
+  z-index: 1;
+  max-width: var(--wrapper-width);
+}
+
+.flavor-fan-title {
+  color: var(--color-white);
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.2em;
+}
+
+.flavor-fan-subtitle {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 1rem;
+  margin-bottom: var(--space-xl);
+}
+
+/* Main hero image */
+.flavor-fan-main {
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto var(--space-xl);
+}
+
+.flavor-fan-main-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: opacity 150ms ease;
+  object-fit: contain;
+}
+
+/* Thumbnail row */
+.flavor-fan-thumbs {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-lg);
+  flex-wrap: wrap;
+  padding: 0 var(--wrapper-padding);
+}
+
+.flavor-fan-thumb {
+  flex: 0 0 160px;
+  cursor: pointer;
+  transition: transform 200ms ease;
+}
+
+.flavor-fan-thumb img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 200ms ease;
+}
+
+.flavor-fan-thumb:hover img,
+.flavor-fan-thumb.is-active img {
+  transform: scale(1.12);
+}
+
+.flavor-fan-label {
+  display: block;
+  color: var(--color-white);
+  font-family: var(--font-cta);
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-top: var(--space-sm);
+}
+
+@media (max-width: 768px) {
+  .flavor-fan-thumb {
+    flex: 0 0 120px;
+  }
+}
+
+
+  background-color: var(--color-secondary) !important;
+}
+
+/* --- Recipes CTA --- */
+.recipes-cta .btn {
+  background: var(--color-secondary);
+  color: var(--color-white);
+  border-color: var(--color-secondary);
+}
+
+.recipes-cta .btn:hover {
+  background: var(--color-secondary-dark);
+  border-color: var(--color-secondary-dark);
+}
+
+/* --- Join Form (Pete's Perks) --- */
+.join-form-section {
+  background-color: var(--color-primary) !important;
+}
+
+.join-form-header h2 {
+  color: var(--color-accent);
+}
+
+.join-form-section .btn {
+  background: var(--color-accent);
+  color: var(--color-primary);
+  border-color: var(--color-accent);
+}
+
+.join-form-section .btn:hover {
+  background: var(--color-accent-dark);
+  border-color: var(--color-accent-dark);
+  color: var(--color-primary);
+}
+
+/* =========================================================
+   FOOTER
+   Gold BG, navy text — variables set in :root above.
+   Adds: top navy border, pipe separators between nav items,
+   bottom decorative dotted edge.
+   ========================================================= */
+
+/* Fix variable name mismatch — base.css uses --footer-link-color,
+   child theme only declared --footer-link */
+.site-footer {
+  --footer-link-color: #152e86;
+}
+
+/* Top navy border */
+.site-footer {
+  border-top: 6px solid var(--color-primary);
+}
+
+/* Tighten footer padding — design is compact */
+.footer-main {
+  padding: var(--space-xl) 0 var(--space-lg);
+}
+
+/* Nav links — navy, bolder weight, larger tracking */
+.site-footer .footer-nav .footer-menu li a {
+  color: var(--color-primary);
+  font-family: var(--font-cta);
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.site-footer .footer-nav .footer-menu li a:hover {
+  color: var(--color-secondary);
+}
+
+/* Pipe separators between nav items via ::before pseudo-element */
+.site-footer .footer-nav .footer-menu li + li::before {
+  content: 'I';
+  color: var(--color-primary);
+  font-weight: 300;
+  margin-right: var(--space-md);
+  pointer-events: none;
+  speak: none;
+}
+
+/* Copyright line */
+.footer-copyright {
+  color: var(--color-primary);
+  font-size: 0.78rem;
+}
+
+/* =========================================================
+   PRODUCTS — Category Grid, Category Archive, Product Detail
+   Overrides for single-product.php and taxonomy-product_category.php
+   ========================================================= */
+
+/* --- Product CSS variable overrides --- */
+:root {
+  --product-flip-width:         160px;
+  --product-flip-height:        240px;
+  --product-flip-bg:            var(--color-secondary);     /* red card front */
+  --product-flip-back-bg:       var(--color-primary);       /* navy card back */
+  --product-nutrition-bg:       var(--color-primary);       /* navy nutrition band */
+  --product-nutrition-text:     var(--color-white);
+  --product-nutrition-label:    rgba(255,255,255,0.7);
+  --product-tab-active-color:   var(--color-secondary);     /* red active tab */
+  --product-tab-border:         #cccccc;
+  --product-scroll-arrow-bg:    var(--color-secondary);
+  --product-detail-bg:          var(--color-white);
+}
+
+/* --- Category section: navy BG already comes from --color-bg-dark,
+       heading gold on dark --- */
+.product-category-section h2 {
+  color: var(--color-accent);
+  font-family: var(--font-display);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.product-category-section .eyebrow {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+/* --- Flip card sizing: slightly taller than base default --- */
+.product-flip-card {
+  flex: 0 0 var(--product-flip-width);
+  height: var(--product-flip-height);
+}
+
+/* --- Front label: futura-pt-condensed, white on semi-dark scrim --- */
+.product-flip-front-label {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+}
+
+/* --- Active card: show as red-filled face immediately (no hover needed) ---
+       The active category is already identified so we flip it visually
+       by default to show its "back" (the description face) in brand red. --- */
+.product-flip-card--active .product-flip-inner {
+  transform: rotateY(180deg);
+  box-shadow: none;
+}
+
+.product-flip-card--active .product-flip-back {
+  background-color: var(--color-secondary);
+}
+
+.product-flip-card--active .product-flip-back h3 {
+  color: var(--color-white);
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+}
+
+.product-flip-card--active .product-flip-back p {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.8rem;
+}
+
+/* Prevent re-flip on hover for the active card */
+.product-flip-card--active:hover .product-flip-inner {
+  transform: rotateY(180deg);
+}
+
+/* --- Category archive: sub-product list section ---
+       Red BG, circular image cards centered in a flex row --- */
+.product-list-section {
+  background-color: var(--color-secondary);
+  padding: var(--section-padding) 0;
+}
+
+.product-list-section h2 {
+  color: var(--color-white);
+  font-family: var(--font-display);
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.back-to-grid a {
+  color: rgba(255, 255, 255, 0.8);
+  border-bottom-color: rgba(255, 255, 255, 0.2);
+}
+
+.back-to-grid a:hover {
+  color: var(--color-white);
+}
+
+/* Override grid → centered flex row for circular cards */
+.product-list-grid {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-3xl);
+  flex-wrap: wrap;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* White rounded container around the circles (the framed grouping in mockup) */
+.product-list-section .product-list-grid {
+  background-color: rgba(255, 255, 255, 0.12);
+  border: 3px solid rgba(255, 255, 255, 0.6);
+  border-radius: 16px;
+  padding: var(--space-2xl) var(--space-3xl);
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* Individual product card — circular */
+.product-list-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+  color: var(--color-white);
+  text-decoration: none;
+}
+
+.product-list-item:hover {
+  transform: translateY(-4px);
+  color: var(--color-white);
+}
+
+/* Circular image container */
+.product-list-item-images {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  border: 4px solid var(--color-white);
+  background-color: var(--color-secondary-dark);
+  aspect-ratio: unset; /* override base 1/1 which conflicts with explicit w/h */
+  overflow: hidden;
+}
+
+.product-list-item-images .img-default,
+.product-list-item-images .img-hover {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  padding: 0; /* override base padding which distorts circular crops */
+}
+
+/* Product name label below circle */
+.product-list-item h3 {
+  color: var(--color-white);
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-align: center;
+  margin: 0;
+}
+
+/* --- Product detail section --- */
+.product-detail-section {
+  background-color: var(--color-white);
+}
+
+/* Circular hero image on the right column */
+.product-detail-hero-image {
+  border-radius: 50%;
+  width: 340px;
+  height: 340px;
+  margin: 0 auto var(--space-lg);
+  overflow: hidden;
+}
+
+.product-detail-hero-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Product title — gold accent, condensed */
+.product-detail-title {
+  color: var(--color-primary);
+  font-family: var(--font-display);
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+/* Description text */
+.product-detail-description {
+  color: var(--color-text-muted);
+}
+
+/* CTA buttons */
+.product-detail-ctas .btn {
+  background-color: var(--color-accent);
+  color: var(--color-primary);
+  border-color: var(--color-accent);
+  font-family: var(--font-cta);
+  font-weight: 700;
+}
+
+.product-detail-ctas .btn:hover {
+  background-color: var(--color-accent-dark);
+  border-color: var(--color-accent-dark);
+}
+
+.product-detail-ctas .btn--outline {
+  background-color: transparent;
+  color: var(--color-secondary);
+  border-color: var(--color-secondary);
+}
+
+.product-detail-ctas .btn--outline:hover {
+  background-color: var(--color-secondary);
+  color: var(--color-white);
+}
+
+/* Variation tabs — pill style, red active */
+.product-variation-nav-list li button {
+  font-family: var(--font-cta);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+}
+
+/* Variation name */
+.product-variation-name {
+  color: var(--color-primary);
+  font-family: var(--font-display);
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+/* --- Circular package image in variation panel --- */
+.product-variation-image {
+  display: flex;
+  justify-content: center;
+}
+
+.product-variation-image img {
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid var(--color-light-gray);
+}
+
+/* --- Nutrition: circular badge callouts ---
+       Mockup shows four circles: calories, protein, fat, sugar --- */
+.product-nutrition {
+  background-color: transparent;
+  padding: 0;
+}
+
+.product-nutrition-grid {
+  display: flex;
+  gap: var(--space-sm);
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.product-nutrition-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background-color: var(--color-primary);
+  gap: 1px;
+  flex-shrink: 0;
+}
+
+.product-nutrition-value {
+  font-size: 1.1rem;
+  font-weight: 800;
+  font-family: var(--font-display);
+  color: var(--color-white);
+  line-height: 1;
+}
+
+.product-nutrition-label {
+  font-size: 0.5rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.75);
+  line-height: 1;
+  text-align: center;
+}
+
+/* Ingredients */
+.product-ingredients {
+  border-top-color: var(--color-light-gray);
+}
+
+.product-ingredients-label {
+  color: var(--color-primary);
+}
+
+/* --- Responsive --- */
+@media (max-width: 900px) {
+  .product-detail-hero-image {
+    width: 260px;
+    height: 260px;
+  }
+
+  .product-variation-image img {
+    width: 200px;
+    height: 200px;
+  }
+}
+
+@media (max-width: 640px) {
+  .product-list-section .product-list-grid {
+    padding: var(--space-xl) var(--space-lg);
+    gap: var(--space-xl);
+  }
+
+  .product-list-item-images {
+    width: 130px;
+    height: 130px;
+  }
+
+  .product-detail-hero-image {
+    width: 200px;
+    height: 200px;
+  }
+
+  .product-variation-image img {
+    width: 160px;
+    height: 160px;
+  }
+
+  .product-nutrition-item {
+    width: 64px;
+    height: 64px;
+  }
+
+  .product-nutrition-value {
+    font-size: 0.95rem;
+  }
+}
+
+
+/* =========================================================
+   PRODUCTS PAGE BANNER
+   Rendered by page-products.php from ACF options.
+   Mirrors the home-banner visual treatment.
+   ========================================================= */
+
+.products-banner {
+  position: relative;
+  width: 100%;
+  min-height: 480px;
+  background-color: var(--color-bg-dark);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.products-banner-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+}
+
+.products-banner-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: var(--space-xl) var(--wrapper-padding);
+  max-width: 900px;
+}
+
+.products-banner-subtitle {
+  display: block;
+  color: var(--color-accent);
+  font-family: var(--font-cta);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: var(--space-sm);
+}
+
+.products-banner-title {
+  color: var(--color-white);
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin: 0 0 var(--space-md);
+  line-height: 1;
+}
+
+.products-banner-body {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+@media (max-width: 640px) {
+  .products-banner {
+    min-height: 320px;
+  }
+}
+
+
+/* =========================================================
+   HEADER — INTERNAL PAGES
+   Transparent header stays transparent only on the homepage.
+   All other pages start with the solid navy color immediately,
+   regardless of scroll position.
+   ========================================================= */
+
+/* Internal pages: gold bar + navy text, matching the sticky state.
+   Logo shown and positioned the same way as on scroll. */
+body:not(.home) .site-header {
+  position: fixed !important;
+  background: var(--color-accent);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+}
+
+body:not(.home) .site-header .header-top {
+  height: 75px;
+}
+
+body:not(.home) .site-header .header-top .site-wrapper {
+  height: 75px;
+  padding-top: 0;
+  padding-bottom: 0;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+body:not(.home) .site-header .header-brand {
+  display: block;
+  position: relative;
+  height: 0;
+  overflow: visible;
+}
+
+body:not(.home) .site-header .header-brand .site-wrapper {
+  min-height: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  position: relative;
+}
+
+body:not(.home) .site-header .site-logo {
+  position: absolute;
+  top: -60px;
+  left: var(--wrapper-padding);
+  max-height: 140px;
+  width: auto;
+}
+
+body:not(.home) .site-header .primary-nav .nav-menu li a {
+  color: var(--color-primary);
+}
+
+body:not(.home) .site-header .primary-nav .nav-menu li a:hover,
+body:not(.home) .site-header .primary-nav .nav-menu li.current-menu-item > a {
+  color: var(--color-secondary);
+}
+
+body:not(.home) .site-header .primary-nav .nav-menu li + li > a::before {
+  color: rgba(21, 46, 134, 0.35);
+}
+
+/* Offset page content so fixed header doesn't overlap */
+body:not(.home) .site-main {
+  padding-top: 75px !important;
+}
+
+
+/* =========================================================
+   PRODUCTS PAGE — Category grid section background
+   On the static Products page the block isn't wrapped in
+   .product-category-section (that only exists in the taxonomy
+   template), so we target it directly inside .products-page-content.
+   ========================================================= */
+
+.products-page-content .product-category-grid {
+  background-color: var(--color-bg-dark);
+  padding: var(--section-padding) 0;
+}
+
+.products-page-content .product-category-grid h2,
+.products-page-content .product-category-grid p {
+  color: var(--color-white);
+}
+
+
+/* Products banner — foreground overlay image (hot dog / product PNG).
+   Positioned to sit centered at the bottom of the banner, bleeding
+   slightly below into the section beneath — matching the mockup. */
+
+.products-banner {
+  padding-bottom: 120px; /* make room for the product image bleed */
+}
+
+.products-banner-product {
+  position: absolute;
+  bottom: -80px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  width: 340px;
+  pointer-events: none;
+}
+
+.products-banner-product img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Nudge the grid section down so it clears the bleeding overlay image */
+.products-page-content {
+  position: relative;
+  z-index: 1;
+}
+
+.products-page-content .product-category-grid {
+  padding-top: calc(var(--section-padding) + 80px);
+}
+
+@media (max-width: 640px) {
+  .products-banner-product {
+    width: 220px;
+    bottom: -50px;
+  }
+
+  .products-page-content .product-category-grid {
+    padding-top: calc(var(--section-padding) + 50px);
+  }
+}

@@ -1,0 +1,187 @@
+/* ==========================================================
+   RECIPE DECISION TREE — Scott Pete child override
+   Applies to: .recipe-decision-tree (added alongside .recipes-cta)
+   ========================================================== */
+
+/* ── Section shell ─────────────────────────────────────── */
+.recipe-decision-tree {
+    background-color: #ffffff;
+    padding: var(--space-3xl) 0 var(--space-4xl);
+    background-image: none !important; /* override parent block if bg_image set */
+}
+
+/* Remove the parent block's dark scrim overlay */
+.recipe-decision-tree::before {
+    display: none;
+}
+
+/* ── Heading ───────────────────────────────────────────── */
+.rdt-heading {
+    text-align: center;
+    margin-bottom: var(--space-md);
+}
+
+.rdt-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: var(--color-primary);
+    line-height: 1;
+    margin: 0 0 var(--space-md);
+}
+
+.rdt-subtitle {
+    font-family: var(--font-body);
+    font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+    color: var(--color-dark-gray);
+    max-width: 620px;
+    margin: 0 auto;
+    line-height: 1.5;
+}
+
+/* ── Bracket wrapper ───────────────────────────────────── */
+/*
+   Stacking context:
+     .rdt-bracket-wrap   position: relative
+       svg.rdt-bracket   absolute, z-index: 0  (lines behind everything)
+       .rdt-panels       relative, z-index: 1  (photos + center above lines)
+*/
+.rdt-bracket-wrap {
+    position: relative;
+}
+
+/* ── SVG bracket lines ─────────────────────────────────── */
+/*
+   The SVG is absolutely positioned at the top of the wrapper.
+   Its height is set to match the padding-top of .rdt-panels so the
+   lines land exactly at the top edge of each polaroid image.
+   stroke color = red via currentColor.
+*/
+.rdt-bracket {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px; /* matches rdt-panels padding-top */
+    color: var(--color-secondary);
+    z-index: 0;
+    pointer-events: none;
+    overflow: visible;
+}
+
+.rdt-bracket line {
+    stroke: currentColor;
+    stroke-width: 6;
+    stroke-linecap: square;
+}
+
+/* ── Three-column panels grid ──────────────────────────── */
+/*
+   Columns: [left photo] [center logo+cta] [right photo]
+   Center column is fixed-width so logo/button don't stretch.
+   padding-top creates the gap where the bracket stem is visible.
+*/
+.rdt-panels {
+    display: grid;
+    grid-template-columns: 1fr 220px 1fr;
+    gap: var(--space-xl);
+    align-items: center;
+    position: relative;
+    z-index: 1;
+    padding-top: 80px; /* must match .rdt-bracket height */
+}
+
+/* ── Polaroid panels ───────────────────────────────────── */
+/*
+   Images are pre-rendered PNGs with tilt, shadow, border,
+   and label baked in. We just display them full-width in their column.
+*/
+.rdt-panel {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    margin-top: -30px;
+}
+
+.rdt-polaroid-link {
+    display: block;
+    transition: transform 250ms ease;
+}
+
+.rdt-polaroid-link:hover {
+    transform: scale(1.03);
+}
+
+.rdt-polaroid-img {
+    width: 100%;
+    max-width: 420px;
+    height: auto;
+    display: block;
+}
+
+/* ── Center column ─────────────────────────────────────── */
+.rdt-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-lg);
+    text-align: center;
+}
+
+.rdt-logo {
+    width: 180px;
+    height: auto;
+    display: block;
+}
+
+/* CTA button — red fill matching the design */
+.rdt-cta {
+    background-color: var(--color-secondary);
+    color: var(--color-white);
+    border-color: var(--color-secondary);
+    font-family: var(--font-cta);
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.6em 1.6em;
+    white-space: nowrap;
+}
+
+.rdt-cta:hover {
+    background-color: var(--color-secondary-dark);
+    border-color: var(--color-secondary-dark);
+}
+
+/* ── Mobile ────────────────────────────────────────────── */
+@media (max-width: 768px) {
+
+    /* Hide the bracket SVG — doesn't translate to a stacked layout */
+    .rdt-bracket {
+        display: none;
+    }
+
+    /* Stack: left photo → center → right photo */
+    .rdt-panels {
+        grid-template-columns: 1fr;
+        padding-top: 0;
+        gap: var(--space-2xl);
+    }
+
+    .rdt-panel {
+        justify-content: center;
+    }
+
+    .rdt-polaroid-img {
+        max-width: 320px;
+    }
+
+    .rdt-center {
+        order: 2; /* logo + CTA sits between the two photos */
+    }
+
+    .rdt-panel--left  { order: 1; }
+    .rdt-panel--right { order: 3; }
+}

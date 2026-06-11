@@ -1,0 +1,33 @@
+/* Two Column Banner Block */
+.two-col-banner { padding: var(--section-padding) 0; }
+
+.two-col-banner-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-3xl);
+    align-items: center;
+}
+
+.two-col-banner--image-right .two-col-banner-image { order: 2; }
+.two-col-banner--image-right .two-col-banner-content { order: 1; }
+
+.two-col-banner-image img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: var(--radius-md);
+}
+
+.two-col-banner-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
+.two-col-banner-text { color: var(--color-text-light); line-height: 1.7; }
+
+@media (max-width: 768px) {
+    .two-col-banner-inner { grid-template-columns: 1fr; gap: var(--space-xl); }
+    .two-col-banner--image-right .two-col-banner-image { order: unset; }
+    .two-col-banner--image-right .two-col-banner-content { order: unset; }
+}

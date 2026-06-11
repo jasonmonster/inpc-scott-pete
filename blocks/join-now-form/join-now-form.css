@@ -1,0 +1,300 @@
+/* ==========================================================
+   PETE'S PERKS — Scott Pete child override of join-now-form
+   Two zones: skyline hero → navy form area
+   ========================================================== */
+
+/* ── Section shell ─────────────────────────────────────── */
+.perks-section {
+    background-color: var(--color-primary); /* navy — form zone BG */
+    padding: 0; /* zones control their own padding */
+}
+
+/* ── Zone 1: Skyline hero ──────────────────────────────── */
+.perks-hero {
+    position: relative;
+    min-height: 320px;
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+    /* Extra bottom padding to make room for the overlapping product image */
+    padding-bottom: 80px;
+}
+
+/* Product assortment — sits at bottom center, overlaps into form zone */
+.perks-product-wrap {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 45%);
+    width: 100%;
+    max-width: 680px;
+    z-index: 2;
+    text-align: center;
+}
+
+.perks-product-img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* ── Zone 2: Navy form area ────────────────────────────── */
+.perks-form-zone {
+    position: relative;
+    z-index: 1;
+    background-color: var(--color-primary);
+    /* Top padding must clear the overlapping product image.
+       Product wrap is translateY(45%) of its own height (~680px max-width image).
+       Adjust this value if the product image is taller or shorter. */
+    padding-top: 220px;
+    padding-bottom: var(--space-4xl);
+}
+
+/* ── Content: heading + copy ───────────────────────────── */
+.perks-content {
+    text-align: center;
+    margin-bottom: var(--space-2xl);
+}
+
+.perks-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--color-accent); /* gold */
+    line-height: 1;
+    margin: 0 0 var(--space-lg);
+}
+
+.perks-subtitle {
+    font-family: var(--font-body);
+    font-size: clamp(0.9rem, 1.5vw, 1rem);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-white);
+    margin: 0 0 var(--space-md);
+}
+
+.perks-body {
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.7;
+    max-width: 640px;
+    margin: 0 auto;
+}
+
+/* ── Mailchimp embed wrapper ───────────────────────────── */
+.perks-embed {
+    max-width: 860px;
+    margin: 0 auto;
+}
+
+/* ── Reset Mailchimp CDN stylesheet ────────────────────── */
+/*
+   Mailchimp's classic-10_7.css sets its own fonts, colors, and layout.
+   Everything below is scoped to .perks-section to override it without
+   affecting any other Mailchimp embeds elsewhere on the site.
+*/
+
+/* Hide the Facebook Like widget — hardcoded to another brand */
+.perks-section .fb-like,
+.perks-section .fb_iframe_widget {
+    display: none !important;
+}
+
+/* Reset the outer signup wrapper */
+.perks-section #mc_embed_signup {
+    background: transparent;
+    font-family: var(--font-body);
+    width: 100%;
+}
+
+.perks-section #mc_embed_signup form {
+    padding: 0;
+    margin: 0;
+}
+
+/* ── 2-column input grid ───────────────────────────────── */
+/*
+   Field order from embed:
+     FNAME    LNAME
+     EMAIL    PHONE
+     ADDRESS  CITY
+     STATE    ZIP
+     BIRTHDAY (alone — half width naturally, or span if desired)
+     acceptance checkbox (full width)
+     submit (full width)
+*/
+.perks-section #mc_embed_signup_scroll {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-md);
+    align-items: start;
+}
+
+/* Most field groups sit in the 2-col grid naturally */
+.perks-section .mc-field-group {
+    margin: 0;
+    padding: 0;
+    min-height: 0;
+}
+
+/* Acceptance checkbox + submit + responses span full width */
+.perks-section .mc-field-group.acceptance,
+.perks-section .clear,
+.perks-section #mce-responses {
+    grid-column: 1 / -1;
+}
+
+/* ── Input styling ─────────────────────────────────────── */
+.perks-section .mc-field-group input[type="text"],
+.perks-section .mc-field-group input[type="email"] {
+    display: block;
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background: #ffffff;
+    border: none;
+    border-radius: 3px;
+    color: var(--color-black);
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    box-sizing: border-box;
+    /* Reset Mailchimp defaults */
+    margin: 0;
+    height: auto;
+    -webkit-appearance: none;
+}
+
+.perks-section .mc-field-group input[type="text"]::placeholder,
+.perks-section .mc-field-group input[type="email"]::placeholder {
+    color: var(--color-mid-gray);
+}
+
+.perks-section .mc-field-group input[type="text"]:focus,
+.perks-section .mc-field-group input[type="email"]:focus {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 0;
+}
+
+/* ── Checkbox + acceptance label ───────────────────────── */
+/*
+   Mailchimp markup: <label><input type="checkbox"> text...</label>
+   Checkbox is a child of label — flex on label aligns them.
+*/
+.perks-section .mc-field-group.acceptance {
+    margin-top: var(--space-sm);
+}
+
+.perks-section .mc-field-group.acceptance label {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 0.8rem;
+    line-height: 1.5;
+    cursor: pointer;
+}
+
+.perks-section #mc_embed_signup .mc-field-group.acceptance input[type="checkbox"] {
+    display: inline-block !important;
+    width: 18px !important;
+    height: 18px;
+    min-width: 18px;
+    flex-shrink: 0;
+    margin: 2px 0 0;
+    accent-color: var(--color-accent);
+    cursor: pointer;
+    vertical-align: top;
+}
+
+/* ── Submit button ─────────────────────────────────────── */
+.perks-section .clear {
+    margin-top: var(--space-md);
+    text-align: center;
+}
+
+.perks-section #mc_embed_signup #mc-embedded-subscribe,
+.perks-section #mc_embed_signup .button,
+.perks-section #mc_embed_signup input[type="submit"] {
+    display: inline-block;
+    width: auto;
+    min-width: 0;
+    height: auto;
+    padding: 0.25em 0.75em;
+    margin-top: -70px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: var(--color-accent) !important;
+    color: var(--color-primary) !important;
+    border: none !important;
+    border-radius: 3px;
+    font-family: var(--font-cta);
+    font-size: 1.5em;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0;
+    cursor: pointer;
+    transition: background-color var(--transition-base);
+    -webkit-appearance: none;
+}
+
+.perks-section #mc_embed_signup #mc-embedded-subscribe:hover,
+.perks-section #mc_embed_signup .button:hover,
+.perks-section #mc_embed_signup input[type="submit"]:hover {
+    background-color: var(--color-accent-dark) !important;
+}
+
+/* Collapse empty paragraphs Mailchimp injects inside the form */
+.perks-section #mc_embed_signup p:empty,
+.perks-section #mc_embed_signup_scroll > p:empty {
+    display: none;
+    margin: 0;
+    padding: 0;
+}
+.perks-section #mce-responses {
+    margin-top: var(--space-sm);
+}
+
+.perks-section .response {
+    font-size: 0.875rem;
+    padding: var(--space-sm) var(--space-md);
+    border-radius: 3px;
+}
+
+.perks-section #mce-error-response {
+    background: rgba(200, 16, 46, 0.2);
+    color: #ffaaaa;
+    border: 1px solid rgba(200, 16, 46, 0.4);
+}
+
+.perks-section #mce-success-response {
+    background: rgba(255, 194, 120, 0.15);
+    color: var(--color-accent);
+    border: 1px solid rgba(255, 194, 120, 0.3);
+}
+
+/* ── Mobile ────────────────────────────────────────────── */
+@media (max-width: 768px) {
+
+    .perks-hero {
+        min-height: 200px;
+        padding-bottom: 60px;
+    }
+
+    .perks-product-wrap {
+        max-width: 90%;
+        transform: translate(-50%, 40%);
+    }
+
+    .perks-form-zone {
+        padding-top: 160px;
+    }
+
+    /* Stack inputs to single column on mobile */
+    .perks-section #mc_embed_signup_scroll {
+        grid-template-columns: 1fr;
+    }
+}
