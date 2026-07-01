@@ -670,6 +670,10 @@ body:not(.home) .site-main { padding-top: 75px !important; }
    promotes their children into the outer CSS Grid, so the
    variation nav and panels span full-width (rows 4+) while
    title/desc/CTAs sit in col 1 and the hero circle in col 2.
+
+   Specificity note: several parent rules use .is-active or
+   .product-variation-panel.is-active which outrank plain class
+   selectors. Those overrides require !important here.
    ========================================================= */
 
 .product-detail-section {
@@ -688,11 +692,6 @@ body:not(.home) .site-main { padding-top: 75px !important; }
 .product-detail-section .back-to-grid a:hover { color: #152e86; }
 
 /* ── Outer grid ─────────────────────────────────────────── */
-/*
-   display:contents on the two wrapper divs makes their children
-   direct grid items of .product-detail-layout, allowing the
-   variation nav and panels to span full-width below the hero area.
-*/
 
 .product-detail-layout {
   display: grid !important;
@@ -702,6 +701,7 @@ body:not(.home) .site-main { padding-top: 75px !important; }
   align-items: start;
 }
 
+/* Flatten wrappers so children participate directly in the grid */
 .product-detail-content,
 .product-detail-visual {
   display: contents;
@@ -809,7 +809,7 @@ body:not(.home) .site-main { padding-top: 75px !important; }
   margin-bottom: var(--space-lg);
 }
 
-/* Hide "Select a variety:" label — tabs are self-explanatory */
+/* Hide "Select a variety:" label */
 .product-variation-nav-label { display: none; }
 
 .product-variation-nav-list {
@@ -837,13 +837,18 @@ body:not(.home) .site-main { padding-top: 75px !important; }
   pointer-events: none;
 }
 
-/* Buttons styled as text links, not pills */
+/*
+   Parent CSS has .product-variation-nav-list li button.is-active
+   with a filled background. We need !important on all resets here
+   so the plain-text tab style wins regardless of specificity order.
+*/
 .product-variation-nav-list li button {
-  -webkit-appearance: none;
-  appearance: none;
-  background: none;
-  border: none;
-  padding: 0;
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  background: none !important;
+  border: none !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
   margin: 0;
   font-family: 'futura-pt-condensed', sans-serif;
   font-weight: 700;
@@ -854,14 +859,16 @@ body:not(.home) .site-main { padding-top: 75px !important; }
   cursor: pointer;
   line-height: 1;
   transition: color 150ms ease;
+  box-shadow: none !important;
 }
 
-.product-variation-nav-list li button:hover { color: #ab162b; }
+.product-variation-nav-list li button:hover { color: #ab162b !important; }
 
 .product-variation-nav-list li button.is-active {
-  color: #ab162b;
-  background: none;
-  border: none;
+  color: #ab162b !important;
+  background: none !important;
+  border: none !important;
+  border-radius: 0 !important;
   text-decoration: underline;
   text-underline-offset: 3px;
   text-decoration-thickness: 1px;
@@ -869,8 +876,14 @@ body:not(.home) .site-main { padding-top: 75px !important; }
 
 /* ── Variation panel — inner two-col grid ───────────────── */
 
-.product-variation-panel {
-  display: grid;
+/*
+   Parent has .product-variation-panel.is-active { display: block }
+   which outranks .product-variation-panel { display: grid }.
+   Must target .is-active explicitly with !important.
+*/
+.product-variation-panel,
+.product-variation-panel.is-active {
+  display: grid !important;
   grid-template-columns: 1fr 1fr;
   gap: var(--space-lg) var(--space-xl);
   align-items: start;
@@ -884,11 +897,11 @@ body:not(.home) .site-main { padding-top: 75px !important; }
 
 /* Package image is rectangular — no circle */
 .product-variation-image img {
-  width: 100%;
-  height: auto;
+  width: 100% !important;
+  height: auto !important;
   max-height: 420px;
-  border-radius: 0;
-  border: none;
+  border-radius: 0 !important;
+  border: none !important;
   object-fit: contain;
   display: block;
 }
@@ -906,8 +919,7 @@ body:not(.home) .site-main { padding-top: 75px !important; }
   margin-bottom: var(--space-sm);
 }
 
-/* Single-variation: name is redundant (product title covers it);
-   shift remaining right-col items up to close the gap */
+/* Single-variation: name is redundant; shift other items up */
 .product-variation-panel--single .product-variation-name { display: none; }
 .product-variation-panel--single .product-certifications { grid-row: 1; }
 .product-variation-panel--single .product-nutrition      { grid-row: 2; }
@@ -918,8 +930,10 @@ body:not(.home) .site-main { padding-top: 75px !important; }
 .product-nutrition {
   grid-column: 2;
   grid-row: 3;
-  background: none;
-  padding: 0;
+  background: none !important;
+  background-color: transparent !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
   margin-bottom: 0;
 }
 
@@ -950,7 +964,7 @@ body:not(.home) .site-main { padding-top: 75px !important; }
   width: 76px;
   height: 76px;
   border-radius: 50%;
-  background-color: #ab162b;
+  background-color: #ab162b !important;
   border: none;
   gap: 2px;
   flex-shrink: 0;
@@ -960,7 +974,7 @@ body:not(.home) .site-main { padding-top: 75px !important; }
   font-family: 'futura-pt-condensed', sans-serif;
   font-weight: 800;
   font-size: 1.1rem;
-  color: #ffffff;
+  color: #ffffff !important;
   line-height: 1;
 }
 
@@ -969,7 +983,7 @@ body:not(.home) .site-main { padding-top: 75px !important; }
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.04em;
-  color: rgba(255, 255, 255, 0.85);
+  color: rgba(255, 255, 255, 0.85) !important;
   line-height: 1;
   text-align: center;
 }
@@ -979,13 +993,11 @@ body:not(.home) .site-main { padding-top: 75px !important; }
 @media (max-width: 900px) {
   .product-detail-section .site-wrapper { padding: var(--space-xl); }
 
-  /* Collapse to single column */
   .product-detail-layout {
     grid-template-columns: 1fr !important;
     grid-template-rows: auto !important;
   }
 
-  /* Reset all explicit placements; let grid auto-place */
   .product-detail-title,
   .product-detail-description,
   .product-detail-ctas,
@@ -996,7 +1008,6 @@ body:not(.home) .site-main { padding-top: 75px !important; }
     grid-row: auto !important;
   }
 
-  /* Hero image rises to the top of the stack on mobile */
   .product-detail-hero-image {
     order: -1;
     justify-content: center;
@@ -1007,8 +1018,10 @@ body:not(.home) .site-main { padding-top: 75px !important; }
     margin: 0 auto;
   }
 
-  /* Stack variation panel to single column */
-  .product-variation-panel { grid-template-columns: 1fr; }
+  .product-variation-panel,
+  .product-variation-panel.is-active {
+    grid-template-columns: 1fr !important;
+  }
 
   .product-variation-image,
   .product-variation-name,
