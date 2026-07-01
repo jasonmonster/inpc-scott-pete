@@ -58,7 +58,7 @@ Text Domain:  scott-pete
   /* --- Typography ---
      Adobe Fonts kit ipc5oaz:
        futura-pt            400/700  body and UI
-       futura-pt-condensed  800      headings (Cond Extra Bold)
+       futura-pt-condensed  700      headings (Cond Bold — matches designer PSD)
        futura-pt-condensed  500      CTAs and labels (Cond Medium) */
   --font-heading:           'futura-pt-condensed', sans-serif;
   --font-subheading:        'futura-pt-condensed', sans-serif;
@@ -138,7 +138,7 @@ Text Domain:  scott-pete
 
 h1, h2, h3, h4, h5, h6 {
   font-family: 'futura-pt-condensed', sans-serif !important;
-  font-weight: 800 !important;
+  font-weight: 700 !important;
 }
 
 .btn {
@@ -435,7 +435,7 @@ body:not(.home) .site-main { padding-top: 75px !important; }
 .products-banner-title {
   color: #ffffff;
   font-family: 'futura-pt-condensed', sans-serif;
-  font-weight: 800;
+  font-weight: 700;
   font-size: clamp(3rem, 8vw, 6rem);
   text-transform: uppercase;
   letter-spacing: 0.04em;
@@ -520,7 +520,7 @@ body:not(.home) .site-main { padding-top: 75px !important; }
 .product-category-section h2 {
   color: #ffffff !important;
   font-family: 'futura-pt-condensed', sans-serif !important;
-  font-weight: 800 !important;
+  font-weight: 700 !important;
   text-transform: uppercase;
   letter-spacing: 0.04em;
   font-size: clamp(2rem, 4vw, 3rem);
@@ -792,7 +792,7 @@ body:not(.home) .site-main { padding-top: 75px !important; }
 .product-detail-title {
   color: #152e86;
   font-family: 'futura-pt-condensed', sans-serif;
-  font-weight: 800;
+  font-weight: 700;
   text-transform: uppercase;
   font-size: clamp(3rem, 4.5vw, 4rem);
   line-height: 0.95;
@@ -936,7 +936,7 @@ body:not(.home) .site-main { padding-top: 75px !important; }
   padding: 0 !important;
   margin: 0;
   font-family: 'futura-pt-condensed', sans-serif !important;
-  font-weight: 800 !important;
+  font-weight: 700 !important;
   font-size: 1.5rem !important;
   text-transform: uppercase;
   letter-spacing: 0.02em;
@@ -1019,7 +1019,7 @@ body:not(.home) .site-main { padding-top: 75px !important; }
   grid-row: 1;
   color: #152e86 !important;
   font-family: 'futura-pt-condensed', sans-serif !important;
-  font-weight: 800 !important;
+  font-weight: 700 !important;
   text-transform: uppercase;
   text-align: left !important;
   font-size: clamp(2.25rem, 3.5vw, 3rem) !important;
@@ -1089,7 +1089,7 @@ body:not(.home) .site-main { padding-top: 75px !important; }
 
 .product-nutrition-value {
   font-family: 'futura-pt-condensed', sans-serif;
-  font-weight: 800;
+  font-weight: 700;
   font-size: 1.75rem;
   color: #ffffff !important;
   line-height: 1;
