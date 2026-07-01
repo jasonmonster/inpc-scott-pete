@@ -682,31 +682,46 @@ body:not(.home) .site-main { padding-top: 75px !important; }
 }
 
 /* White card with red keyline, per mockup (white card floating on navy).
-   position:relative anchors the back-to-grid link, which we lift out
-   of the card and onto the navy section above it. */
+   overflow:visible lets the oversized hero circle break the card edges
+   (KYL pulls the image out with negative margins). */
 .product-detail-section .site-wrapper {
   position: relative;
   background-color: #ffffff;
   border: 3px solid #ab162b;
   border-radius: 20px;
-  padding: var(--space-3xl);
+  padding: var(--space-3xl) 5%;
   box-shadow: 0 4px 32px rgba(0, 0, 0, 0.25);
+  overflow: visible;
 }
 
-/* Bologna back-link: pulled above the card onto the navy section,
-   matching the Kentucky Legend layout (link + divider sit outside
-   the white container). Negative top margin escapes the card padding
-   and the 3px border; the divider/text recolor for the dark bg. */
+/* Back-link: KYL shows ONLY a large centered up-arrow above the card,
+   no term text, no divider line. The term name is printed by PHP, so we
+   zero its font-size to hide it and enlarge just the inline SVG arrow. */
 .product-detail-section .back-to-grid {
   position: relative;
-  margin: calc(-1 * var(--space-3xl) - 3px) calc(-1 * var(--space-3xl)) var(--space-2xl);
-  transform: translateY(calc(-1 * var(--space-2xl)));
-  padding: 0 0 var(--space-md);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+  display: flex;
+  justify-content: center;
+  margin: calc(-1 * var(--space-3xl) - 3px) 0 var(--space-xl);
+  transform: translateY(calc(-1 * var(--space-2xl) - var(--space-md)));
+  padding: 0;
+  border-bottom: none;
 }
 
-.product-detail-section .back-to-grid a { color: #ffffff; }
+.product-detail-section .back-to-grid a {
+  font-size: 0; /* hides the BOLOGNA term text */
+  color: #ffffff;
+  border: none;
+}
 .product-detail-section .back-to-grid a:hover { color: #fcc278; }
+
+.product-detail-section .back-to-grid svg {
+  width: 40px;
+  height: 40px;
+  transform: rotate(0deg); /* point up */
+  stroke: #ffffff;
+  stroke-width: 2.5;
+}
+.product-detail-section .back-to-grid a:hover svg { stroke: #fcc278; }
 
 /* ── Outer grid ─────────────────────────────────────────── */
 
@@ -729,7 +744,9 @@ body:not(.home) .site-main { padding-top: 75px !important; }
 .product-detail-description { grid-column: 1; grid-row: 2; }
 .product-detail-ctas        { grid-column: 1; grid-row: 3; }
 
-/* Hero circle: right col, spans rows 1–3. Forced circle + light border. */
+/* Hero circle: right col, spans rows 1–3. KYL pulls this UP and DOWN with
+   negative margins so it overflows the card top/bottom and reads large
+   (~50% of the row, breaking the frame). z-index keeps it above content. */
 .product-detail-hero-image {
   grid-column: 2;
   grid-row: 1 / 4;
@@ -742,18 +759,21 @@ body:not(.home) .site-main { padding-top: 75px !important; }
   height: auto;
   margin: 0;
   border: none;
+  z-index: 10;
 }
 
 .product-detail-hero-image img {
   display: block;
   width: 100%;
-  max-width: 460px;
+  max-width: 100%;
   aspect-ratio: 1 / 1;
   height: auto;
+  margin: -70px -10px -60px 0;
   border-radius: 50% !important;
   object-fit: cover !important;
-  border: 5px solid #ebebeb;
-  flex-shrink: 0;
+  border: 5px solid #ab162b;
+  position: relative;
+  z-index: 10;
 }
 
 /* Variation nav: full-width, row 4 */
@@ -776,8 +796,8 @@ body:not(.home) .site-main { padding-top: 75px !important; }
 
 .product-detail-description {
   color: #333333;
-  font-size: clamp(1.25rem, 1.6vw, 1.375rem);
-  line-height: 1.6;
+  font-size: 20px;
+  line-height: 30px;
   margin-bottom: var(--space-xl);
 }
 
@@ -858,14 +878,14 @@ body:not(.home) .site-main { padding-top: 75px !important; }
   color: #152e86 !important;
 }
 
-/* ── Variation nav — pipe-separated text tabs ───────────── */
+/* ── Variation nav — centered pipe-separated tabs, no rule lines ── */
 
 .product-variation-nav {
-  border-top: 1px solid #ebebeb;
-  border-bottom: 1px solid #ebebeb;
-  padding: var(--space-md) 0;
+  border-top: none;
+  border-bottom: none;
+  padding: 0;
   margin-top: var(--space-lg);
-  margin-bottom: var(--space-lg);
+  margin-bottom: var(--space-2xl);
 }
 
 /* Hide "Select a variety:" label */
@@ -875,6 +895,7 @@ body:not(.home) .site-main { padding-top: 75px !important; }
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  justify-content: center;
   gap: 0;
   list-style: none;
   margin: 0;
@@ -911,9 +932,9 @@ body:not(.home) .site-main { padding-top: 75px !important; }
   margin: 0;
   font-family: 'futura-pt-condensed', sans-serif;
   font-weight: 700;
-  font-size: 0.9rem;
+  font-size: 1.125rem;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.04em;
   color: #152e86;
   cursor: pointer;
   line-height: 1;
@@ -1020,18 +1041,27 @@ body:not(.home) .site-main { padding-top: 75px !important; }
 .product-ingredients {
   grid-column: 2;
   grid-row: 4;
-  border-top: 1px solid #ebebeb;
-  margin-top: 0;
-  padding-top: var(--space-lg);
+  border-top: none;
+  margin-top: var(--space-lg);
+  padding-top: 0;
 }
 
-.product-ingredients-label { color: #152e86; }
+.product-ingredients-label {
+  color: #152e86;
+  font-size: 1rem;
+  letter-spacing: 0.08em;
+}
 
-/* ── Nutrition — solid red circles, white text ──────────── */
+.product-ingredients p {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* ── Nutrition — solid red circles, white text (KYL proportions) ── */
 
 .product-nutrition-grid {
   display: flex;
-  gap: var(--space-sm);
+  gap: var(--space-lg);
   flex-wrap: wrap;
   text-align: center;
 }
@@ -1041,30 +1071,30 @@ body:not(.home) .site-main { padding-top: 75px !important; }
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 76px;
-  height: 76px;
+  width: 92px;
+  height: 92px;
   border-radius: 50%;
   background-color: #ab162b !important;
   border: none;
-  gap: 2px;
+  gap: 1px;
   flex-shrink: 0;
 }
 
 .product-nutrition-value {
   font-family: 'futura-pt-condensed', sans-serif;
   font-weight: 800;
-  font-size: 1.1rem;
+  font-size: 1.75rem;
   color: #ffffff !important;
   line-height: 1;
 }
 
 .product-nutrition-label {
-  font-size: 0.48rem;
+  font-size: 0.6rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.04em;
-  color: rgba(255, 255, 255, 0.85) !important;
-  line-height: 1;
+  color: rgba(255, 255, 255, 0.9) !important;
+  line-height: 1.1;
   text-align: center;
 }
 
@@ -1124,8 +1154,8 @@ body:not(.home) .site-main { padding-top: 75px !important; }
   .product-detail-ctas { flex-direction: column; }
   .product-detail-ctas .btn { width: 100%; text-align: center; }
   .product-detail-hero-image img { width: 160px; height: 160px; }
-  .product-nutrition-item { width: 64px; height: 64px; }
-  .product-nutrition-value { font-size: 0.95rem; }
+  .product-nutrition-item { width: 80px; height: 80px; }
+  .product-nutrition-value { font-size: 1.4rem; }
 }
 
 
