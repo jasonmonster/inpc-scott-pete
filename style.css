@@ -681,8 +681,11 @@ body:not(.home) .site-main { padding-top: 75px !important; }
   padding: var(--space-2xl) 0 var(--space-3xl);
 }
 
-/* White card with red keyline, per mockup (white card floating on navy) */
+/* White card with red keyline, per mockup (white card floating on navy).
+   position:relative anchors the back-to-grid link, which we lift out
+   of the card and onto the navy section above it. */
 .product-detail-section .site-wrapper {
+  position: relative;
   background-color: #ffffff;
   border: 3px solid #ab162b;
   border-radius: 20px;
@@ -690,8 +693,20 @@ body:not(.home) .site-main { padding-top: 75px !important; }
   box-shadow: 0 4px 32px rgba(0, 0, 0, 0.25);
 }
 
-.product-detail-section .back-to-grid a { color: #666666; }
-.product-detail-section .back-to-grid a:hover { color: #152e86; }
+/* Bologna back-link: pulled above the card onto the navy section,
+   matching the Kentucky Legend layout (link + divider sit outside
+   the white container). Negative top margin escapes the card padding
+   and the 3px border; the divider/text recolor for the dark bg. */
+.product-detail-section .back-to-grid {
+  position: relative;
+  margin: calc(-1 * var(--space-3xl) - 3px) calc(-1 * var(--space-3xl)) var(--space-2xl);
+  transform: translateY(calc(-1 * var(--space-2xl)));
+  padding: 0 0 var(--space-md);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.product-detail-section .back-to-grid a { color: #ffffff; }
+.product-detail-section .back-to-grid a:hover { color: #fcc278; }
 
 /* ── Outer grid ─────────────────────────────────────────── */
 
@@ -731,12 +746,13 @@ body:not(.home) .site-main { padding-top: 75px !important; }
 
 .product-detail-hero-image img {
   display: block;
-  width: 320px !important;
-  height: 320px !important;
-  max-width: 100%;
+  width: 100%;
+  max-width: 460px;
+  aspect-ratio: 1 / 1;
+  height: auto;
   border-radius: 50% !important;
   object-fit: cover !important;
-  border: 4px solid #ebebeb;
+  border: 5px solid #ebebeb;
   flex-shrink: 0;
 }
 
@@ -753,16 +769,16 @@ body:not(.home) .site-main { padding-top: 75px !important; }
   font-family: 'futura-pt-condensed', sans-serif;
   font-weight: 800;
   text-transform: uppercase;
-  font-size: clamp(2.5rem, 5vw, 3.75rem);
+  font-size: clamp(3rem, 4.5vw, 4rem);
   line-height: 0.95;
-  margin-bottom: var(--space-md);
+  margin-bottom: var(--space-lg);
 }
 
 .product-detail-description {
   color: #333333;
-  font-size: 0.95rem;
-  line-height: 1.7;
-  margin-bottom: var(--space-lg);
+  font-size: clamp(1.25rem, 1.6vw, 1.375rem);
+  line-height: 1.6;
+  margin-bottom: var(--space-xl);
 }
 
 /* ── CTAs ───────────────────────────────────────────────── */
