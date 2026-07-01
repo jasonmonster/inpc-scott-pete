@@ -877,12 +877,33 @@ body:not(.home) .site-main { padding-top: 75px !important; }
 /* ── Variation panel — inner two-col grid ───────────────── */
 
 /*
-   Parent has .product-variation-panel.is-active { display: block }
-   which outranks .product-variation-panel { display: grid }.
-   Must target .is-active explicitly with !important.
+   Panel visibility is JS-driven: main.js toggles .is-active on exactly
+   one panel at a time. Inactive panels MUST stay hidden.
+
+   Parent CSS:
+     .product-variation-panel            { display: none }
+     .product-variation-panel.is-active  { display: block }
+
+   We keep the hidden default and only restyle the ACTIVE panel to grid.
+   Do NOT put .product-variation-panel (base) in the grid rule, or every
+   panel renders and the JS toggle appears broken.
 */
-.product-variation-panel,
+.product-variation-panel:not(.is-active) {
+  display: none !important;
+}
+
 .product-variation-panel.is-active {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-lg) var(--space-xl);
+  align-items: start;
+}
+
+/*
+   Single-variation products have no nav and the sole panel may not carry
+   .is-active (JS only runs when nav buttons exist). Force it visible.
+*/
+.product-variation-panel--single {
   display: grid !important;
   grid-template-columns: 1fr 1fr;
   gap: var(--space-lg) var(--space-xl);
@@ -1018,8 +1039,8 @@ body:not(.home) .site-main { padding-top: 75px !important; }
     margin: 0 auto;
   }
 
-  .product-variation-panel,
-  .product-variation-panel.is-active {
+  .product-variation-panel.is-active,
+  .product-variation-panel--single {
     grid-template-columns: 1fr !important;
   }
 
