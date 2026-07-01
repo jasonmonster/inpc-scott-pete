@@ -927,7 +927,7 @@ body:not(.home) .site-main { padding-top: 75px !important; }
    with a filled background. We need !important on all resets here
    so the plain-text tab style wins regardless of specificity order.
 */
-.product-variation-nav-list li button {
+.product-detail-section .product-variation-nav-list li button {
   -webkit-appearance: none !important;
   appearance: none !important;
   background: none !important;
@@ -935,9 +935,9 @@ body:not(.home) .site-main { padding-top: 75px !important; }
   border-radius: 0 !important;
   padding: 0 !important;
   margin: 0;
-  font-family: 'futura-pt-condensed', sans-serif;
-  font-weight: 800;
-  font-size: 1.5rem;
+  font-family: 'futura-pt-condensed', sans-serif !important;
+  font-weight: 800 !important;
+  font-size: 1.5rem !important;
   text-transform: uppercase;
   letter-spacing: 0.02em;
   color: #152e86;
@@ -947,9 +947,9 @@ body:not(.home) .site-main { padding-top: 75px !important; }
   box-shadow: none !important;
 }
 
-.product-variation-nav-list li button:hover { color: #ab162b !important; }
+.product-detail-section .product-variation-nav-list li button:hover { color: #ab162b !important; }
 
-.product-variation-nav-list li button.is-active {
+.product-detail-section .product-variation-nav-list li button.is-active {
   color: #ab162b !important;
   background: none !important;
   border: none !important;
