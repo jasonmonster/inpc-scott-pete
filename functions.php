@@ -196,3 +196,47 @@ function scott_pete_body_classes( $classes ) {
 	$classes[] = 'brand-scott-pete';
 	return $classes;
 }
+
+
+/* =========================================================
+   8. DESTINI — TEMPORARY HARDCODED LOCATOR VALUES
+   ---------------------------------------------------------
+   !!! TODO: REPLACE WITH SCOTT PETE'S OWN VALUES !!!
+
+   The parent single-product.php reads these via
+   ipc_option('destini_locator_id') / ipc_option('destini_alpha_code'),
+   which call get_field($name, 'option'). Those ACF options are not yet
+   registered/populated for Scott Pete, so the "Where to Buy" button
+   won't render until they return a value.
+
+   As a stopgap we borrow Kentucky Legend's live values (locator 4812,
+   alpha 12CC) so the Destini widget renders and can be styled/tested.
+   These point at KYL's store data — they are NOT correct for Scott Pete.
+
+   pre_load_value short-circuits ACF before it looks up the field, so this
+   works even though the fields aren't registered in an options group yet.
+
+   WHEN REAL VALUES ARRIVE: delete this entire block and set the values
+   in the proper ACF Destini options (or register the fields there).
+   ========================================================= */
+
+add_filter( 'acf/pre_load_value', 'scott_pete_destini_temp_values', 10, 3 );
+
+function scott_pete_destini_temp_values( $value, $post_id, $field ) {
+	// Only act on the options page, not individual posts.
+	if ( 'option' !== $post_id && 'options' !== $post_id ) {
+		return $value;
+	}
+
+	$name = is_array( $field ) && isset( $field['name'] ) ? $field['name'] : '';
+
+	// TEMP: Kentucky Legend values — replace with Scott Pete's.
+	if ( 'destini_locator_id' === $name ) {
+		return '4812';
+	}
+	if ( 'destini_alpha_code' === $name ) {
+		return '12CC';
+	}
+
+	return $value;
+}
