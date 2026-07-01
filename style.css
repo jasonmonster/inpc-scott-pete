@@ -1012,16 +1012,17 @@ body:not(.home) .site-main { padding-top: 75px !important; }
   display: block;
 }
 
-/* Right col items */
-.product-variation-name {
+/* Right col items. Scoped under .product-detail-section + !important so the
+   parent products.css .product-variation-name rule can't win on load order. */
+.product-detail-section .product-variation-name {
   grid-column: 2;
   grid-row: 1;
-  color: #152e86;
-  font-family: 'futura-pt-condensed', sans-serif;
-  font-weight: 800;
+  color: #152e86 !important;
+  font-family: 'futura-pt-condensed', sans-serif !important;
+  font-weight: 800 !important;
   text-transform: uppercase;
-  text-align: left;
-  font-size: clamp(2.25rem, 3.5vw, 3rem);
+  text-align: left !important;
+  font-size: clamp(2.25rem, 3.5vw, 3rem) !important;
   line-height: 1;
   margin-bottom: var(--space-lg);
 }
