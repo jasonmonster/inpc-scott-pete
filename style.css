@@ -717,7 +717,7 @@ body:not(.home) .site-main { padding-top: 75px !important; }
 .product-detail-section .back-to-grid svg {
   width: 40px;
   height: 40px;
-  transform: rotate(0deg); /* point up */
+  transform: rotate(-90deg); /* parent chevron points right; rotate to point up */
   stroke: #ffffff;
   stroke-width: 2.5;
 }
@@ -744,15 +744,16 @@ body:not(.home) .site-main { padding-top: 75px !important; }
 .product-detail-description { grid-column: 1; grid-row: 2; }
 .product-detail-ctas        { grid-column: 1; grid-row: 3; }
 
-/* Hero circle: right col, spans rows 1–3. KYL pulls this UP and DOWN with
-   negative margins so it overflows the card top/bottom and reads large
-   (~50% of the row, breaking the frame). z-index keeps it above content. */
+/* Hero circle: right col, spans rows 1–3. Pulled UP/DOWN with negative
+   vertical margins so it overflows the card top/bottom (KYL look).
+   Horizontally it must stay INSIDE the cell or the card clips it, so we
+   cap the width and center it in the column rather than bleeding right. */
 .product-detail-hero-image {
   grid-column: 2;
   grid-row: 1 / 4;
   display: flex;
   align-items: flex-start;
-  justify-content: flex-end;
+  justify-content: center;
   border-radius: 0;
   overflow: visible;
   width: auto;
@@ -765,10 +766,10 @@ body:not(.home) .site-main { padding-top: 75px !important; }
 .product-detail-hero-image img {
   display: block;
   width: 100%;
-  max-width: 100%;
+  max-width: 420px;
   aspect-ratio: 1 / 1;
   height: auto;
-  margin: -70px -10px -60px 0;
+  margin: -70px auto -60px;
   border-radius: 50% !important;
   object-fit: cover !important;
   border: 5px solid #ab162b;
