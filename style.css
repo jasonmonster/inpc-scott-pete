@@ -750,7 +750,13 @@ body:not(.home) .site-main { padding-top: 75px !important; }
    inset from the card top, ~73px from the card right edge.
 
    Key fix: align-self:start + justify-self:end keep the item from stretching
-   to fill the grid area; the image's own fixed width/height define the box. */
+   to fill the grid area; the image's own fixed width/height define the box.
+
+   TODO (deferred): PSD shows the circle breaching the card's TOP border and
+   overflowing onto the navy above (KYL does this with a negative top margin).
+   Currently it sits fully inside the card. Revisit with a negative margin-top
+   on the img once the rest of the layout is locked — needs care because
+   negative margins previously reintroduced clipping. */
 .product-detail-hero-image {
   grid-column: 2;
   grid-row: 1 / 4;
@@ -930,10 +936,10 @@ body:not(.home) .site-main { padding-top: 75px !important; }
   padding: 0 !important;
   margin: 0;
   font-family: 'futura-pt-condensed', sans-serif;
-  font-weight: 700;
-  font-size: 1.125rem;
+  font-weight: 800;
+  font-size: 1.5rem;
   text-transform: uppercase;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.02em;
   color: #152e86;
   cursor: pointer;
   line-height: 1;
@@ -1014,9 +1020,10 @@ body:not(.home) .site-main { padding-top: 75px !important; }
   font-family: 'futura-pt-condensed', sans-serif;
   font-weight: 800;
   text-transform: uppercase;
-  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+  text-align: left;
+  font-size: clamp(2.25rem, 3.5vw, 3rem);
   line-height: 1;
-  margin-bottom: var(--space-md);
+  margin-bottom: var(--space-lg);
 }
 
 /* Single-variation: name is redundant; shift other items up */
@@ -1060,7 +1067,7 @@ body:not(.home) .site-main { padding-top: 75px !important; }
 
 .product-nutrition-grid {
   display: flex;
-  gap: var(--space-lg);
+  gap: var(--space-sm);
   flex-wrap: wrap;
   text-align: center;
 }
