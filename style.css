@@ -766,10 +766,9 @@ body:not(.home) .site-main { padding-top: 75px !important; }
 .product-detail-hero-image img {
   display: block;
   width: 100%;
-  max-width: 420px;
-  aspect-ratio: 1 / 1;
-  height: auto;
-  margin: -70px auto -60px;
+  max-width: 400px;
+  height: 400px;
+  margin: 0 auto;
   border-radius: 50% !important;
   object-fit: cover !important;
   border: 5px solid #ab162b;
