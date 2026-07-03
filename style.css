@@ -555,8 +555,19 @@ body:not(.home) .site-main { padding-top: 75px !important; }
    doesn't use the shared --product-flip-width/height vars at all. Override
    directly to match the same 225x400 mockup spec as .product-flip-card. */
 .product-category-card__flip {
+  display: block !important;
+  position: relative !important;
   width: 225px !important;
   height: 400px !important;
+}
+
+/* Same anchor-tag vulnerability as above, old class system. The <a>
+   defaults to inline/static without !important on display/position,
+   and .product-flip-front/back (position:absolute) then skip past it
+   looking for the next positioned ancestor instead of filling it. */
+.product-flip-card a {
+  display: block !important;
+  position: relative !important;
 }
 
 /* Block background — parent CSS never sets one here, page renders on
@@ -1520,6 +1531,14 @@ body:not(.home) .site-main { padding-top: 75px !important; }
    (same load-order quirk documented above the product card rules)
    and wins on anything left unflagged.
    ========================================================= */
+
+/* Same anchor vulnerability caught on the product cards — an <a>
+   defaults to inline/static, which breaks the containing block for
+   .recipe-flip-front/back below unless forced here too. */
+.recipe-flip-card a {
+  display: block !important;
+  position: relative !important;
+}
 
 .recipe-flip-front {
   position: absolute !important;
