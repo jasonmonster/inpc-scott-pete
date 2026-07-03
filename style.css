@@ -1548,11 +1548,11 @@ body:not(.home) .site-main { padding-top: 75px !important; }
   background-color: #ffffff !important;
   color: var(--color-primary) !important;
   font-family: 'futura-pt-condensed', sans-serif;
-  font-weight: 500 !important;
-  font-size: 1rem !important;
-  letter-spacing: 0.06em !important;
+  font-weight: 700 !important;
+  font-size: 1.7rem !important;
+  letter-spacing: 0.08em !important;
   border-radius: 0 !important;
-  padding: 0.45em 0.5em 0.55em !important;
+  padding: 0.25em 0.5em 0.3em !important;
   flex-shrink: 0;
 }
 
