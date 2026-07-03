@@ -576,6 +576,21 @@ body:not(.home) .site-main { padding-top: 75px !important; }
   background-color: #152e86 !important;
 }
 
+/* Cards row — parent's display:flex/justify-content:center have no
+   !important, same load-order loss as everything else here, so it
+   was rendering as plain block flow (one card, pinned left). Also
+   never had a max-width at all; the block's own PHP skips .site-wrapper
+   entirely and nothing else supplied one. */
+.product-category-grid__cards {
+  display: flex !important;
+  justify-content: center !important;
+  max-width: var(--wrapper-width, 1200px);
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-left: var(--wrapper-padding);
+  padding-right: var(--wrapper-padding);
+}
+
 .product-category-grid .section-heading {
   text-align: center;
   margin-bottom: var(--space-xl);
