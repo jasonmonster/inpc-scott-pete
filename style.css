@@ -589,7 +589,10 @@ body:not(.home) .site-main { padding-top: 75px !important; }
 
 .product-flip-front,
 .product-category-card__front {
+  position: absolute !important;
+  inset: 0 !important;
   background-color: #ffffff !important;
+  display: flex !important;
   flex-direction: column !important;
   justify-content: flex-start !important;
   align-items: stretch !important;
@@ -631,6 +634,8 @@ body:not(.home) .site-main { padding-top: 75px !important; }
 /* Back face — brand red, border matches front */
 .product-flip-back,
 .product-category-card__back {
+  position: absolute !important;
+  inset: 0 !important;
   background-color: #ab162b !important;
   border: 4px solid #ffffff;
   box-sizing: border-box;
@@ -1510,40 +1515,51 @@ body:not(.home) .site-main { padding-top: 75px !important; }
    photo. Match the white-card-with-bottom-label pattern already
    built for product-category-grid instead — same white border,
    same label bar treatment, same font.
+
+   !important throughout: recipes.css loads after this stylesheet
+   (same load-order quirk documented above the product card rules)
+   and wins on anything left unflagged.
    ========================================================= */
 
 .recipe-flip-front {
-  background-color: #ffffff;
-  border: 4px solid #ffffff;
+  position: absolute !important;
+  inset: 0 !important;
+  background-color: #ffffff !important;
+  display: flex !important;
+  border: 4px solid #ffffff !important;
   box-sizing: border-box;
-  padding: 0;
-  justify-content: flex-start;
+  padding: 0 !important;
+  justify-content: flex-start !important;
 }
 
 .recipe-flip-front img {
-  position: static;
+  position: relative !important;
+  inset: auto !important;
   flex: 1;
   min-height: 0;
-  width: 100%;
+  width: 100% !important;
   height: auto;
-  object-fit: cover;
+  object-fit: cover !important;
 }
 
 .recipe-flip-front-label {
-  position: static;
-  background-color: #ffffff;
-  color: var(--color-primary);
+  position: relative !important;
+  z-index: auto !important;
+  background-color: #ffffff !important;
+  color: var(--color-primary) !important;
   font-family: 'futura-pt-condensed', sans-serif;
-  font-weight: 500;
-  font-size: 1rem;
-  letter-spacing: 0.06em;
-  border-radius: 0;
-  padding: 0.45em 0.5em 0.55em;
+  font-weight: 500 !important;
+  font-size: 1rem !important;
+  letter-spacing: 0.06em !important;
+  border-radius: 0 !important;
+  padding: 0.45em 0.5em 0.55em !important;
   flex-shrink: 0;
 }
 
 .recipe-flip-back {
-  border: 4px solid #ffffff;
+  position: absolute !important;
+  inset: 0 !important;
+  border: 4px solid #ffffff !important;
   box-sizing: border-box;
 }
 
