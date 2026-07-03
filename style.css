@@ -610,6 +610,10 @@ body:not(.home) .site-main { padding-top: 75px !important; }
   padding: 0 !important;
   border: 4px solid #ffffff !important;
   box-sizing: border-box;
+  backface-visibility: hidden !important;
+  -webkit-backface-visibility: hidden !important;
+  transform: rotateY(0deg) !important;
+  transition: transform 0.45s ease;
 }
 
 .product-flip-front img,
@@ -650,6 +654,29 @@ body:not(.home) .site-main { padding-top: 75px !important; }
   background-color: #ab162b !important;
   border: 4px solid #ffffff;
   box-sizing: border-box;
+  backface-visibility: hidden !important;
+  -webkit-backface-visibility: hidden !important;
+  transform: rotateY(180deg) !important;
+  transition: transform 0.45s ease;
+}
+
+/* Hover states — base rules above are !important, so the parent's
+   non-important hover rules can no longer win regardless of their
+   higher selector specificity. Re-declared here, also !important,
+   to actually flip the card. */
+.product-category-card__flip:hover .product-category-card__front {
+  transform: rotateY(-180deg) !important;
+}
+.product-category-card__flip:hover .product-category-card__back {
+  transform: rotateY(0deg) !important;
+}
+.product-flip-card:hover .product-flip-front,
+.product-flip-card:focus-within .product-flip-front {
+  transform: rotateY(-180deg) !important;
+}
+.product-flip-card:hover .product-flip-back,
+.product-flip-card:focus-within .product-flip-back {
+  transform: rotateY(0deg) !important;
 }
 
 .product-flip-back h3,
@@ -1549,6 +1576,10 @@ body:not(.home) .site-main { padding-top: 75px !important; }
   box-sizing: border-box;
   padding: 0 !important;
   justify-content: flex-start !important;
+  backface-visibility: hidden !important;
+  -webkit-backface-visibility: hidden !important;
+  transform: rotateY(0deg) !important;
+  transition: transform 0.45s ease;
 }
 
 .recipe-flip-front img {
@@ -1580,5 +1611,18 @@ body:not(.home) .site-main { padding-top: 75px !important; }
   inset: 0 !important;
   border: 4px solid #ffffff !important;
   box-sizing: border-box;
+  backface-visibility: hidden !important;
+  -webkit-backface-visibility: hidden !important;
+  transform: rotateY(180deg) !important;
+  transition: transform 0.45s ease;
+}
+
+.recipe-flip-card:hover .recipe-flip-front,
+.recipe-flip-card:focus-within .recipe-flip-front {
+  transform: rotateY(-180deg) !important;
+}
+.recipe-flip-card:hover .recipe-flip-back,
+.recipe-flip-card:focus-within .recipe-flip-back {
+  transform: rotateY(0deg) !important;
 }
 
