@@ -576,9 +576,15 @@ body:not(.home) .site-main { padding-top: 75px !important; }
 }
 
 /* Block background — parent CSS never sets one here, page renders on
-   whatever the page background is (white) without this. */
+   whatever the page background is (white) without this.
+
+   padding-bottom forced here for the same reason padding-top needed
+   forcing on the wrapper selector above: parent's own
+   "padding: var(--section-padding) 0" on this class has no !important
+   and has been losing outright, not just on one side. */
 .product-category-grid {
   background-color: #152e86 !important;
+  padding-bottom: var(--section-padding) !important;
 }
 
 /* Cards row — parent's display:flex/justify-content:center have no
