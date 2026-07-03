@@ -111,12 +111,9 @@ Text Domain:  scott-pete
   --input-radius:           3px;
 
   /* --- Product tokens ---
-     Sized to match .product-category-card__flip (the homepage/main-grid
-     module, hardcoded 215x330 in product-category-grid.css) so the
-     category-row cards read as the same component, not a shorter/wider
-     cousin of it. */
-  --product-flip-width:         215px !important;
-  --product-flip-height:        330px !important;
+     225x400 per mockup, confirmed against the PSD. */
+  --product-flip-width:         225px !important;
+  --product-flip-height:        400px !important;
   --product-flip-bg:            #ab162b;
   --product-flip-back-bg:       #ab162b;
   --product-flip-back-text:     #ffffff;
@@ -553,6 +550,15 @@ body:not(.home) .site-main { padding-top: 75px !important; }
    rules because parent's products.css loads after this stylesheet
    (same load-order issue as product-detail-section above) and silently
    wins on anything not flagged. */
+/* Parent hardcodes .product-category-card__flip at 215x330 in its own
+   block CSS (blocks/product-category-grid/product-category-grid.css),
+   doesn't use the shared --product-flip-width/height vars at all. Override
+   directly to match the same 225x400 mockup spec as .product-flip-card. */
+.product-category-card__flip {
+  width: 225px !important;
+  height: 400px !important;
+}
+
 .product-flip-front,
 .product-category-card__front {
   background-color: #ffffff !important;
@@ -585,12 +591,12 @@ body:not(.home) .site-main { padding-top: 75px !important; }
   background-color: #ffffff !important;
   color: #152e86 !important;
   font-family: 'futura-pt-condensed', sans-serif;
-  font-weight: 500 !important;
-  font-size: 2rem !important;
+  font-weight: 700 !important;
+  font-size: 1.7rem !important;
   letter-spacing: 0.08em !important;
   text-transform: uppercase;
   text-align: center;
-  padding: 0.45em 0.5em 0.55em !important;
+  padding: 0.25em 0.5em 0.3em !important;
   border-radius: 0 !important;
 }
 
@@ -612,6 +618,13 @@ body:not(.home) .site-main { padding-top: 75px !important; }
 .product-flip-back p,
 .product-category-card__back p {
   color: #ffffff;
+}
+
+/* Parent's products.css has its own .product-flip-card--active .product-flip-inner
+   rule (box-shadow using --color-accent) that our removed duplicate never touched.
+   Kill it explicitly. */
+.product-flip-card--active .product-flip-inner {
+  box-shadow: none !important;
 }
 
 /* Scroll arrows */
