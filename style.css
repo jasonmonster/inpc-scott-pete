@@ -1403,3 +1403,103 @@ body:not(.home) .site-main { padding-top: 75px !important; }
 }
 
 .footer-copyright { color: #152e86; font-size: 0.78rem; }
+
+
+/* =========================================================
+   BUN OR NO BUN (archive-recipe.php override)
+   Two large link-cards above the category slider on the
+   recipes hub. Images are expected pre-rendered (polaroid tilt,
+   shadow, handwritten label baked in) — same assumption as the
+   Recipe Decision Tree polaroids in reciepes-cta.css, so no
+   polaroid framing is built in CSS here.
+   ========================================================= */
+
+.recipe-bun-section {
+  background-color: #ffffff;
+  padding: var(--space-2xl) 0 var(--space-3xl);
+}
+
+.recipe-bun-section .section-heading h2 {
+  font-family: 'futura-pt-condensed', sans-serif;
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: #ab162b;
+  margin: 0 0 var(--space-xs);
+}
+
+.recipe-bun-section .section-subtitle {
+  font-family: 'futura-pt', sans-serif;
+  font-size: 0.95rem;
+  color: #4a4a4a;
+  margin: 0;
+}
+
+.recipe-bun-cards {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: var(--space-2xl);
+  flex-wrap: wrap;
+  margin-top: var(--space-xl);
+}
+
+.recipe-bun-card {
+  display: block;
+  width: 100%;
+  max-width: 340px;
+  text-align: center;
+  transition: transform 250ms ease;
+}
+
+.recipe-bun-card:hover {
+  transform: scale(1.03);
+}
+
+.recipe-bun-card img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Visually hidden — the label is baked into the polaroid image
+   itself, this is here for accessibility / screen readers only. */
+.recipe-bun-card-label {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (max-width: 768px) {
+  .recipe-bun-cards { gap: var(--space-lg); }
+  .recipe-bun-card { max-width: 280px; }
+}
+
+
+/* =========================================================
+   RECIPE BANNER
+   ipc-base's version left-aligns the title with padding-based
+   height. Center it and pin it to ~400px to match the mock.
+   ========================================================= */
+
+.recipe-banner {
+  display: flex;
+  align-items: center;
+  height: 400px;
+  padding: 0;
+}
+
+.recipe-banner-content {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.recipe-banner-content h1 {
+  font-weight: var(--fw-bold);
+}
+

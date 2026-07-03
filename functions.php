@@ -199,7 +199,25 @@ function scott_pete_body_classes( $classes ) {
 
 
 /* =========================================================
-   8. DESTINI — TEMPORARY HARDCODED LOCATOR VALUES
+   8. RECIPE CATEGORY SLIDER — EXCLUDE BUN / NO BUN
+   Bun and No Bun are real recipe_category terms so their archive
+   pages work like any other category, but they get their own large
+   cards on the recipes hub (archive-recipe.php) instead of sitting
+   in the auto-generated flip-card slider with Grill, Appetizers,
+   etc. This keeps them out of every slider instance across the
+   recipe template family — hub, category archive, tag archive,
+   and single recipe — without touching ipc-base at all.
+   ========================================================= */
+
+add_filter( 'ipc_recipe_category_exclude_slugs', function( $slugs ) {
+	$slugs[] = 'bun';
+	$slugs[] = 'no-bun';
+	return $slugs;
+} );
+
+
+/* =========================================================
+   9. DESTINI — TEMPORARY HARDCODED LOCATOR VALUES
    ---------------------------------------------------------
    !!! TODO: REPLACE WITH SCOTT PETE'S OWN VALUES !!!
 
