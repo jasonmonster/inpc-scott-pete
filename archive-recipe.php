@@ -6,17 +6,18 @@
  *
  * Changes from parent:
  *   1. Adds a "Bun or No Bun?" section between the banner and the
- *      category slider — two large link-cards pointing at the 'bun'
- *      and 'no-bun' recipe_category terms. Content comes from the
- *      recipe_bun_card_* / recipe_nobun_card_* fields (Theme
- *      Settings → Recipes). If those terms don't exist yet, the
- *      section just doesn't render — nothing to break.
+ *      category slider — two large link-cards pointing at the
+ *      'bun-wrecking-recipes' and 'bun-free-recipes' recipe_category
+ *      terms. Content comes from the recipe_bun_card_* /
+ *      recipe_nobun_card_* fields (Theme Settings → Recipes). If
+ *      those terms don't exist yet, the section just doesn't
+ *      render — nothing to break.
  *
  * Everything else (banner, category slider, tag grid) is unchanged
  * from parent, pulled from the same shared template parts. The
- * category slider excludes 'bun' and 'no-bun' automatically via the
+ * category slider excludes those two terms automatically via the
  * ipc_recipe_category_exclude_slugs filter in functions.php, since
- * those two get their own dedicated cards here instead.
+ * they get their own dedicated cards here instead.
  *
  * @package ScottPete
  */
@@ -28,8 +29,8 @@ get_header();
 get_template_part( 'template-parts/recipe-banner' );
 
 // ── Bun or No Bun ────────────────────────────────────────
-$bun_term   = get_term_by( 'slug', 'bun',    'recipe_category' );
-$nobun_term = get_term_by( 'slug', 'no-bun', 'recipe_category' );
+$bun_term   = get_term_by( 'slug', 'bun-wrecking-recipes', 'recipe_category' );
+$nobun_term = get_term_by( 'slug', 'bun-free-recipes',      'recipe_category' );
 
 if ( $bun_term && $nobun_term ) :
 

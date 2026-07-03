@@ -210,8 +210,8 @@ function scott_pete_body_classes( $classes ) {
    ========================================================= */
 
 add_filter( 'ipc_recipe_category_exclude_slugs', function( $slugs ) {
-	$slugs[] = 'bun';
-	$slugs[] = 'no-bun';
+	$slugs[] = 'bun-wrecking-recipes';
+	$slugs[] = 'bun-free-recipes';
 	return $slugs;
 } );
 
