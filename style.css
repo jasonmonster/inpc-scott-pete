@@ -115,8 +115,8 @@ Text Domain:  scott-pete
      module, hardcoded 215x330 in product-category-grid.css) so the
      category-row cards read as the same component, not a shorter/wider
      cousin of it. */
-  --product-flip-width:         215px;
-  --product-flip-height:        330px;
+  --product-flip-width:         215px !important;
+  --product-flip-height:        330px !important;
   --product-flip-bg:            #ab162b;
   --product-flip-back-bg:       #ab162b;
   --product-flip-back-text:     #ffffff;
@@ -553,7 +553,8 @@ body:not(.home) .site-main { padding-top: 75px !important; }
    rules because parent's products.css loads after this stylesheet
    (same load-order issue as product-detail-section above) and silently
    wins on anything not flagged. */
-.product-flip-front {
+.product-flip-front,
+.product-category-card__front {
   background-color: #ffffff !important;
   flex-direction: column !important;
   justify-content: flex-start !important;
@@ -563,7 +564,8 @@ body:not(.home) .site-main { padding-top: 75px !important; }
   box-sizing: border-box;
 }
 
-.product-flip-front img {
+.product-flip-front img,
+.product-category-card__front img {
   position: relative !important;
   inset: auto !important;
   flex: 1;
@@ -584,7 +586,7 @@ body:not(.home) .site-main { padding-top: 75px !important; }
   color: #152e86 !important;
   font-family: 'futura-pt-condensed', sans-serif;
   font-weight: 500 !important;
-  font-size: 1.1rem !important;
+  font-size: 2rem !important;
   letter-spacing: 0.08em !important;
   text-transform: uppercase;
   text-align: center;
@@ -601,6 +603,12 @@ body:not(.home) .site-main { padding-top: 75px !important; }
 }
 
 .product-flip-back h3,
+.product-category-card__back h3 {
+  color: #ffffff;
+  text-transform: uppercase;
+  font-size: 2rem !important;
+}
+
 .product-flip-back p,
 .product-category-card__back p {
   color: #ffffff;
@@ -656,9 +664,9 @@ body:not(.home) .site-main { padding-top: 75px !important; }
 }
 
 .product-list-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
   gap: var(--space-sm);
   width: 180px;
   text-decoration: none;
