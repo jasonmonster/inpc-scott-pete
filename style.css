@@ -111,8 +111,12 @@ Text Domain:  scott-pete
   --input-radius:           3px;
 
   /* --- Product tokens ---
-     NOTE: do NOT override --product-flip-width / --product-flip-height here.
-     The parent block CSS sets 215x330 which matches the comp. */
+     Sized to match .product-category-card__flip (the homepage/main-grid
+     module, hardcoded 215x330 in product-category-grid.css) so the
+     category-row cards read as the same component, not a shorter/wider
+     cousin of it. */
+  --product-flip-width:         215px;
+  --product-flip-height:        330px;
   --product-flip-bg:            #ab162b;
   --product-flip-back-bg:       #ab162b;
   --product-flip-back-text:     #ffffff;
@@ -580,7 +584,7 @@ body:not(.home) .site-main { padding-top: 75px !important; }
   color: #152e86 !important;
   font-family: 'futura-pt-condensed', sans-serif;
   font-weight: 500;
-  font-size: 0.9rem;
+  font-size: 1.1rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   text-align: center;
@@ -600,11 +604,6 @@ body:not(.home) .site-main { padding-top: 75px !important; }
 .product-flip-back p,
 .product-category-card__back p {
   color: #ffffff;
-}
-
-/* Active card ring */
-.product-flip-card--active .product-flip-inner {
-  box-shadow: 0 0 0 4px #fcc278, var(--shadow-md);
 }
 
 /* Scroll arrows */
@@ -697,6 +696,11 @@ body:not(.home) .site-main { padding-top: 75px !important; }
   text-transform: uppercase;
   text-align: center;
   margin: 0;
+  max-width: 180px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
 }
 
 @media (max-width: 640px) {
