@@ -177,19 +177,6 @@ $grid_cta_link = ipc_option( 'products_grid_cta_link', get_post_type_archive_lin
 <section class="product-list-section" id="product_list_grid">
     <div class="site-wrapper">
 
-        <div class="back-to-grid">
-            <a href="<?php echo esc_url( get_post_type_archive_link( 'product' ) ); ?>#product_list">
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <polyline points="9 18 15 12 9 6"></polyline>
-                </svg>
-                <?php esc_html_e( 'All Categories', 'ipc-base' ); ?>
-            </a>
-        </div>
-
-        <h2 class="text-center" style="margin-bottom: var(--space-xl);">
-            <?php echo esc_html( $current_term->name ); ?>
-        </h2>
-
         <ul class="product-list-grid">
             <?php while ( have_posts() ) : the_post();
                 $thumbnail_id = get_post_meta( get_the_ID(), '_product_thumbnail', true );

@@ -641,7 +641,7 @@ body:not(.home) .site-main { padding-top: 75px !important; }
   margin-bottom: var(--space-xl);
 }
 
-/* White rounded box */
+/* Red rounded box, same shade as the section — the border alone defines it */
 .product-list-section .product-list-grid {
   display: flex !important;
   justify-content: center;
@@ -651,7 +651,7 @@ body:not(.home) .site-main { padding-top: 75px !important; }
   margin: 0 auto;
   padding: var(--space-2xl) var(--space-3xl);
   max-width: 860px;
-  background-color: rgba(255, 255, 255, 0.12);
+  background-color: transparent;
   border: 3px solid rgba(255, 255, 255, 0.7);
   border-radius: 20px;
 }
@@ -688,27 +688,16 @@ body:not(.home) .site-main { padding-top: 75px !important; }
 .product-list-item:hover .img-default { opacity: 0; }
 .product-list-item:hover .img-hover   { opacity: 1; }
 
-/* Active state — currently viewed product, when this list also renders
-   on single-product.php for the active category */
-.product-list-item--active .product-list-item-images {
-  box-shadow: 0 0 0 4px #fcc278, var(--shadow-md);
-}
-.product-list-item--active h3 { color: #fcc278; }
-
 .product-list-item h3 {
   color: #ffffff;
   font-family: 'futura-pt-condensed', sans-serif;
   font-weight: 500;
-  font-size: 0.85rem;
+  font-size: 2rem !important;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   text-align: center;
   margin: 0;
 }
-
-.product-list-section .back-to-grid { border-bottom-color: rgba(255, 255, 255, 0.2); margin-bottom: var(--space-xl); }
-.product-list-section .back-to-grid a { color: rgba(255, 255, 255, 0.8); }
-.product-list-section .back-to-grid a:hover { color: #ffffff; }
 
 @media (max-width: 640px) {
   .product-list-section .product-list-grid { padding: var(--space-xl) var(--space-lg); gap: var(--space-xl); }

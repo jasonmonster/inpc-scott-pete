@@ -197,19 +197,6 @@ if ( $active_term ) :
 <section class="product-list-section" id="product_list_grid">
     <div class="site-wrapper">
 
-        <div class="back-to-grid">
-            <a href="#product_list">
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <polyline points="9 18 15 12 9 6"></polyline>
-                </svg>
-                <?php esc_html_e( 'All Categories', 'ipc-base' ); ?>
-            </a>
-        </div>
-
-        <h2 class="text-center" style="margin-bottom: var(--space-xl);">
-            <?php echo esc_html( $active_term->name ); ?>
-        </h2>
-
         <ul class="product-list-grid">
             <?php foreach ( $siblings as $sibling ) :
                 $sibling_id    = $sibling->ID;
@@ -221,12 +208,11 @@ if ( $active_term ) :
                 $hover_url = $hover_id
                     ? wp_get_attachment_image_url( $hover_id, 'product-thumbnail' )
                     : '';
-                $is_current  = ( $sibling_id === get_the_ID() );
                 $sibling_url = get_permalink( $sibling_id ) . '?cat_id=' . $active_term->term_id . '#product_detail';
             ?>
                 <li>
                     <a href="<?php echo esc_url( $sibling_url ); ?>"
-                       class="product-list-item<?php echo $is_current ? ' product-list-item--active' : ''; ?>">
+                       class="product-list-item">
                         <div class="product-list-item-images">
                             <?php if ( $thumbnail_url ) : ?>
                                 <img class="img-default"
