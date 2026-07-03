@@ -486,15 +486,21 @@ body:not(.home) .site-main { padding-top: 75px !important; }
   z-index: 1;
 }
 
-/* Extra top padding on first block to clear the floating product PNG */
+/* Extra top padding on first block to clear the floating product PNG.
+   page-products.php wraps its content in .products-page-content; the
+   taxonomy-product_category.php and single-product.php overrides render
+   the banner and the category section as direct siblings with no
+   wrapper, so the adjacent-sibling selector covers those two instead. */
 .products-page-content > .product-category-section:first-child,
-.products-page-content > .product-category-grid:first-child {
+.products-page-content > .product-category-grid:first-child,
+.products-banner + .product-category-section {
   padding-top: calc(var(--section-padding) + 130px) !important;
 }
 
 @media (max-width: 768px) {
   .products-page-content > .product-category-section:first-child,
-  .products-page-content > .product-category-grid:first-child {
+  .products-page-content > .product-category-grid:first-child,
+  .products-banner + .product-category-section {
     padding-top: calc(var(--section-padding) + 80px) !important;
   }
 }
@@ -529,24 +535,65 @@ body:not(.home) .site-main { padding-top: 75px !important; }
 
 .product-category-section .section-heading p,
 .product-category-section .eyebrow {
+  display: block;
   color: rgba(255, 255, 255, 0.8);
   font-size: 0.95rem;
+  margin-top: var(--space-sm);
 }
 
-/* Front label */
+/* Card face structure — reworked to match .product-category-card__front/
+   __back, the flip module already built for the homepage/main products
+   grid: white front card, photo constrained to the top with a solid
+   label bar underneath, instead of products.css's default full-bleed
+   photo with a dark overlay label. !important throughout the face
+   rules because parent's products.css loads after this stylesheet
+   (same load-order issue as product-detail-section above) and silently
+   wins on anything not flagged. */
+.product-flip-front {
+  background-color: #ffffff !important;
+  flex-direction: column !important;
+  justify-content: flex-start !important;
+  align-items: stretch !important;
+  padding: 0 !important;
+  border: 4px solid #ffffff !important;
+  box-sizing: border-box;
+}
+
+.product-flip-front img {
+  position: relative !important;
+  inset: auto !important;
+  flex: 1;
+  min-height: 0;
+  width: 100% !important;
+  object-fit: cover !important;
+  display: block;
+}
+
+/* Front label — solid bar under the photo, not an overlay on it */
 .product-flip-front-label,
 .product-category-card__label {
+  position: relative !important;
+  z-index: auto !important;
+  flex-shrink: 0;
+  width: 100%;
+  background-color: #ffffff !important;
+  color: #152e86 !important;
   font-family: 'futura-pt-condensed', sans-serif;
   font-weight: 500;
   font-size: 0.9rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+  text-align: center;
+  padding: 0.45em 0.5em 0.55em !important;
+  border-radius: 0 !important;
 }
 
-/* Back face — brand red */
+/* Back face — brand red, border matches front */
 .product-flip-back,
 .product-category-card__back {
   background-color: #ab162b !important;
+  border: 4px solid #ffffff;
+  box-sizing: border-box;
 }
 
 .product-flip-back h3,
@@ -584,7 +631,7 @@ body:not(.home) .site-main { padding-top: 75px !important; }
    ========================================================= */
 
 .product-list-section {
-  background-color: #ab162b;
+  background-color: #ab162b !important;
   padding: var(--section-padding) 0;
 }
 
@@ -623,10 +670,10 @@ body:not(.home) .site-main { padding-top: 75px !important; }
 .product-list-item-images {
   width: 160px;
   height: 160px;
-  border-radius: 50%;
+  border-radius: 50% !important;
   border: 4px solid #ffffff;
   overflow: hidden;
-  background-color: #8a1122;
+  background-color: #8a1122 !important;
   aspect-ratio: unset !important;
 }
 
@@ -634,12 +681,19 @@ body:not(.home) .site-main { padding-top: 75px !important; }
 .product-list-item-images .img-hover {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  padding: 0;
+  object-fit: cover !important;
+  padding: 0 !important;
 }
 
 .product-list-item:hover .img-default { opacity: 0; }
 .product-list-item:hover .img-hover   { opacity: 1; }
+
+/* Active state — currently viewed product, when this list also renders
+   on single-product.php for the active category */
+.product-list-item--active .product-list-item-images {
+  box-shadow: 0 0 0 4px #fcc278, var(--shadow-md);
+}
+.product-list-item--active h3 { color: #fcc278; }
 
 .product-list-item h3 {
   color: #ffffff;
