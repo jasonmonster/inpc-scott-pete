@@ -1,0 +1,14 @@
+{
+    "name": "acf/product-category-grid",
+    "title": "Product Category Grid",
+    "description": "Displays product_category taxonomy terms as rectangular flip cards — front shows category image, back shows category description. Pulls automatically from the product_category taxonomy. Scott Pete override: routes card links through ipc_get_category_card_url() instead of a plain term link, and renders the PREMIUM PRODUCTS-style header from the same products_grid_title/products_grid_subtitle options used on the category and single-product templates.",
+    "category": "ipc-blocks",
+    "icon": "grid-view",
+    "keywords": [ "products", "categories", "grid", "flip" ],
+    "style": [ "file:./product-category-grid.css" ],
+    "acf": {
+        "mode": "preview",
+        "renderTemplate": "product-category-grid.php"
+    },
+    "supports": { "anchor": true }
+}

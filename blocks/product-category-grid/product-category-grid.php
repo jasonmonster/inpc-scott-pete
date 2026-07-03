@@ -26,6 +26,11 @@ $block_id = ! empty( $block['anchor'] ) ? $block['anchor'] : 'product-category-g
 $cta_text = get_field( 'cta_text' ) ?: '';
 $cta_link = get_field( 'cta_link' ) ?: '';
 
+// Same options fields taxonomy-product_category.php and single-product.php
+// read for their category-row header — one field, three templates.
+$grid_title    = ipc_option( 'products_grid_title',    '' );
+$grid_subtitle = ipc_option( 'products_grid_subtitle', '' );
+
 $terms = get_terms( array(
     'taxonomy'   => 'product_category',
     'hide_empty' => false,
@@ -37,6 +42,17 @@ $terms = get_terms( array(
 if ( is_wp_error( $terms ) || empty( $terms ) ) return;
 ?>
 <div class="product-category-grid" id="<?php echo esc_attr( $block_id ); ?>">
+
+    <?php if ( $grid_title || $grid_subtitle ) : ?>
+        <header class="section-heading">
+            <?php if ( $grid_title ) : ?>
+                <h2><?php echo esc_html( $grid_title ); ?></h2>
+            <?php endif; ?>
+            <?php if ( $grid_subtitle ) : ?>
+                <span class="eyebrow"><?php echo esc_html( $grid_subtitle ); ?></span>
+            <?php endif; ?>
+        </header>
+    <?php endif; ?>
 
     <div class="product-category-grid__cards">
         <?php foreach ( $terms as $term ) :
