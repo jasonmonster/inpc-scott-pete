@@ -1652,3 +1652,30 @@ body:not(.home) .site-main { padding-top: 75px !important; }
   transform: rotateY(0deg) !important;
 }
 
+
+/* =========================================================
+   RECIPE DIRECTIONS — KILL AUTONUMBERING
+   Source content being migrated from the old site isn't consistently
+   formatted, some recipes mix section headers ("Pretzels Part 1:",
+   "For Sausages:") in with the numbered steps, some don't. Rather
+   than write a parser that reliably detects headers across
+   inconsistent source formatting, or clean up every recipe by hand
+   during migration, the numbers just come off. ipc_get_recipe_directions()
+   and the template's own numbered <span> are untouched, this only
+   hides the number visually and strips list markers from anything
+   nested inside the field content too, in case pasted-in source HTML
+   brings its own <ol>.
+   ========================================================= */
+
+.recipe-directions-list,
+.recipe-directions-list ol,
+.recipe-step-text ol {
+  list-style: none !important;
+  margin: 0;
+  padding-left: 0;
+}
+
+.recipe-step-number {
+  display: none !important;
+}
+
