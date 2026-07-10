@@ -1679,3 +1679,47 @@ body:not(.home) .site-main { padding-top: 75px !important; }
   display: none !important;
 }
 
+
+/* =========================================================
+   RECIPE LIST PANEL + CARD (taxonomy-recipe_category/tag archives)
+   Brand tokens for the framed panel and colored stat pills. All the
+   structure lives in ipc-base/css/recipes.css; this only supplies
+   Scott Pete colors and the panel shell, matching the KYL reference:
+   cream panel, red keyline, circular photos, navy titles, green/red/
+   tan stat pills.
+   ========================================================= */
+
+.recipe-list-grid {
+  --recipe-panel-bg:        #fdebd0;   /* soft cream, lighter than --color-accent */
+  --recipe-panel-border:    3px solid #ab162b;
+  --recipe-panel-radius:    24px;
+  --recipe-panel-padding:   var(--space-3xl) var(--space-2xl);
+
+  --recipe-card-photo-size:     220px;
+  --recipe-card-photo-border:   4px solid #ffffff;
+  --recipe-card-title-color:    #152e86;
+
+  --recipe-pill-size:           58px;
+  --recipe-pill-prep-bg:        #4c8c3f;
+  --recipe-pill-total-bg:       #ab162b;
+  --recipe-pill-servings-bg:    #e8dcc0;
+  --recipe-pill-text:           #ffffff;
+  --recipe-pill-servings-text:  #152e86;
+}
+
+/* Recipe list section background — white behind the cream panel */
+.recipe-list-section {
+  background-color: #ffffff !important;
+}
+
+.recipe-list-title {
+  color: #152e86 !important;
+}
+
+/* Card title font weight/family already enforced globally on h3; this
+   just keeps the pill value numerals in the condensed face. */
+.recipe-card .recipe-meta-value {
+  font-family: 'futura-pt-condensed', sans-serif !important;
+  font-weight: 700 !important;
+}
+
