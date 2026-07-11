@@ -785,10 +785,12 @@ body:not(.home) .site-main { padding-top: 75px !important; }
 }
 
 /* Homepage instance (nested in red-container):
-   center "ALL PRODUCTS" under the card row. Colors already match
-   (gold/navy). */
+   center "ALL PRODUCTS" under the card row and give it breathing room
+   above (the block's own bottom padding is zeroed on the homepage, so the
+   gap has to come from the CTA row itself). Colors already match. */
 .brand-container .product-category-grid__cta {
   text-align: center;
+  margin-top: var(--space-2xl);
 }
 
 
