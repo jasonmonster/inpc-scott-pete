@@ -1838,16 +1838,16 @@ body:not(.home) .site-main { padding-top: 75px !important; }
   padding: 2px 0;
 }
 
-/* Meta circles below directions — reuse the archive-card pill styling.
-   Scoped variables so the same pill look applies here. */
+/* Meta circles — now in the RIGHT column under the photo, centered
+   to sit where the WTB button does in the design. */
 .recipe-detail-section .recipe-meta {
   --recipe-pill-size: 58px;
   background: none !important;
   padding: 0 !important;
-  margin: var(--space-xl) 0 var(--space-lg) !important;
+  margin: 0 0 var(--space-xl) !important;
   border-radius: 0 !important;
-  gap: var(--space-md) !important;
-  justify-content: flex-start;
+  gap: var(--space-lg) !important;
+  justify-content: center;
 }
 
 .recipe-detail-section .recipe-meta-item {
@@ -1942,10 +1942,13 @@ body:not(.home) .site-main { padding-top: 75px !important; }
   filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.25));
 }
 
-/* ---- You Might Also Like (full width, below card) ---- */
-.recipe-detail-section + * .recipe-related,
+/* ---- You Might Also Like ---- */
+/* Hidden on the single recipe page per design direction. Markup stays
+   in the template (harmless, and keeps the related-recipe query wired
+   up if it's ever wanted back), just not shown. */
+.recipe-detail-section ~ .recipe-related,
 .recipe-related {
-  margin-top: var(--space-2xl);
+  display: none !important;
 }
 
 @media (max-width: 900px) {
