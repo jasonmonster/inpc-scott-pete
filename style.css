@@ -744,6 +744,15 @@ body:not(.home) .site-main { padding-top: 75px !important; }
   transform: rotateY(0deg) !important;
 }
 
+/* Homepage instance (nested in red-container): back face is navy with the
+   same white card border as the front, per mock. The base rule above uses
+   brand red with no border for the standalone product templates — scope
+   this to .brand-container so only the homepage flips to navy. */
+.brand-container .product-category-card__back {
+  background-color: #152e86 !important;
+  border: 4px solid #ffffff !important;
+}
+
 .product-flip-back h3,
 .product-category-card__back h3 {
   color: #ffffff;
