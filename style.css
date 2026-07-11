@@ -785,11 +785,10 @@ body:not(.home) .site-main { padding-top: 75px !important; }
 }
 
 /* Homepage instance (nested in red-container):
-   the block's own CTA row is centered by the parent block CSS. The mock
-   left-aligns "ALL PRODUCTS" under the card row inside the red area, so
-   override alignment here. Colors already match (gold/navy). */
+   center "ALL PRODUCTS" under the card row. Colors already match
+   (gold/navy). */
 .brand-container .product-category-grid__cta {
-  text-align: left;
+  text-align: center;
 }
 
 
