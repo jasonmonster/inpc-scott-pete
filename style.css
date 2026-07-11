@@ -493,21 +493,23 @@ body:not(.home) .site-main { padding-top: 75px !important; }
    the banner and the category section as direct siblings with no
    wrapper, so the adjacent-sibling selector covers those two instead.
 
-   REDUCED from +130px: that compensation assumed a separate floating
-   PNG overlapping down from the banner into this section. This build's
-   hero photo bleeds into the banner itself instead, so the grid can
-   sit close behind the subtitle, matching the mockup. */
+   .products-banner-product still floats via position:absolute and
+   bottom:-120px — it overlaps into this section on all three templates,
+   same as the day this was written. A prior edit dropped this to
+   var(--space-xl) on the premise that the hero photo no longer floats
+   out of the banner; it still does, that premise was wrong, restoring
+   the original compensation. */
 .products-page-content > .product-category-section:first-child,
 .products-page-content > .product-category-grid:first-child,
 .products-banner + .product-category-section {
-  padding-top: var(--space-xl) !important;
+  padding-top: calc(var(--section-padding) + 130px) !important;
 }
 
 @media (max-width: 768px) {
   .products-page-content > .product-category-section:first-child,
   .products-page-content > .product-category-grid:first-child,
   .products-banner + .product-category-section {
-    padding-top: var(--space-lg) !important;
+    padding-top: calc(var(--section-padding) + 80px) !important;
   }
 }
 
@@ -595,6 +597,7 @@ body:not(.home) .site-main { padding-top: 75px !important; }
 .product-category-grid__cards {
   display: flex !important;
   justify-content: center !important;
+  gap: var(--space-lg);
   max-width: var(--wrapper-width, 1200px);
   margin-left: auto !important;
   margin-right: auto !important;
