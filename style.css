@@ -1787,7 +1787,7 @@ body:not(.home) .site-main { padding-top: 75px !important; }
   font-size: 36px !important;
   min-height: 2.3em;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
 }
 
@@ -1816,7 +1816,7 @@ body:not(.home) .site-main { padding-top: 75px !important; }
   right: calc(-200% - (2 * var(--space-xl)));
   top: calc(-1 * var(--space-2xl) / 2);
   height: 0;
-  border-top: 3px dotted #ab162b;
+  border-top: 3px dotted #111111;
 }
 
 @media (max-width: 900px) {
@@ -1834,7 +1834,7 @@ body:not(.home) .site-main { padding-top: 75px !important; }
     right: calc(-100% - var(--space-xl));
     top: calc(-1 * var(--space-2xl) / 2);
     height: 0;
-    border-top: 3px dotted #ab162b;
+    border-top: 3px dotted #111111;
   }
 }
 
