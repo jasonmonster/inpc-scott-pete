@@ -583,8 +583,22 @@ body:not(.home) .site-main { padding-top: 75px !important; }
    padding-bottom forced here for the same reason padding-top needed
    forcing on the wrapper selector above: parent's own
    "padding: var(--section-padding) 0" on this class has no !important
-   and has been losing outright, not just on one side. */
-.product-category-grid {
+   and has been losing outright, not just on one side.
+
+   Scoped to :not(.brand-container ...) so this only paints the navy box
+   on the standalone product templates (archive / single), where the block
+   is a direct child of .products-page-content. On the homepage the block
+   is nested inside red-container's .brand-container, which supplies the red
+   section background via its ACF bg_color; the block must stay transparent
+   there so that red shows through. See the homepage override below. */
+.brand-container .product-category-grid {
+  background-color: transparent !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+.products-page-content .product-category-grid,
+.products-banner + .product-category-grid {
   background-color: #152e86 !important;
   padding-bottom: var(--section-padding) !important;
 }
@@ -603,6 +617,18 @@ body:not(.home) .site-main { padding-top: 75px !important; }
   margin-right: auto !important;
   padding-left: var(--wrapper-padding);
   padding-right: var(--wrapper-padding);
+}
+
+/* Homepage instance: the block already lives inside red-container's
+   .site-wrapper, so the block supplying its own max-width + wrapper padding
+   double-insets the card row (the narrow centered look in the blue box).
+   Strip the block's own wrapper constraints here and let the cards fill the
+   red-container wrapper. Keep justify-content:center so a short row still
+   centers per the mock. */
+.brand-container .product-category-grid__cards {
+  max-width: none !important;
+  padding-left: 0;
+  padding-right: 0;
 }
 
 .product-category-grid .section-heading {
@@ -756,6 +782,14 @@ body:not(.home) .site-main { padding-top: 75px !important; }
 .product-category-grid__cta .btn:hover {
   background: #e8a44e;
   border-color: #e8a44e;
+}
+
+/* Homepage instance (nested in red-container):
+   the block's own CTA row is centered by the parent block CSS. The mock
+   left-aligns "ALL PRODUCTS" under the card row inside the red area, so
+   override alignment here. Colors already match (gold/navy). */
+.brand-container .product-category-grid__cta {
+  text-align: left;
 }
 
 

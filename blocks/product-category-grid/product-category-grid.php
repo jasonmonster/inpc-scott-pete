@@ -28,8 +28,15 @@ $cta_link = get_field( 'cta_link' ) ?: '';
 
 // Same options fields taxonomy-product_category.php and single-product.php
 // read for their category-row header — one field, three templates.
-$grid_title    = ipc_option( 'products_grid_title',    '' );
-$grid_subtitle = ipc_option( 'products_grid_subtitle', '' );
+//
+// On the homepage this block is nested inside a red-container that already
+// carries its own "More Products To Explore" heading, so the options header
+// ("PREMIUM PRODUCTS" + subtitle) would render a second, duplicate title on
+// a navy box. Suppress it on the front page; keep it on the product
+// archive / single templates where the block stands alone.
+$show_heading  = ! is_front_page();
+$grid_title    = $show_heading ? ipc_option( 'products_grid_title',    '' ) : '';
+$grid_subtitle = $show_heading ? ipc_option( 'products_grid_subtitle', '' ) : '';
 
 $terms = get_terms( array(
     'taxonomy'   => 'product_category',
