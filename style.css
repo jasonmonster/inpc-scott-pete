@@ -1751,7 +1751,7 @@ body:not(.home) .site-main { padding-top: 75px !important; }
    ========================================================= */
 
 .recipe-list-grid {
-  --recipe-panel-bg:        #fdebd0;   /* soft cream, lighter than --color-accent */
+  --recipe-panel-bg:        var(--color-accent);   /* #fcc278 — brand accent, matches KYL peach panel */
   --recipe-panel-border:    3px solid #ab162b;
   --recipe-panel-radius:    24px;
   --recipe-panel-padding:   var(--space-3xl) var(--space-2xl);
@@ -1768,7 +1768,7 @@ body:not(.home) .site-main { padding-top: 75px !important; }
   --recipe-pill-servings-text:  #152e86;
 }
 
-/* Recipe list section background — white behind the cream panel */
+/* Recipe list section background — white behind the accent panel */
 .recipe-list-section {
   background-color: #ffffff !important;
 }
@@ -1777,10 +1777,16 @@ body:not(.home) .site-main { padding-top: 75px !important; }
   color: #152e86 !important;
 }
 
-/* Card title font weight/family already enforced globally on h3; this
-   just keeps the pill value numerals in the condensed face. */
+/* Card title — capital case (not uppercase), 36px */
+.recipe-card-title {
+  text-transform: none !important;
+  font-size: 36px !important;
+}
+
+/* Pill numbers bigger — max two digits, so there's room */
 .recipe-card .recipe-meta-value {
   font-family: 'futura-pt-condensed', sans-serif !important;
   font-weight: 700 !important;
+  font-size: 1.6rem !important;
 }
 
