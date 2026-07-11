@@ -81,10 +81,9 @@ if ( is_wp_error( $terms ) || empty( $terms ) ) return;
                     </div>
 
                     <div class="product-category-card__back">
+                        <h3><?php echo esc_html( $term->name ); ?></h3>
                         <?php if ( $desc ) : ?>
                             <p><?php echo wp_kses_post( $desc ); ?></p>
-                        <?php else : ?>
-                            <p><?php echo esc_html( $term->name ); ?></p>
                         <?php endif; ?>
                     </div>
 

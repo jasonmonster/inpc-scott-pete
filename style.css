@@ -391,7 +391,7 @@ body:not(.home) .site-main { padding-top: 75px !important; }
 .products-banner {
   position: relative;
   width: 100%;
-  min-height: 55vh;
+  min-height: 75vh;
   background-color: #152e86;
   background-size: cover;
   background-position: center top;
@@ -458,7 +458,7 @@ body:not(.home) .site-main { padding-top: 75px !important; }
   left: 50%;
   transform: translateX(-50%);
   z-index: 10;
-  width: 600px;
+  width: 450px;
   max-width: 90vw;
   pointer-events: none;
 }
@@ -675,14 +675,22 @@ body:not(.home) .site-main { padding-top: 75px !important; }
   border-radius: 0 !important;
 }
 
-/* Back face — brand red, border matches front */
+/* Back face — brand red. No border (design shows a clean red panel),
+   content centered both axes with the title stacked above the body. */
 .product-flip-back,
 .product-category-card__back {
   position: absolute !important;
   inset: 0 !important;
   background-color: #ab162b !important;
-  border: 4px solid #ffffff;
+  border: none !important;
   box-sizing: border-box;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  padding: var(--space-lg) !important;
+  gap: var(--space-sm);
   backface-visibility: hidden !important;
   -webkit-backface-visibility: hidden !important;
   transform: rotateY(180deg) !important;
@@ -713,11 +721,15 @@ body:not(.home) .site-main { padding-top: 75px !important; }
   color: #ffffff;
   text-transform: uppercase;
   font-size: 2rem !important;
+  margin: 0 0 var(--space-xs);
+  order: 0;
 }
 
 .product-flip-back p,
 .product-category-card__back p {
   color: #ffffff;
+  margin: 0;
+  order: 1;
 }
 
 /* Parent's products.css has its own .product-flip-card--active .product-flip-inner
