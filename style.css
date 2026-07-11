@@ -1742,6 +1742,222 @@ body:not(.home) .site-main { padding-top: 75px !important; }
 
 
 /* =========================================================
+   SINGLE RECIPE (single-recipe.php)
+   White card, red keyline, rounded corners, on navy. Left column:
+   breadcrumb, title, ingredients, directions, meta circles, actions.
+   Right column: circular food photo + tag package shot. "You Might
+   Also Like" runs full-width below the card.
+
+   Mirrors the product-detail-section card treatment. !important used
+   where recipes.css (loads after this file) would otherwise win.
+   ========================================================= */
+
+.recipe-detail-section {
+  background-color: #152e86 !important;
+  padding: var(--space-2xl) 0 var(--space-3xl);
+}
+
+/* White card shell */
+.recipe-detail-section .site-wrapper {
+  position: relative;
+  background-color: #ffffff;
+  border: 3px solid #ab162b;
+  border-radius: 24px;
+  padding: var(--space-3xl) 5%;
+  box-shadow: 0 4px 32px rgba(0, 0, 0, 0.25);
+}
+
+/* Hide the top back-link chevron block — design uses the breadcrumb instead */
+.recipe-detail-section .back-to-recipes {
+  display: none !important;
+}
+
+/* Two-column layout inside the card */
+.recipe-detail-section .recipe-detail-layout {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: var(--space-2xl) var(--space-3xl) !important;
+  align-items: start;
+}
+
+/* generic wrappers back to normal flow within each column */
+.recipe-detail-section .recipe-detail-content,
+.recipe-detail-section .recipe-detail-visual {
+  display: block;
+}
+
+/* Breadcrumb — red, uppercase, top of left column */
+.recipe-detail-section .recipe-breadcrumb ol {
+  font-family: 'futura-pt-condensed', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 0.85rem;
+}
+.recipe-detail-section .recipe-breadcrumb a,
+.recipe-detail-section .recipe-breadcrumb li {
+  color: #ab162b !important;
+}
+.recipe-detail-section .recipe-breadcrumb li + li::before {
+  content: ':';
+  color: #ab162b;
+}
+
+/* Title — large navy condensed */
+.recipe-detail-section .recipe-detail-title {
+  color: #152e86 !important;
+  font-family: 'futura-pt-condensed', sans-serif !important;
+  font-weight: 700 !important;
+  text-transform: uppercase;
+  font-size: clamp(2.5rem, 4.5vw, 3.75rem);
+  line-height: 0.95;
+  margin: var(--space-sm) 0 var(--space-lg);
+}
+
+/* Section titles ("Ingredients", "Directions") — plain, no rule line,
+   per design (bold navy label, not the underlined parent style) */
+.recipe-detail-section .recipe-section-title {
+  color: #152e86 !important;
+  font-family: 'futura-pt-condensed', sans-serif !important;
+  border-bottom: none !important;
+  padding-bottom: 0 !important;
+  font-size: 1.25rem !important;
+  letter-spacing: 0.02em !important;
+  text-transform: none !important;
+  margin-bottom: var(--space-sm) !important;
+}
+
+/* Ingredients / directions body copy */
+.recipe-detail-section .recipe-ingredients-list li,
+.recipe-detail-section .recipe-step-text {
+  color: #333333;
+  border-bottom: none !important;
+}
+.recipe-detail-section .recipe-directions-list li {
+  border-bottom: none !important;
+  padding: 2px 0;
+}
+
+/* Meta circles below directions — reuse the archive-card pill styling.
+   Scoped variables so the same pill look applies here. */
+.recipe-detail-section .recipe-meta {
+  --recipe-pill-size: 58px;
+  background: none !important;
+  padding: 0 !important;
+  margin: var(--space-xl) 0 var(--space-lg) !important;
+  border-radius: 0 !important;
+  gap: var(--space-md) !important;
+  justify-content: flex-start;
+}
+
+.recipe-detail-section .recipe-meta-item {
+  position: relative;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  justify-content: center;
+  gap: 0;
+  padding: 0;
+}
+.recipe-detail-section .recipe-meta-item:nth-child(1) { background-color: #4c8c3f; }
+.recipe-detail-section .recipe-meta-item:nth-child(2) { background-color: #ab162b; }
+.recipe-detail-section .recipe-meta-item:nth-child(3) { background-color: #e8dcc0; }
+
+.recipe-detail-section .recipe-meta-value {
+  font-family: 'futura-pt-condensed', sans-serif !important;
+  font-weight: 700 !important;
+  font-size: 1.5rem !important;
+  color: #ffffff !important;
+}
+.recipe-detail-section .recipe-meta-item:nth-child(3) .recipe-meta-value {
+  color: #152e86 !important;
+}
+.recipe-detail-section .recipe-meta-unit {
+  font-size: 0.5rem;
+  color: #ffffff;
+}
+.recipe-detail-section .recipe-meta-label {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  font-size: 0.55rem;
+  color: var(--color-text-light);
+}
+
+/* Actions — solid buttons like the design (gold print, red share) */
+.recipe-detail-section .recipe-actions {
+  gap: var(--space-md);
+  margin-top: var(--space-2xl);
+}
+.recipe-detail-section .recipe-action-btn {
+  border-radius: 4px;
+  border: none;
+  padding: 0.6em 2em;
+  font-family: 'futura-pt-condensed', sans-serif;
+  background-color: #ab162b;
+  color: #ffffff;
+}
+.recipe-detail-section .recipe-action-btn:hover {
+  background-color: #8a1122;
+  color: #ffffff;
+}
+/* First action (share) gold, matching the PRINT-first design ordering */
+.recipe-detail-section .recipe-action-btn:first-child {
+  background-color: #fcc278;
+  color: #152e86;
+}
+.recipe-detail-section .recipe-action-btn:first-child:hover {
+  background-color: #e8a44e;
+}
+
+/* ---- Right column ---- */
+
+/* Circular food photo */
+.recipe-detail-section .recipe-detail-photo {
+  border-radius: 50% !important;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border: 5px solid var(--color-accent);
+  box-shadow: none;
+  margin: 0 auto var(--space-xl);
+  max-width: 440px;
+}
+.recipe-detail-section .recipe-detail-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Tag package shot below the food photo */
+.recipe-detail-package {
+  text-align: center;
+}
+.recipe-detail-package img {
+  max-width: 320px;
+  width: 100%;
+  height: auto;
+  display: inline-block;
+  filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.25));
+}
+
+/* ---- You Might Also Like (full width, below card) ---- */
+.recipe-detail-section + * .recipe-related,
+.recipe-related {
+  margin-top: var(--space-2xl);
+}
+
+@media (max-width: 900px) {
+  .recipe-detail-section .recipe-detail-layout {
+    grid-template-columns: 1fr !important;
+  }
+  /* photo above the text on mobile */
+  .recipe-detail-section .recipe-detail-visual { order: -1; }
+}
+
+
+/* =========================================================
    RECIPE LIST PANEL + CARD (taxonomy-recipe_category/tag archives)
    Brand tokens for the framed panel and colored stat pills. All the
    structure lives in ipc-base/css/recipes.css; this only supplies
