@@ -130,6 +130,13 @@ Text Domain:  scott-pete
   --section-perks-bg:           #152e86;
   --section-perks-city-overlay: rgba(21, 46, 134, 0.75);
 
+  /* --- Stat pills ---
+     Single source of truth for every stat-pill number size across the
+     theme: the single-recipe pills, the recipe archive-card pills, AND
+     the product-detail nutrition circles all read this. Bumping pill
+     number size is a one-line change here. */
+  --stat-pill-value-size:     2rem;
+
 }
 
 
@@ -1317,7 +1324,7 @@ body:not(.home) .site-main { padding-top: 75px !important; }
 .product-nutrition-value {
   font-family: 'futura-pt-condensed', sans-serif;
   font-weight: 700;
-  font-size: 1.75rem;
+  font-size: var(--stat-pill-value-size);
   color: #ffffff !important;
   line-height: 1;
 }
@@ -1866,7 +1873,7 @@ body:not(.home) .site-main { padding-top: 75px !important; }
 .recipe-detail-section .recipe-meta-value {
   font-family: 'futura-pt-condensed', sans-serif !important;
   font-weight: 700 !important;
-  font-size: 1.5rem !important;
+  font-size: var(--stat-pill-value-size) !important;
   color: #ffffff !important;
 }
 .recipe-detail-section .recipe-meta-item:nth-child(3) .recipe-meta-value {
@@ -1945,9 +1952,9 @@ body:not(.home) .site-main { padding-top: 75px !important; }
 /* ---- You Might Also Like ---- */
 /* Hidden on the single recipe page per design direction. Markup stays
    in the template (harmless, and keeps the related-recipe query wired
-   up if it's ever wanted back), just not shown. */
-.recipe-detail-section ~ .recipe-related,
-.recipe-related {
+   up if it's ever wanted back), just not shown. Scoped to the detail
+   section so the .recipe-related class stays reusable elsewhere. */
+.recipe-detail-section .recipe-related {
   display: none !important;
 }
 
@@ -2010,11 +2017,13 @@ body:not(.home) .site-main { padding-top: 75px !important; }
   justify-content: center;
 }
 
-/* Pill numbers bigger — max two digits, so there's room */
+/* Pill numbers — max two digits, so there's room. Size comes from
+   --stat-pill-value-size (set in :root) so this and the single-recipe
+   pills stay in sync from one place. */
 .recipe-card .recipe-meta-value {
   font-family: 'futura-pt-condensed', sans-serif !important;
   font-weight: 700 !important;
-  font-size: 1.6rem !important;
+  font-size: var(--stat-pill-value-size) !important;
 }
 
 /* Dotted divider between grid rows (KYL reference). No image, no
