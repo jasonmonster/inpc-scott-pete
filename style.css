@@ -660,6 +660,16 @@ body:not(.home) .site-main { padding-top: 75px !important; }
   margin-top: var(--space-sm);
 }
 
+/* Front-face visual treatment shared by both card systems (white card,
+   photo-over-label). NOTE: no transform here — the two systems flip
+   differently and mixing them broke the taxonomy cards:
+     - .product-flip-* (taxonomy archive): parent products.css rotates the
+       INNER wrapper (.product-flip-inner) on hover; the faces stay static.
+     - .product-category-card__* (homepage/products block): the block CSS
+       rotates the FACES themselves.
+   Face-rotation !important rules are therefore scoped to the __card system
+   ONLY (below), so they can't pin the taxonomy system's faces and cancel
+   the parent's inner-rotation. */
 .product-flip-front,
 .product-category-card__front {
   position: absolute !important;
@@ -674,8 +684,6 @@ body:not(.home) .site-main { padding-top: 75px !important; }
   box-sizing: border-box;
   backface-visibility: hidden !important;
   -webkit-backface-visibility: hidden !important;
-  transform: rotateY(0deg) !important;
-  transition: transform 0.45s ease;
 }
 
 .product-flip-front img,
@@ -711,7 +719,9 @@ body:not(.home) .site-main { padding-top: 75px !important; }
 }
 
 /* Back face — brand red. No border (design shows a clean red panel),
-   content centered both axes with the title stacked above the body. */
+   content centered both axes with the title stacked above the body.
+   As with the front, no transform here — face-rotation is scoped to the
+   __card system only, below. */
 .product-flip-back,
 .product-category-card__back {
   position: absolute !important;
@@ -728,26 +738,30 @@ body:not(.home) .site-main { padding-top: 75px !important; }
   gap: var(--space-sm);
   backface-visibility: hidden !important;
   -webkit-backface-visibility: hidden !important;
+}
+
+/* __card system only: the homepage/products block rotates faces, so the
+   back starts flipped 180deg and the hover rules below bring it around.
+   The taxonomy .product-flip-back is intentionally excluded — its parent
+   rotates the inner wrapper instead. */
+.product-category-card__back {
   transform: rotateY(180deg) !important;
   transition: transform 0.45s ease;
 }
+.product-category-card__front {
+  transform: rotateY(0deg) !important;
+  transition: transform 0.45s ease;
+}
 
-/* Hover states — base rules above are !important, so the parent's
-   non-important hover rules can no longer win regardless of their
-   higher selector specificity. Re-declared here, also !important,
-   to actually flip the card. */
+/* Hover states — __card system ONLY (homepage/products block), which
+   flips by rotating the faces. The .product-flip-* taxonomy system is
+   deliberately not here: its parent rotates .product-flip-inner instead,
+   and adding face-rotation rules for it cancels that out (the bug this
+   split fixes). */
 .product-category-card__flip:hover .product-category-card__front {
   transform: rotateY(-180deg) !important;
 }
 .product-category-card__flip:hover .product-category-card__back {
-  transform: rotateY(0deg) !important;
-}
-.product-flip-card:hover .product-flip-front,
-.product-flip-card:focus-within .product-flip-front {
-  transform: rotateY(-180deg) !important;
-}
-.product-flip-card:hover .product-flip-back,
-.product-flip-card:focus-within .product-flip-back {
   transform: rotateY(0deg) !important;
 }
 
