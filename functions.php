@@ -258,3 +258,42 @@ function scott_pete_destini_temp_values( $value, $post_id, $field ) {
 
 	return $value;
 }
+
+
+/* =========================================================
+   10. ACF — ALLOW RELATIVE URLS IN URL FIELDS
+   ---------------------------------------------------------
+   ACF's URL field only accepts values that contain "://" or
+   start with "//". Internal paths like "/recipes/" therefore
+   fail validation and block the whole post from saving.
+
+   This filter runs after ACF's own url check (priority 20 vs
+   ACF's 10) and rescues root-relative ("/recipes/"),
+   protocol-relative ("//cdn.example.com"), and on-page anchor
+   ("#section") values. Everything else keeps ACF's result, so
+   genuine junk is still rejected.
+
+   Applies to every ACF URL field site-wide — including the
+   Recipe Decision Tree block's left_link / right_link / cta_link.
+   ========================================================= */
+
+add_filter( 'acf/validate_value/type=url', 'scott_pete_allow_relative_urls', 20, 4 );
+
+function scott_pete_allow_relative_urls( $valid, $value, $field, $input ) {
+
+	// Leave ACF's result alone if it already passed or the value is empty.
+	if ( true === $valid || '' === $value || null === $value ) {
+		return $valid;
+	}
+
+	// Accept root-relative ("/recipes/"), protocol-relative ("//host"),
+	// and on-page anchor ("#section") values.
+	if ( is_string( $value ) ) {
+		$first = substr( $value, 0, 1 );
+		if ( '/' === $first || '#' === $first ) {
+			return true;
+		}
+	}
+
+	return $valid;
+}
