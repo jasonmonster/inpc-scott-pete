@@ -310,3 +310,33 @@ function scott_pete_allow_relative_urls( $valid, $value, $field, $input ) {
 
 	return $valid;
 }
+
+
+/* =========================================================
+   11. NAV — DON'T MARK IN-PAGE ANCHOR LINKS AS "CURRENT"
+   ---------------------------------------------------------
+   Custom menu items that point at an on-page anchor (a URL
+   containing "#", e.g. "Pete's Perks" → /#perks) have their
+   fragment stripped by WordPress, which then matches them to
+   the home page and adds current-menu-item / current_page_item.
+   On the homepage that lights them up in the active/hover color
+   alongside the real "Home" item. Strip those classes from any
+   custom item whose URL contains a "#".
+   ========================================================= */
+
+add_filter( 'nav_menu_css_class', 'scott_pete_declassify_anchor_items', 10, 2 );
+
+function scott_pete_declassify_anchor_items( $classes, $item ) {
+	if ( 'custom' === $item->type && false !== strpos( (string) $item->url, '#' ) ) {
+		$classes = array_diff( $classes, array(
+			'current-menu-item',
+			'current_page_item',
+			'current-menu-ancestor',
+			'current-menu-parent',
+			'current_page_parent',
+			'current_page_ancestor',
+			'menu-item-home',
+		) );
+	}
+	return $classes;
+}

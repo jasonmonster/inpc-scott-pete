@@ -5,7 +5,7 @@ Description:  Scott Pete child theme for IPC Base
 Author:       Overtime Agency
 Author URI:   https://overtimeagency.com
 Template:     ipc-base
-Version:      1.0.2
+Version:      1.0.3
 Text Domain:  scott-pete
 */
 
@@ -1558,7 +1558,14 @@ body:not(.home) .site-main { padding-top: 75px !important; }
   speak: none;
 }
 
-.footer-copyright { color: #152e86; font-size: 0.78rem; }
+/* Footer copyright + legal line — dark blue for contrast on the gold footer.
+   Scoped to .site-footer so it outranks ipc-base/css/base.css, which loads
+   after this file and otherwise greys these out via --footer-link-color. */
+.site-footer .footer-copyright { font-size: 0.78rem; }
+.site-footer .footer-copyright,
+.site-footer .footer-legal-link,
+.site-footer .footer-legal-sep { color: var(--color-primary); }
+.site-footer .footer-legal-link:hover { color: var(--color-primary-dark); text-decoration: underline; }
 
 
 /* =========================================================
