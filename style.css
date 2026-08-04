@@ -266,9 +266,14 @@ h1, h2, h3, h4, h5, h6 {
 .site-header.is-sticky .primary-nav .nav-menu li.current-menu-item > a { color: #ab162b; }
 .site-header.is-sticky .primary-nav .nav-menu li + li > a::before { color: rgba(21, 46, 134, 0.35); }
 
-.admin-bar .site-header.is-sticky { top: 32px; }
+/* Admin bar (logged-in): offset EVERY fixed/absolute header state by the WP
+   toolbar height. Without it the header stays pinned to the viewport top while
+   the toolbar's html{margin-top} pushes page content (the hero) down, opening a
+   gap above the hero. Generalized from the old .is-sticky-only rule so the home
+   transparent header, internal fixed header, and sticky header all line up. */
+.admin-bar .site-header { top: 32px; }
 @media screen and (max-width: 782px) {
-  .admin-bar .site-header.is-sticky { top: 46px; }
+  .admin-bar .site-header { top: 46px; }
 }
 
 /* Internal pages: always gold, always fixed */

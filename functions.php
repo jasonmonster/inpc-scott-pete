@@ -219,41 +219,54 @@ add_filter( 'ipc_recipe_category_exclude_slugs', function( $slugs ) {
 /* =========================================================
    9. DESTINI — TEMPORARY HARDCODED LOCATOR VALUES
    ---------------------------------------------------------
-   !!! TODO: REPLACE WITH SCOTT PETE'S OWN VALUES !!!
+   !!! TODO: REPLACE WITH REAL ACF DESTINI OPTIONS !!!
 
-   The parent single-product.php reads these via
-   ipc_option('destini_locator_id') / ipc_option('destini_alpha_code'),
-   which call get_field($name, 'option'). Those ACF options are not yet
-   registered/populated for Scott Pete, so the "Where to Buy" button
-   won't render until they return a value.
+   Scott Pete runs TWO separate Destini locators, each with its own
+   loader script. Keep them apart or the wrong one renders (a full map
+   vs. a single button):
 
-   As a stopgap we borrow Kentucky Legend's live values (locator 4812,
-   alpha 12CC) so the Destini widget renders and can be styled/tested.
-   These point at KYL's store data — they are NOT correct for Scott Pete.
+     * Store locator — Where to Buy page (the full map).
+         destini_store_locator_id = 4624
+         destini_store_alpha_code = 1210
+         script: productFirstSnippet.js   (page-where-to-buy.php)
 
-   pre_load_value short-circuits ACF before it looks up the field, so this
-   works even though the fields aren't registered in an options group yet.
+     * Product widget — single product pages (the per-product button).
+         destini_locator_id       = 4630
+         destini_alpha_code       = 1216
+         script: productWidgetSnippet.js  (single-product.php)
+         data-apo is the product's SKUs, from _product_destini_skus meta.
 
-   WHEN REAL VALUES ARRIVE: delete this entire block and set the values
-   in the proper ACF Destini options (or register the fields there).
+   pre_load_value short-circuits ACF before it looks up the field, so these
+   resolve even though the fields aren't registered in an options group yet.
+
+   WHEN REAL VALUES ARE WIRED: delete this whole block and set the values
+   in the proper ACF Destini options, keeping the two locators separate.
    ========================================================= */
 
 add_filter( 'acf/pre_load_value', 'scott_pete_destini_temp_values', 10, 3 );
 
 function scott_pete_destini_temp_values( $value, $post_id, $field ) {
-	// Only act on the options page, not individual posts.
+	// Only act on the options store, not individual posts.
 	if ( 'option' !== $post_id && 'options' !== $post_id ) {
 		return $value;
 	}
 
 	$name = is_array( $field ) && isset( $field['name'] ) ? $field['name'] : '';
 
-	// TEMP: Kentucky Legend values — replace with Scott Pete's.
+	// Store locator — Where to Buy page (full map, productFirstSnippet.js).
+	if ( 'destini_store_locator_id' === $name ) {
+		return '4624';
+	}
+	if ( 'destini_store_alpha_code' === $name ) {
+		return '1210';
+	}
+
+	// Product widget — single product pages (button, productWidgetSnippet.js).
 	if ( 'destini_locator_id' === $name ) {
-		return '4812';
+		return '4630';
 	}
 	if ( 'destini_alpha_code' === $name ) {
-		return '12CC';
+		return '1216';
 	}
 
 	return $value;
